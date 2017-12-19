@@ -76,7 +76,6 @@ the_post();
         ]);
 
         if (
-            $result->have_posts() &&
             ($district = $result->posts[0]) &&
             ($schoolTypes = CFS()->get('school_types', $district->ID))
         ):
