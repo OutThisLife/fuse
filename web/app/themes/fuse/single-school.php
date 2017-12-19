@@ -6,7 +6,7 @@
  */
  error_reporting(E_ALL);
  ini_set('display_errors', 1);
-         
+
 get_header();
 the_post();
 ?>
@@ -20,10 +20,10 @@ the_post();
 
 	<!-- Page -->
 	<div id="page" class="col s12" itemprop="MainContentOfPage">
-        
+
         <div class="neighborhood-intro">
             <?php Template::partial('intro-copy.php'); ?>
-            
+
             <?php if ($stats = CFS()->get('school_stats')): ?>
             <div class="wrapper skinny neighborhood-stats">
                 <?php foreach($stats AS $stat): ?>
@@ -55,7 +55,7 @@ the_post();
             <div class="school-row">
                 <div class="school-labels">
                     <h5>Great Schools Rating (0-10)</h5>
-                    
+
                     <div class="grades-distance">
                         <div class="grades">
                             <h5>Grades</h5>
@@ -81,12 +81,8 @@ the_post();
                         </div>
                     </div>
                     <?php endforeach ?>
-
-                    <div class="expand-school">
-                        <a href="javascript:;"><i class="icon-down-arrow"></i> Expand all <?=$school_type['school_type']?></a>
-                    </div>
                 </div>
-                
+
                 <?php if ($school_copy = CFS()->get('schools_copy')): ?>
                 <div class="school-copy">
                     <?=$school_copy?>
@@ -100,7 +96,7 @@ the_post();
         <?php if ($neighborhoods = CFS()->get('neighborhoods')): ?>
         <div class="row neighborhoods-row">
             <h2>Neighborhoods</h2>
-            
+
             <ul>
                 <?php foreach($neighborhoods AS $neighborhood): ?>
                 <li><?=$neighborhood['neighborhood_title']?></li>
