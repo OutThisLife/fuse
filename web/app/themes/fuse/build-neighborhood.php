@@ -10,6 +10,6 @@ global $post;
 <a class="cover" href="<?=the_permalink()?>" data-neighborhood="<?=$post->post_name?>"></a>
 <figcaption>
     <h4><?=the_title()?></h4>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore quisquam sunt, architecto non dicta nihil</p>
+    <?=CFS()->get('excerpt')?>
 </figcaption>
 </figure>
