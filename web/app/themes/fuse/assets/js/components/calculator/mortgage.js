@@ -162,8 +162,8 @@ export default class MortgageCalculator extends Component {
       <strong>$<span className="price">{this.state.monthlyMortgage}</span> /mo</strong><br />
 
       <small>
-        <span className="loan-type">30 - Year Fixed</span> |
-        < span className="interest-rate">3.43% Interest</span>
+        <span className="loan-type">30 - Year Fixed</span> |&nbsp;
+        <span className="interest-rate">3.43% Interest</span>
       </small>
     </div>
 

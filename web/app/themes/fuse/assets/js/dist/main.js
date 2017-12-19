@@ -976,7 +976,7 @@ var MortgageCalculator = function (_Component) {
               { className: 'loan-type' },
               '30 - Year Fixed'
             ),
-            ' |',
+            ' |\xA0',
             _react2.default.createElement(
               'span',
               { className: 'interest-rate' },
