@@ -61,7 +61,10 @@
 	</div>
 
 	<div class="nav hide-for-small">
-		<a href="/login/" class="btn">Log In</a>
+		<?php
+		$id = is_user_logged_in() ? 365 : 249;
+		echo '<a href="', get_permalink($id), '" class="btn">', get_the_title($id), '</a>';
+		?>
 	</div>
 
 	<!-- Mobile nav -->
