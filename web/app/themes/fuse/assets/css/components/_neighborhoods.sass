@@ -1,0 +1,69 @@
+.list-map-view
+    border-bottom: 7px solid $light
+    padding-top: 45px
+
+    .row
+        display: flex
+        height: 100vh
+
+    .image-list
+        overflow-y: scroll
+        width: 50%
+        padding: 0 15px
+
+        h4
+            color: #FFF
+            font-size: 36px
+
+        figure
+            position: relative
+            margin: 7.5px 0
+            overflow: hidden
+
+            &:hover > img
+                transform: scale(1.1)
+
+            > img
+                width: 100%
+                height: 100%
+                transition: transform 2s $easing
+        .cover
+            background: linear-gradient(to top, rgba(#000, .35), transparent)
+
+        figcaption
+            position: absolute
+            top: 50%
+            left: 50%
+            pointer-events: none
+            +transform(translate(-50%, -50%))
+            color: #ffffff
+            text-align: center
+            width: 100%
+            padding: 0 20px
+
+            p
+                font-size: 20px
+
+    .map-area
+        overflow: none
+        background: $light
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 50%
+
+        span
+            width: 100%
+
+        path
+            cursor: pointer
+            user-select: none
+
+            &:hover
+                fill: #F38B00
+
+        .st5
+            font-family: "Arial", sans-serif
+            font-weight: 700
+            text-transform: uppercase
+            letter-spacing: .1em

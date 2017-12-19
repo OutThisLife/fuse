@@ -1,0 +1,76 @@
+.agent-header
+    border-bottom: 2px solid $light-grey
+
+    .agent
+        width: 100%
+        text-align: left
+        display: flex
+        align-items: center
+
+        figcaption
+            border: 0
+            width: 50%
+            margin-left: 40px
+
+        > img
+            height: auto
+
+        h3
+            font-family: $heading
+
+        .property-types
+            margin: 20px 0
+            display: flex
+            align-items: center
+
+            small
+                margin-left: 10px
+
+    .social-media
+        width: 60%
+
+        .social
+            width: 100%
+            padding: 0
+
+            li
+                margin: 0
+
+                + li
+                    margin-left: 20px
+
+    .contact-info
+        display: flex
+        align-items: center
+
+        > div, > div > ul
+            display: inherit
+            align-items: inherit
+
+        *
+            vertical-align: middle
+
+.agent-copy
+    @media (min-width: $small)
+        padding-right: 80px !important
+
+    h3
+        font-size: 21px
+        color: $grey
+
+    p
+        font-size: 16px
+
+.agent-content
+    padding: 40px 0
+
+.agent-sidebar ul
+    font-size: 16px
+
+.single-listings
+    border-top: 7px solid $light-grey
+    padding: 45px 0 0 0
+
+    h3
+        font-size: 36px
+        margin: 0 0 45px 0

@@ -1,0 +1,51 @@
+.page .hero,
+.page .hero figure,
+.archive .hero,
+.archive .hero figure,
+.blog .hero,
+.blog .hero figure,
+.single .hero,
+.single .hero figure
+    height: 60vh
+
+.home .hero,
+.home .hero figure
+    height: 100vh
+
+.hero
+    text-align: center
+    color: #ffffff
+    position: relative
+
+    h1, h2, form
+        visibility: hidden
+        color: #FFF
+
+    h1
+        font-size: 64px
+        margin: auto
+
+        @media (min-width: $small)
+            max-width: 750px
+
+    h2
+        font-size: 28px
+        font-family: $subtext
+        font-weight: 700
+
+    .hero-text
+        width: 100%
+        padding: 10% 30px
+
+    figure
+        height: 100vh
+        background-repeat: no-repeat
+        background-size: cover
+        background-attachment: fixed
+        background-position: center center
+
+        .cover
+            background: linear-gradient(to top, rgba(#000, .35), transparent)
+
+    form#search
+        width: 50%

@@ -1,0 +1,85 @@
+.the-posts
+    margin-bottom: 45px
+    width: 50%
+
+article.post
+    padding: 45px 0
+
+    &:not(:last-of-type)
+        border-bottom: 2px solid $light-grey
+
+.blog-block
+    display: flex
+
+    h3
+        color: $grey
+        font-size: 21px
+        width: 100%
+        margin-top: 20px
+        line-height: 1.5
+
+        a
+            color: inherit
+
+    .share-post
+        margin-top: auto
+
+    figure
+        position: relative
+        overflow: hidden
+
+        img
+            height: 100%
+            width: 100%
+            transition: transform 2s $easing
+
+        &:hover > img
+            transform: scale(1.1)
+
+        .cover
+            background: linear-gradient(to top, rgba(#000, .35), transparent)
+
+    figure, .post-meta
+        width: 50%
+
+.post-meta
+    display: flex
+    flex-wrap: wrap
+    flex-direction: column
+    justify-content: flex-start
+    margin-left: 45px
+
+    strong
+        text-transform: uppercase
+        color: $light-grey
+        font-size: 14px
+        width: 100%
+        letter-spacing: .08em
+
+.single
+    .post-meta
+        margin-left: 0
+        text-align: center
+
+    h1
+        font-size: 36px
+
+    .meta-columns
+        border-top: 0
+        border-bottom: 2px solid $light-grey
+        justify-content: center
+        color: $orange
+        align-items: center
+
+        strong
+            color: $orange
+            font-size: 26px
+
+    .post-content
+        padding: 20px 0
+        font-size: 16px
+        line-height: 1.75
+
+    #content
+        .skinny
+            width: 759px

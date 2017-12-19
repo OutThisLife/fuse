@@ -1,0 +1,186 @@
+form#search
+	display: flex
+	width: 100%
+
+	@media (max-width: $small)
+		width: 100%
+
+	.search:not([readonly])
+		border-radius: 5px
+		padding: 16px
+		font-size: 14px
+		color: $grey
+
+		+ button
+			margin-left: 16px
+
+			@media (max-width: $small)
+				width: 100%
+				margin: 10px 0
+
+form
+	margin: 50px auto
+
+	.col.m6
+		padding: 0 10px
+
+	label
+		text-transform: uppercase
+		text-align: left
+		display: block
+
+		span
+			letter-spacing: .08em
+			font-weight: 700
+			font-size: 14px
+
+		a
+			color: $orange
+			font-weight: 700
+			font-size: 12px
+
+		p
+			margin-top: 0
+			font-size: 16px
+
+	&.is-loading
+		cursor: progress
+
+		*
+			pointer-events: none
+			+opacity(.6)
+
+		[type=submit]
+			background: #CCC
+
+	+inputs
+		display: block
+		width: 100%
+		height: auto
+		line-height: 1
+		margin: 0
+		+boxSizing(border-box)
+		+transition(.3s ease-in-out)
+		+boxShadow(none)
+		background: #FFF
+		border-radius: 5px
+		padding: 11px 16px
+		font-size: 14px
+		color: $grey
+		border: 2px solid $light-grey
+
+		&:hover, &:focus, &:active
+			outline: none
+			border: 2px solid $light-grey
+			+boxShadow(none)
+
+		+colourPlaceholder
+			color: rgba($default, .35)
+
+		&.is-blank:not(:focus)
+			color: transparent
+
+	.gfield_error
+		+inputs
+			border-bottom-color: red
+
+	.search:not([readonly])
+		background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAWlBMVEX////yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/IzHx9AAAAHXRSTlMAAQQGDhQqLFhlfIGQl6OrvL7Bw9fY7u/w8fL3++cpGMwAAACRSURBVHgBdZBbjoQgEAAZYUZxVfABi4+6/zWXBF2TjlNflQppaFSmsj4Sva3UzSdQCJ+7rZBc5xKsV60C9CaL6SGcE2xuqpCrLeZJ5owm4YtFnLpwxCLQ/ccOnk5uTzPHb7fLdy5abPQL+FruzuLZm9LOX9pGq+sd2pcSNMCgZW2B+S3iawAmJdAzHEryno6fP8U4DXMF2v3kAAAAAElFTkSuQmCC) 95% center no-repeat !important
+
+	select:not([readonly])
+		cursor: pointer
+		appearance: none
+		-webkit-appearance: none
+		background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAJCAMAAAA1k+1bAAAAYFBMVEX////yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/sUrGnAAAAH3RSTlMACgwPFBUXGxwkLUlQW2lyc32Ivb7EycrL09zd5vr9r5U7FwAAAFRJREFUeAFNwY0SASEYhtHHD7vsFiUR+t77v0tN0xjnMN1mhvNzIut1pDt9lFmqyoFmfqsusJoeO9gX2UrjTPfNNsscnZdSkjzDVc2FnyAF/sRI9wV84gU0jsgK2wAAAABJRU5ErkJggg==) 95% center no-repeat
+
+		&::-ms-expand
+			display: none
+
+		option
+			color: $default
+
+	[type="radio"]:not(:checked)+label, [type="radio"]:checked+label
+		text-transform: initial
+		padding-left: 30px
+
+		&:not(:last-child)
+			margin-right: 20px
+
+	[type="radio"]:checked+label:after
+		border-color: $orange
+		background: $orange
+
+	textarea
+		max-height: 125px
+		resize: none
+		margin: 20px auto 0
+
+	p
+		text-align: inherit
+
+.gform_wrapper
+	+clearfix
+
+	.validation_error
+		margin: 0 0 50px
+
+	.validation_message
+		color: red
+		padding-top: 10px
+
+	.gform_description,
+	.gform_confirmation_message
+		display: block
+		margin: 0 0 50px
+
+	#extensions_message
+		display: block
+
+	&[style="display:none"]
+		display: block
+
+	li:not(.show-label) .gfield_label
+		display: none
+
+	ul, li
+		list-style: none
+		margin: 0
+		padding: 0
+
+	.gform_body
+		+clearfix
+
+	.gform_fields
+		display: flex
+		align-items: flex-start
+		flex-wrap: wrap
+
+		.gfield
+			width: 50%
+			padding: 10px
+
+			&.full-width
+				width: 100%
+
+	.gfield_radio
+		display: flex
+		align-items: center
+		margin-top: 10px
+
+		> li
+			width: auto
+
+			+ li
+				margin-left: 20px
+
+	.gform_footer
+		clear: both
+		margin: 0
+		padding: 20px 0 0
+
+.arrow-background
+	background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAJCAMAAAA1k+1bAAAAYFBMVEX////yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/sUrGnAAAAH3RSTlMACgwPFBUXGxwkLUlQW2lyc32Ivb7EycrL09zd5vr9r5U7FwAAAFRJREFUeAFNwY0SASEYhtHHD7vsFiUR+t77v0tN0xjnMN1mhvNzIut1pDt9lFmqyoFmfqsusJoeO9gX2UrjTPfNNsscnZdSkjzDVc2FnyAF/sRI9wV84gU0jsgK2wAAAABJRU5ErkJggg==) 95% center no-repeat
+
+.background-left
+	padding-left: 30px
+	background-position-x: 10px

@@ -1,0 +1,10 @@
+{
+	"presets": ["env", "react"],
+	"plugins": [
+		"inline-react-svg",
+		"transform-decorators-legacy",
+		"transform-runtime",
+		"transform-object-rest-spread",
+		"transform-react-jsx"
+	]
+}

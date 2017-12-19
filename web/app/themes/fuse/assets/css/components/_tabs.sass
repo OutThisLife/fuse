@@ -1,0 +1,38 @@
+.tabs
+    list-style: none
+    text-align: center
+    padding: 0
+    border-bottom: 1px solid $light
+    height: auto
+    margin-top: 25px !important
+
+    li
+        display: inline-block
+        background: $light
+        border-top-left-radius: 5px
+        border-top-right-radius: 5px
+        color: $grey
+        text-transform: uppercase
+        font-weight: 700
+        padding: 7px 20px
+        letter-spacing: .1em
+        font-size: 14px
+        margin: 0 5px
+        cursor: pointer
+
+        &.active
+            color: #FFF
+            background: $orange
+
+    + .contents .tab-content
+        padding: 25px
+
+        &.active
+            max-height: 500px
+            opacity: 1
+            +transition(all 1s $easing)
+        
+        &:not(.active)
+            max-height: 0
+            opacity: 0
+            overflow: hidden

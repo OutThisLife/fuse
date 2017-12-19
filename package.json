@@ -1,0 +1,27 @@
+{
+ "name": "roots-local",
+ "version": "1.0.0",
+ "description": "Run WP locally with remote .env vars",
+ "main": "index.js",
+ "scripts": {
+  "dev": "parallelshell \"php -S localhost:8000 -t web\"",
+  "watch": "cd web/app/themes/fuse && yarn dev",
+  "deploy": "sh deploy.sh staging",
+  "deploy-prod": "sh deploy.sh production",
+  "wkill": "taskkill /f /im node.exe"
+ },
+ "keywords": [
+  "roots",
+  "bedrock",
+  "local",
+  "dev"
+ ],
+ "author": "",
+ "license": "ISC",
+ "dependencies": {
+  "concurrently": "^3.4.0"
+ },
+ "devDependencies": {
+  "parallelshell": "^3.0.1"
+ }
+}

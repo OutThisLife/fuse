@@ -1,0 +1,52 @@
+.carousel
+	background-color: black
+
+	figure
+		position: absolute
+		top: 0
+		right: 0
+		left: 0
+		bottom: 0
+		+transition(opacity 1s ease-in-out)
+
+		&:not(.active)
+			+opacity(0)
+			pointer-events: none
+
+	.company-info
+		@extend .center
+		bottom: 60px
+		top: auto
+		width: 100%
+		display: flex
+		justify-content: center
+		align-items: center
+
+		img
+			+filter(brightness(0) invert(1))
+
+		span
+			color: #FFF
+			font-size: 14px
+			margin-left: 10px
+			display: inline-block
+
+	nav
+		@extend .center
+		bottom: -30px
+		top: auto
+		width: 100%
+
+		a
+			+sq(14px)
+			border-radius: 100%
+			background: $light
+			display: inline-block
+			margin: 5px
+			+transition(background .5s ease-in-out)
+
+			&:only-child
+				display: none
+
+			&.active, &:hover
+				background: $orange
