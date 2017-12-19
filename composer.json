@@ -48,6 +48,7 @@
     "wpackagist-plugin/cfs-custom-category-fields": "*",
     "wpackagist-plugin/displetreader-wordpress-plugin": "*",
     "wpackagist-plugin/sitemap": "*",
+    "wpackagist-plugin/theme-my-login": "*",
     "wpackagist-plugin/wordpress-seo": "*"
   },
   "require-dev": {
