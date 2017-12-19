@@ -637,14 +637,21 @@ if ($calculator) (0, _reactDom.render)(_react2.default.createElement(ClosingCalc
 },{"../tabs":20,"babel-runtime/core-js/object/get-prototype-of":33,"babel-runtime/helpers/classCallCheck":40,"babel-runtime/helpers/createClass":41,"babel-runtime/helpers/inherits":44,"babel-runtime/helpers/possibleConstructorReturn":46,"react":668,"react-dom":483}],6:[function(require,module,exports){
 'use strict';
 
-require('./closing');
-require('./mortgage');
+var _mortgage = require('./mortgage');
+
+var _mortgage2 = _interopRequireDefault(_mortgage);
+
+var _closing = require('./closing');
+
+var _closing2 = _interopRequireDefault(_closing);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 },{"./closing":5,"./mortgage":7}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = undefined;
 
@@ -679,321 +686,321 @@ var _reactChartjs = require('react-chartjs-2');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var setChart = function setChart(propertyInterest, propertyTax, homeInsurance, other, monthlyMortgage) {
-    return {
-        propertyInterest: propertyInterest,
-        propertyTax: propertyTax,
-        homeInsurance: homeInsurance,
-        other: other,
-        monthlyMortgage: monthlyMortgage,
-        chartData: {
-            datasets: [{
-                backgroundColor: ['rgb(241, 137, 3)', 'rgb(254, 197, 47)', 'rgb(86, 88, 90)', 'rgb(237, 237, 237)'],
-                borderWidth: 0,
-                data: [propertyInterest, propertyTax, homeInsurance, other]
-            }],
-            labels: ["Property & Interest", "Property Tax", "Home Insurance", "Other"]
-        }
-    };
+  return {
+    propertyInterest: propertyInterest,
+    propertyTax: propertyTax,
+    homeInsurance: homeInsurance,
+    other: other,
+    monthlyMortgage: monthlyMortgage,
+    chartData: {
+      datasets: [{
+        backgroundColor: ['rgb(241, 137, 3)', 'rgb(254, 197, 47)', 'rgb(86, 88, 90)', 'rgb(237, 237, 237)'],
+        borderWidth: 0,
+        data: [propertyInterest, propertyTax, homeInsurance, other]
+      }],
+      labels: ["Property & Interest", "Property Tax", "Home Insurance", "Other"]
+    }
+  };
 };
 
 var MortgageCalculator = function (_Component) {
-    (0, _inherits3.default)(MortgageCalculator, _Component);
+  (0, _inherits3.default)(MortgageCalculator, _Component);
 
-    function MortgageCalculator(props) {
-        (0, _classCallCheck3.default)(this, MortgageCalculator);
+  function MortgageCalculator(props) {
+    (0, _classCallCheck3.default)(this, MortgageCalculator);
 
-        var _this = (0, _possibleConstructorReturn3.default)(this, (MortgageCalculator.__proto__ || (0, _getPrototypeOf2.default)(MortgageCalculator)).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (MortgageCalculator.__proto__ || (0, _getPrototypeOf2.default)(MortgageCalculator)).call(this, props));
 
-        _this.setState(setChart(729, 113, 75, 0, 917));
-        return _this;
+    _this.setState(setChart(729, 113, 75, 0, 917));
+    return _this;
+  }
+
+  (0, _createClass3.default)(MortgageCalculator, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.setState(setChart(729, 113, 75, 0, 917));
     }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.$form = document.getElementById('mortgage-form');
+    }
+  }, {
+    key: 'calculateMortgage',
+    value: function calculateMortgage(e) {
+      e.preventDefault();
 
-    (0, _createClass3.default)(MortgageCalculator, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            this.setState(setChart(729, 113, 75, 0, 917));
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.$form = document.getElementById('mortgage-form');
-        }
-    }, {
-        key: 'calculateMortgage',
-        value: function calculateMortgage(e) {
-            e.preventDefault();
+      var formData = {
+        zipcode: this.$form.zipcode.value,
+        purchasePrice: parseFloat(this.$form.purchasePrice.value || 250000),
+        downPayment: parseFloat(this.$form.downPayment.value || 0.05),
+        interestRate: parseFloat(this.$form.interestRate.value || 0.343),
+        loanType: parseFloat(this.$form.loanType.value || 30)
+      };
+      var principal = formData.purchasePrice - formData.purchasePrice * formData.downPayment;
+      var monthlyInterestRate = formData.interestRate / 12 / 100;
+      var numberOfMonthlyPayments = formData.loanType * 12;
+      var monthlyPayment = monthlyInterestRate * principal * Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) - 1);
 
-            var formData = {
-                zipcode: e.target.zipcode.value,
-                purchasePrice: e.target.purchasePrice.value,
-                downPayment: e.target.downPayment.value,
-                interestRate: e.target.interestRate.value,
-                loanType: e.target.loanType.value
-            },
-                principal = formData.purchasePrice - formData.purchasePrice * formData.downPayment,
-                monthlyInterestRate = formData.interestRate / 12 / 100,
-                numberOfMonthlyPayments = formData.loanType * 12,
-                monthlyPayment = monthlyInterestRate * principal * Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) - 1);
-
-            this.setState(setChart(Math.floor(monthlyPayment), getRandomInt(100, 200), getRandomInt(100, 150), getRandomInt(0, 100), Math.floor(monthlyPayment)));
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'form',
-                { id: 'mortgage-form', onSubmit: this.calculateMortgage.bind(this) },
+      this.setState(setChart(Math.floor(monthlyPayment), getRandomInt(100, 200), getRandomInt(100, 150), getRandomInt(0, 100), Math.floor(monthlyPayment)));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'form',
+        { id: 'mortgage-form', onSubmit: this.calculateMortgage.bind(this) },
+        _react2.default.createElement(
+          'div',
+          { className: 'row wrapper calculator-form' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col s12 m6 percentage-breakdown' },
+            _react2.default.createElement(
+              'figure',
+              { className: 'percentage-wheel' },
+              _react2.default.createElement(_reactChartjs.Doughnut, {
+                data: this.state.chartData,
+                height: 278,
+                width: 278,
+                options: {
+                  cutoutPercentage: 75,
+                  maintainAspectRatio: false,
+                  legend: {
+                    display: false
+                  }
+                }
+              }),
+              _react2.default.createElement(
+                'strong',
+                { className: 'center' },
+                '$',
                 _react2.default.createElement(
-                    'div',
-                    { className: 'row wrapper' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col s12 m6 percentage-breakdown' },
-                        _react2.default.createElement(
-                            'figure',
-                            { className: 'percentage-wheel' },
-                            _react2.default.createElement(_reactChartjs.Doughnut, {
-                                data: this.state.chartData,
-                                height: 278,
-                                width: 278,
-                                options: {
-                                    cutoutPercentage: 75,
-                                    maintainAspectRatio: false,
-                                    legend: {
-                                        display: false
-                                    }
-                                }
-                            }),
-                            _react2.default.createElement(
-                                'strong',
-                                { className: 'center' },
-                                '$',
-                                _react2.default.createElement(
-                                    'span',
-                                    null,
-                                    this.state.monthlyMortgage
-                                ),
-                                ' /mo'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'ul',
-                            { className: 'breakdown' },
-                            _react2.default.createElement(
-                                'li',
-                                { className: 'principal' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'label' },
-                                    'Principal & Interest'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'price' },
-                                    '($',
-                                    this.state.propertyInterest,
-                                    ')'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                { className: 'property-tax' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'label' },
-                                    'Property Tax'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'price' },
-                                    '($',
-                                    this.state.propertyTax,
-                                    ')'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                { className: 'home-insurance' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'label' },
-                                    'Home Insurance'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'price' },
-                                    '($',
-                                    this.state.homeInsurance,
-                                    ')'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                { className: 'other' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'label' },
-                                    'Other'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'price' },
-                                    '($',
-                                    this.state.other,
-                                    ')'
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col s12 m6 mortgage-form-wrapper' },
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'zipcode' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                'Zipcode'
-                            ),
-                            _react2.default.createElement('input', { type: 'text', name: 'zipcode', placeholder: 'Property Zipcode' })
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'purchase-price' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                'Purchase Price'
-                            ),
-                            _react2.default.createElement('input', { type: 'text', name: 'purchasePrice', placeholder: '$250,000' })
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'down-payment' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                'Down Payment ',
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'javascript:;' },
-                                    '?'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'select',
-                                { name: 'downPayment' },
-                                _react2.default.createElement(
-                                    'option',
-                                    { value: '0.05' },
-                                    '5%'
-                                ),
-                                _react2.default.createElement(
-                                    'option',
-                                    { value: '0.1' },
-                                    '10%'
-                                ),
-                                _react2.default.createElement(
-                                    'option',
-                                    { value: '0.2' },
-                                    '20%'
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'interest-rate' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                'Interest Rate ',
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'javascript:;' },
-                                    '?'
-                                )
-                            ),
-                            _react2.default.createElement('input', { type: 'text', name: 'interestRate', placeholder: '3.43%' })
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'loan-type' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                'Loan Type ',
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'javascript:;' },
-                                    '?'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'select',
-                                { name: 'loanType' },
-                                _react2.default.createElement(
-                                    'option',
-                                    { value: '30' },
-                                    '30 Year Fixed Rate'
-                                ),
-                                _react2.default.createElement(
-                                    'option',
-                                    null,
-                                    'No Loan'
-                                )
-                            )
-                        )
-                    )
+                  'span',
+                  null,
+                  this.state.monthlyMortgage
+                ),
+                ' /mo'
+              )
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'breakdown' },
+              _react2.default.createElement(
+                'li',
+                { className: 'principal' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'label' },
+                  'Principal & Interest'
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'grey-banner center-align' },
-                    _react2.default.createElement(
-                        'strong',
-                        null,
-                        '$',
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'price' },
-                            this.state.monthlyMortgage
-                        ),
-                        ' /mo'
-                    ),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement(
-                        'small',
-                        null,
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'loan-type' },
-                            '30 - Year Fixed'
-                        ),
-                        ' |',
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'interest-rate' },
-                            '3.43% Interest'
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'center-align' },
-                    _react2.default.createElement(
-                        'button',
-                        { type: 'submit', href: 'javascript:;', className: 'btn calculate' },
-                        'Calculate'
-                    )
+                  'span',
+                  { className: 'price' },
+                  '($',
+                  this.state.propertyInterest,
+                  ')'
                 )
-            );
-        }
-    }]);
-    return MortgageCalculator;
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'property-tax' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'label' },
+                  'Property Tax'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '($',
+                  this.state.propertyTax,
+                  ')'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'home-insurance' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'label' },
+                  'Home Insurance'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '($',
+                  this.state.homeInsurance,
+                  ')'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'other' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'label' },
+                  'Other'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '($',
+                  this.state.other,
+                  ')'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col s12 m6 mortgage-form-wrapper' },
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'zipcode' },
+              _react2.default.createElement(
+                'span',
+                null,
+                'Zipcode'
+              ),
+              _react2.default.createElement('input', { type: 'text', name: 'zipcode', placeholder: 'Property Zipcode' })
+            ),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'purchase-price' },
+              _react2.default.createElement(
+                'span',
+                null,
+                'Purchase Price'
+              ),
+              _react2.default.createElement('input', { type: 'text', name: 'purchasePrice', placeholder: '$250,000' })
+            ),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'down-payment' },
+              _react2.default.createElement(
+                'span',
+                null,
+                'Down Payment ',
+                _react2.default.createElement(
+                  'a',
+                  { href: 'javascript:;' },
+                  '?'
+                )
+              ),
+              _react2.default.createElement(
+                'select',
+                { name: 'downPayment', onChange: this.calculateMortgage.bind(this) },
+                _react2.default.createElement(
+                  'option',
+                  { value: '0.05' },
+                  '5%'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '0.1' },
+                  '10%'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '0.2' },
+                  '20%'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'interest-rate' },
+              _react2.default.createElement(
+                'span',
+                null,
+                'Interest Rate ',
+                _react2.default.createElement(
+                  'a',
+                  { href: 'javascript:;' },
+                  '?'
+                )
+              ),
+              _react2.default.createElement('input', { type: 'text', name: 'interestRate', placeholder: '3.43%' })
+            ),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'loan-type' },
+              _react2.default.createElement(
+                'span',
+                null,
+                'Loan Type ',
+                _react2.default.createElement(
+                  'a',
+                  { href: 'javascript:;' },
+                  '?'
+                )
+              ),
+              _react2.default.createElement(
+                'select',
+                { name: 'loanType', onChange: this.calculateMortgage.bind(this) },
+                _react2.default.createElement(
+                  'option',
+                  { value: '30' },
+                  '30 Year Fixed Rate'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  null,
+                  'No Loan'
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'grey-banner center-align' },
+          _react2.default.createElement(
+            'strong',
+            null,
+            '$',
+            _react2.default.createElement(
+              'span',
+              { className: 'price' },
+              this.state.monthlyMortgage
+            ),
+            ' /mo'
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'small',
+            null,
+            _react2.default.createElement(
+              'span',
+              { className: 'loan-type' },
+              '30 - Year Fixed'
+            ),
+            ' |',
+            _react2.default.createElement(
+              'span',
+              { className: 'interest-rate' },
+              '3.43% Interest'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'center-align' },
+          _react2.default.createElement(
+            'button',
+            { type: 'submit', href: 'javascript:;', className: 'btn calculate' },
+            'Calculate'
+          )
+        )
+      );
+    }
+  }]);
+  return MortgageCalculator;
 }(_react.Component);
 
 exports.default = MortgageCalculator;
