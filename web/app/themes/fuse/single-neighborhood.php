@@ -4,12 +4,10 @@
  *
  * Single Neighborhood
  */
-         
+
 get_header();
 the_post();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-    	
+
 ?>
 <!-- CONTENT -->
 <section id="content" role="main">
@@ -21,10 +19,10 @@ ini_set('display_errors', 1);
 
 	<!-- Page -->
 	<div id="page" class="col s12" itemprop="MainContentOfPage">
-        
+
         <div class="neighborhood-intro">
             <?php Template::partial('intro-copy.php'); ?>
-            
+
             <?php if ($stats = CFS()->get('stats')): ?>
             <div class="wrapper skinny neighborhood-stats">
                 <?php foreach($stats AS $stat): ?>
@@ -67,14 +65,29 @@ ini_set('display_errors', 1);
             </div>
 		</div>
 
-        <?php if ($schools = CFS()->get('schools')): ?>
+        <?php
+        $result = BackEnd::getPostType('school', [
+            'posts_per_page' => 1,
+            'meta_query' => [[
+                'key' => 'neighborhood',
+                'value' => [get_the_ID()],
+                'compare' => 'IN',
+            ]]
+        ]);
+
+        if (
+            $result->have_posts() &&
+            ($district = $result->posts[0]) &&
+            ($schoolTypes = CFS()->get('school_types', $district->ID))
+        ):
+        ?>
         <div class="row school-info">
             <h2>Schools</h2>
 
-            <div class="school-wrapper">
+            <div class="school-row">
                 <div class="school-labels">
                     <h5>Great Schools Rating (0-10)</h5>
-                    
+
                     <div class="grades-distance">
                         <div class="grades">
                             <h5>Grades</h5>
@@ -86,14 +99,10 @@ ini_set('display_errors', 1);
                     </div>
                 </div>
 
-                <?php 
-                $schoolArr = [];
-                foreach ($schools AS $school):
-                    if ($schools = CFS()->get('school_types', $school)):
-                        foreach($schools AS $real_school):
-                            foreach($real_school['schools'] AS $school):
+                <?php
+                foreach ($schoolTypes AS $schoolType)
+                    foreach($schoolType['schools'] AS $school):
                 ?>
-            
                     <div class="school">
                         <div class="rating-name">
                             <span class="rating"><?=$school['school_rating'] ?></span>
@@ -105,10 +114,10 @@ ini_set('display_errors', 1);
                             <div class="distance"><?=$school['school_distance']?></div>
                         </div>
                     </div>
-                                
-                <?php endforeach; endforeach; endif; endforeach; ?>
 
-                
+                <?php endforeach ?>
+
+
                 <?php if ($school_copy = CFS()->get('schools_copy')): ?>
                 <div class="school-copy">
                     <?=$school_copy?>
@@ -121,7 +130,7 @@ ini_set('display_errors', 1);
         <?php if ($neighborhoods = CFS()->get('neighborhoods')): ?>
         <div class="row neighborhoods-row">
             <h2>Neighborhoods</h2>
-            
+
             <ul>
                 <?php foreach($neighborhoods AS $neighborhood): ?>
                 <li><?=$neighborhood['neighborhood_title']?></li>
