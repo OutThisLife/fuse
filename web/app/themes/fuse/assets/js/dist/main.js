@@ -801,9 +801,8 @@ var MortgageCalculator = function (_Component) {
                 _react2.default.createElement(
                   'span',
                   { className: 'price' },
-                  '($',
-                  this.state.propertyInterest,
-                  ')'
+                  '$',
+                  this.state.propertyInterest
                 )
               ),
               _react2.default.createElement(
@@ -817,9 +816,8 @@ var MortgageCalculator = function (_Component) {
                 _react2.default.createElement(
                   'span',
                   { className: 'price' },
-                  '($',
-                  this.state.propertyTax,
-                  ')'
+                  '$',
+                  this.state.propertyTax
                 )
               ),
               _react2.default.createElement(
@@ -833,9 +831,8 @@ var MortgageCalculator = function (_Component) {
                 _react2.default.createElement(
                   'span',
                   { className: 'price' },
-                  '($',
-                  this.state.homeInsurance,
-                  ')'
+                  '$',
+                  this.state.homeInsurance
                 )
               ),
               _react2.default.createElement(
@@ -849,9 +846,8 @@ var MortgageCalculator = function (_Component) {
                 _react2.default.createElement(
                   'span',
                   { className: 'price' },
-                  '($',
-                  this.state.other,
-                  ')'
+                  '$',
+                  this.state.other
                 )
               )
             )

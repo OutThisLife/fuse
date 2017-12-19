@@ -103,22 +103,22 @@ export default class MortgageCalculator extends Component {
         <ul className="breakdown">
           <li className="principal">
            <span className="label">Principal & Interest</span>
-           <span className="price">(${this.state.propertyInterest})</span>
+           <span className="price">${this.state.propertyInterest}</span>
           </li>
 
           <li className="property-tax">
            <span className="label">Property Tax</span>
-           <span className="price">(${this.state.propertyTax})</span>
+           <span className="price">${this.state.propertyTax}</span>
           </li>
 
           <li className="home-insurance">
            <span className="label">Home Insurance</span>
-           <span className="price">(${this.state.homeInsurance})</span>
+           <span className="price">${this.state.homeInsurance}</span>
           </li>
 
           <li className="other">
            <span className="label">Other</span>
-            <span className="price">(${this.state.other})</span>
+            <span className="price">${this.state.other}</span>
           </li>
         </ul>
       </div>
