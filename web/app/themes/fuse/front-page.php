@@ -14,7 +14,7 @@ get_header();
 	<div class="hero carousel">
 		<?php foreach($slides AS $slide): ?>
 		<figure class="item" style="
-			background-image: url(<?=$slide['background_image']?>)
+			background-image: url(<?=FrontEnd::getSrc($slide['background_image'], 'masthead')?>)
 		">
 			<div class="cover"></div>
 			<figcaption class="hero-text center">
