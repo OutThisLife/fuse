@@ -47,7 +47,10 @@ the_post();
 
         <?php if ($schools = getSchools('district', get_the_ID())): ?>
         <div class="row school-info">
-            <?php foreach($schools AS $type => $grouped): ?>
+            <?php
+            foreach($schools AS $type => $grouped):
+                $long = count($grouped) > 3;
+            ?>
             <h2 style='text-transform: capitalize'><?=$type?></h2>
 
             <div class="school-row">
@@ -61,68 +64,8 @@ the_post();
                     </div>
                 </div>
 
-                <div class="school-wrapper">
+                <div class="school-wrapper <?=$long ? 'show-fade' : ''?>">
                     <?php foreach ($grouped AS $school): ?>
-                    <div class="school">
-                        <div class="rating-name">
-                            <span class="rating"><?=$school['rating'] ?></span>
-                            <h6><?=$school['title']?></h6>
-                        </div>
-
-                        <div class="grades-distance">
-                            <div class="grades"><?=$school['grades']?></div>
-                        </div>
-                    </div>
-                    <div class="school">
-                        <div class="rating-name">
-                            <span class="rating"><?=$school['rating'] ?></span>
-                            <h6><?=$school['title']?></h6>
-                        </div>
-
-                        <div class="grades-distance">
-                            <div class="grades"><?=$school['grades']?></div>
-                        </div>
-                    </div>
-                    <div class="school">
-                        <div class="rating-name">
-                            <span class="rating"><?=$school['rating'] ?></span>
-                            <h6><?=$school['title']?></h6>
-                        </div>
-
-                        <div class="grades-distance">
-                            <div class="grades"><?=$school['grades']?></div>
-                        </div>
-                    </div>
-                    <div class="school">
-                        <div class="rating-name">
-                            <span class="rating"><?=$school['rating'] ?></span>
-                            <h6><?=$school['title']?></h6>
-                        </div>
-
-                        <div class="grades-distance">
-                            <div class="grades"><?=$school['grades']?></div>
-                        </div>
-                    </div>
-                    <div class="school">
-                        <div class="rating-name">
-                            <span class="rating"><?=$school['rating'] ?></span>
-                            <h6><?=$school['title']?></h6>
-                        </div>
-
-                        <div class="grades-distance">
-                            <div class="grades"><?=$school['grades']?></div>
-                        </div>
-                    </div>
-                    <div class="school">
-                        <div class="rating-name">
-                            <span class="rating"><?=$school['rating'] ?></span>
-                            <h6><?=$school['title']?></h6>
-                        </div>
-
-                        <div class="grades-distance">
-                            <div class="grades"><?=$school['grades']?></div>
-                        </div>
-                    </div>
                     <div class="school">
                         <div class="rating-name">
                             <span class="rating"><?=$school['rating'] ?></span>
@@ -136,12 +79,14 @@ the_post();
                     <?php endforeach ?>
                 </div>
 
+                <?php if ($long): ?>
                 <div class="expand-school expand-list" data-el=".school-wrapper">
                     <a href="javascript:;">
                         <i class="icon-down-arrow"></i>
                         Expand all <?=$school_type['school_type']?>
                     </a>
                 </div>
+                <?php endif ?>
 
                 <?php if ($school_copy = CFS()->get('schools_copy')): ?>
                 <div class="school-copy">

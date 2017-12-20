@@ -51,24 +51,26 @@
 .school-wrapper
     position: relative
     overflow: hidden
-    transition: max-height .3s ease-in-out
 
-    &:not(.expand)
-        max-height: 245px !important
+    &.show-fade
+        transition: max-height .3s ease-in-out
 
-    &:after
-        content: ''
-        pointer-events: none
-        position: absolute
-        right: 0
-        bottom: 0
-        left: 0
-        height: 100px
-        transition: opacity .3s ease-in-out
-        background: linear-gradient(to bottom, transparent, #FFF)
+        &:not(.expand)
+            max-height: 245px !important
 
-    &.expand:after
-        opacity: 0
+        &:after
+            content: ''
+            pointer-events: none
+            position: absolute
+            right: 0
+            bottom: 0
+            left: 0
+            height: 100px
+            transition: opacity .3s ease-in-out
+            background: linear-gradient(to bottom, transparent, #FFF)
+
+        &.expand:after
+            opacity: 0
 
 .expand-school
     display: block
