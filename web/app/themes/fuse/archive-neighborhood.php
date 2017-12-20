@@ -38,7 +38,7 @@ the_post();
             </div>
 
             <div class="neighborhoods-map map-area" id="neighborhood-map">
-                <?=FrontEnd::svg('map')?>
+                <?=FrontEnd::svg('map-neighborhoods')?>
             </div>
         </div>
 		</div>

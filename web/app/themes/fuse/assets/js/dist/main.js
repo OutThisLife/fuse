@@ -2633,7 +2633,7 @@ var NeighborhoodMap = function () {
   (0, _createClass3.default)(NeighborhoodMap, [{
     key: 'handleClick',
     value: function handleClick(e) {
-      document.querySelector('a[data-neighborhood="' + e.target.id + '"]').click();
+      document.querySelector('a[data-id="' + e.target.id + '"]').click();
     }
   }]);
   return NeighborhoodMap;

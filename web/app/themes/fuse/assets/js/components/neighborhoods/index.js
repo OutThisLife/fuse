@@ -6,7 +6,7 @@ export default class NeighborhoodMap {
   }
 
   handleClick(e) {
-    document.querySelector(`a[data-neighborhood="${e.target.id}"]`).click()
+    document.querySelector(`a[data-id="${e.target.id}"]`).click()
   }
 }
 

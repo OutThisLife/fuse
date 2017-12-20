@@ -38,8 +38,8 @@ the_post();
                ?>
             </div>
 
-            <div class="schools-map map-area">
-                <img src="<?=assetDir?>/img/school-map.png" />
+            <div class="neighborhoods-map map-area" id="neighborhood-map">
+                <?=FrontEnd::svg('map-districts')?>
             </div>
         </div>
 		</div>
