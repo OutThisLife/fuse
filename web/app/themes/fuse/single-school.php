@@ -73,7 +73,74 @@ the_post();
                             <div class="grades"><?=$school['grades']?></div>
                         </div>
                     </div>
+                    <div class="school">
+                        <div class="rating-name">
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
+                        </div>
+
+                        <div class="grades-distance">
+                            <div class="grades"><?=$school['grades']?></div>
+                        </div>
+                    </div>
+                    <div class="school">
+                        <div class="rating-name">
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
+                        </div>
+
+                        <div class="grades-distance">
+                            <div class="grades"><?=$school['grades']?></div>
+                        </div>
+                    </div>
+                    <div class="school">
+                        <div class="rating-name">
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
+                        </div>
+
+                        <div class="grades-distance">
+                            <div class="grades"><?=$school['grades']?></div>
+                        </div>
+                    </div>
+                    <div class="school">
+                        <div class="rating-name">
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
+                        </div>
+
+                        <div class="grades-distance">
+                            <div class="grades"><?=$school['grades']?></div>
+                        </div>
+                    </div>
+                    <div class="school">
+                        <div class="rating-name">
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
+                        </div>
+
+                        <div class="grades-distance">
+                            <div class="grades"><?=$school['grades']?></div>
+                        </div>
+                    </div>
+                    <div class="school">
+                        <div class="rating-name">
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
+                        </div>
+
+                        <div class="grades-distance">
+                            <div class="grades"><?=$school['grades']?></div>
+                        </div>
+                    </div>
                     <?php endforeach ?>
+                </div>
+
+                <div class="expand-school expand-list" data-el=".school-wrapper">
+                    <a href="javascript:;">
+                        <i class="icon-down-arrow"></i>
+                        Expand all <?=$school_type['school_type']?>
+                    </a>
                 </div>
 
                 <?php if ($school_copy = CFS()->get('schools_copy')): ?>

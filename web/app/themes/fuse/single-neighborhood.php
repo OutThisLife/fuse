@@ -84,17 +84,16 @@ the_post();
                 foreach ($schools AS $type => $grouped)
                     foreach ($grouped AS $school):
                 ?>
-                    <div class="school">
-                        <div class="rating-name">
-                            <span class="rating"><?=$school['rating'] ?></span>
-                            <h6><?=$school['title']?></h6>
-                        </div>
-
-                        <div class="grades-distance">
-                            <div class="grades"><?=$school['grades']?></div>
-                        </div>
+                <div class="school">
+                    <div class="rating-name">
+                        <span class="rating"><?=$school['rating'] ?></span>
+                        <h6><?=$school['title']?></h6>
                     </div>
 
+                    <div class="grades-distance">
+                        <div class="grades"><?=$school['grades']?></div>
+                    </div>
+                </div>
                 <?php endforeach ?>
 
 
