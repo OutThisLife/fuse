@@ -65,21 +65,7 @@ the_post();
             </div>
 		</div>
 
-        <?php
-        $result = BackEnd::getPostType('school', [
-            'posts_per_page' => 1,
-            'meta_query' => [[
-                'key' => 'neighborhood',
-                'value' => [get_the_ID()],
-                'compare' => 'IN',
-            ]]
-        ]);
-
-        if (
-            ($district = $result->posts[0]) &&
-            ($schoolTypes = CFS()->get('school_types', $district->ID))
-        ):
-        ?>
+        <?php if ($schools = getSchools('neighborhood', get_the_ID())): ?>
         <div class="row school-info">
             <h2>Schools</h2>
 
@@ -91,26 +77,21 @@ the_post();
                         <div class="grades">
                             <h5>Grades</h5>
                         </div>
-
-                        <div class="distance">
-                            <h5>Distance</h5>
-                        </div>
                     </div>
                 </div>
 
                 <?php
-                foreach ($schoolTypes AS $schoolType)
-                    foreach($schoolType['schools'] AS $school):
+                foreach ($schools AS $type => $grouped)
+                    foreach ($grouped AS $school):
                 ?>
                     <div class="school">
                         <div class="rating-name">
-                            <span class="rating"><?=$school['school_rating'] ?></span>
-                            <h6><?=$school['school_name']?></h6>
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
                         </div>
 
                         <div class="grades-distance">
-                            <div class="grades"><?=$school['school_grades']?></div>
-                            <div class="distance"><?=$school['school_distance']?></div>
+                            <div class="grades"><?=$school['grades']?></div>
                         </div>
                     </div>
 
@@ -129,6 +110,8 @@ the_post();
         <?php if ($neighborhoods = CFS()->get('neighborhoods')): ?>
         <div class="row neighborhoods-row">
             <h2>Neighborhoods</h2>
+
+            <br /><br />
 
             <ul>
                 <?php foreach($neighborhoods AS $neighborhood): ?>

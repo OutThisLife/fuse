@@ -228,3 +228,24 @@ foreach ([
 	add_action('wp_ajax_' . $fn, $fn);
 	add_action('wp_ajax_nopriv_' . $fn, $fn);
 endforeach;
+
+function getSchools($key, $parent) {
+	$schools = [];
+
+	Template::loop(function() use (&$schools) {
+		$type = end(CFS()->get('school_type'));
+		$schools[$type][] = array_merge(CFS()->get(), [
+			'id' => get_the_ID(),
+			'title' => get_the_title(),
+		]);
+	}, [
+		'post_type' => 'school_meta',
+		'meta_query' => [[
+				'key' => $key,
+				'value' => [$parent],
+				'compare' => 'IN',
+		]]
+	]);
+
+	return $schools;
+}

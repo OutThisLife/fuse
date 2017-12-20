@@ -4,8 +4,6 @@
  *
  * Single School
  */
- error_reporting(E_ALL);
- ini_set('display_errors', 1);
 
 get_header();
 the_post();
@@ -47,10 +45,10 @@ the_post();
 		</div>
 
 
-        <?php if ($schools = CFS()->get('school_types')): ?>
+        <?php if ($schools = getSchools('district', get_the_ID())): ?>
         <div class="row school-info">
-            <?php foreach($schools AS $school_type): ?>
-            <h2><?=$school_type['school_type']?></h2>
+            <?php foreach($schools AS $type => $grouped): ?>
+            <h2 style='text-transform: capitalize'><?=$type?></h2>
 
             <div class="school-row">
                 <div class="school-labels">
@@ -60,24 +58,19 @@ the_post();
                         <div class="grades">
                             <h5>Grades</h5>
                         </div>
-
-                        <div class="distance">
-                            <h5>Distance</h5>
-                        </div>
                     </div>
                 </div>
 
                 <div class="school-wrapper">
-                    <?php foreach ($school_type['schools'] AS $school): ?>
+                    <?php foreach ($grouped AS $school): ?>
                     <div class="school">
                         <div class="rating-name">
-                            <span class="rating"><?=$school['school_rating'] ?></span>
-                            <h6><?=$school['school_name']?></h6>
+                            <span class="rating"><?=$school['rating'] ?></span>
+                            <h6><?=$school['title']?></h6>
                         </div>
 
                         <div class="grades-distance">
-                            <div class="grades"><?=$school['school_grades']?></div>
-                            <div class="distance"><?=$school['school_distance']?></div>
+                            <div class="grades"><?=$school['grades']?></div>
                         </div>
                     </div>
                     <?php endforeach ?>
