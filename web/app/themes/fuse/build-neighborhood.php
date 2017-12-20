@@ -7,7 +7,7 @@ global $post;
 ?>
 
 <figure class="neighborhood">
-    <img src="<?=CFS()->get('neighborhood_image')?>" />
+    <?=FrontEnd::getImg(CFS()->get('neighborhood_image'), 'school-thumb')?>
 
     <a class="cover" href="<?=the_permalink()?>" data-id="<?=$post->post_name?>"></a>
 

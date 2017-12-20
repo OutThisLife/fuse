@@ -49,6 +49,7 @@
     "wpackagist-plugin/displetreader-wordpress-plugin": "*",
     "wpackagist-plugin/sitemap": "*",
     "wpackagist-plugin/theme-my-login": "*",
+    "wpackagist-plugin/ajax-thumbnail-rebuild": "*",
     "wpackagist-plugin/wordpress-seo": "*"
   },
   "require-dev": {

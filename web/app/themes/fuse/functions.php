@@ -27,7 +27,7 @@ require_once 'classes/sys/autoloader.php';
  * Set up the front-end
  */
 ->addImageSizes([[
-	//
+	'school_thumb' => [500],
 ]])
 
 // -----------------------------------------------
