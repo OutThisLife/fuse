@@ -94,6 +94,10 @@ export default class Map extends Component {
   }
 
   render() {
+    if (this.state.all.length === 0) {
+      return null
+    }
+
     return (
       <div>
         {!this.props.agentId && (

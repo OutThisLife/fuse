@@ -30,7 +30,13 @@ the_post();
 				<figcaption>
 					<h4><?=$block['cob_title']?></h4>
 					<p><?=$block['call_out_copy']?></p>
-					<a href="<?=$block['cob_url']?>" class="btn"><?=$block['cob_link_text']?></a>
+
+					<?php
+					if (
+						($url = $block['cob_url']) &&
+						($txt = $block['cob_link_text'])
+					)	echo '<a href="', $url, '" class="btn">', $txt, '</a>';
+					?>
 				</figcaption>
 			</figure>
 			<?php endforeach; ?>
@@ -39,7 +45,7 @@ the_post();
 		<?php endif ?>
 
 		<div class="row newsletter-call-out">
-		<div class="wrapper skinny">
+		<div class="wrapper skinny" style="max-width: 700px">
 			<form id="search">
 				<input type="text" class="search" placeholder="Search by Neighborhood, School or Zipcode" />
 				<button class="btn">Search</button>

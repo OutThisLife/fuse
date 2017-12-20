@@ -152,7 +152,7 @@ add_filter('upload_mimes', function($mimes) {
 add_filter('wp_get_attachment_url', function($url) {
 	$url = str_replace('localhost:8000', 'fuse.thegkwco.com', $url);
 	return $url;
-});
+}, 99);
 
 function displet($endpoint = '') {
 	Header('Content-Type: application/json');
