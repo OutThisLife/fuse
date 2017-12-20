@@ -27,6 +27,7 @@ require_once 'classes/sys/autoloader.php';
  * Set up the front-end
  */
 ->addImageSizes([[
+	'masthead' => [1920],
 	'school_thumb' => [500],
 ]])
 
