@@ -63,12 +63,7 @@ get_header();
 			<?=Frontend::svg('money')?>
 
 			<div class="copy">
-				<h4>How much is it worth?</h4>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio aut cupiditate enim numquam maxime sunt voluptatum</p>
-				<form>
-					<input type="email" class="email" placeholder="Email Address">
-					<button class="btn">Next</button>
-				</form>
+				<?=CFS()->get('first_copy')?>
 			</div>
 		</div>
 
@@ -94,9 +89,7 @@ get_header();
 			<?=Frontend::svg('properties')?>
 
 			<div class="copy">
-				<h4>Interested in Commercial Properties?</h4>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio aut cupiditate enim numquam maxime sunt voluptatum</p>
-				<a href="javascript:;" class="btn">Contact</a>
+				<?=CFS()->get('second_copy')?>
 			</div>
 		</div>
 
@@ -104,9 +97,7 @@ get_header();
 			<?=Frontend::svg('sign-up')?>
 
 			<div class="copy">
-				<h4>Want to stay in the know?</h4>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio aut cupiditate enim numquam maxime sunt voluptatum</p>
-				<a href="javscript:;" class="btn">Sign Up</a>
+				<?=CFS()->get('third_copy')?>
 			</div>
 		</div>
 	</div>

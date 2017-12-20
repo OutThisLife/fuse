@@ -29,13 +29,8 @@ the_post();
 		<img src="<?=assetDir?>/img/contact-logo.png" />
 
 		<div class="contact-info left-align">
-			<h4>Fuse Realty</h4>
-			<p>
-				1601 E Cesar Chavez ST #105<br />
-				Austin, TX 78702
-			</p>
+			<?=CFS()->get('contact_info')?>
 
-			<strong>512.790.FUSE</strong>
 			<ul class="social">
 				<?=Backend::getMenu('social')?>
 			</ul>
