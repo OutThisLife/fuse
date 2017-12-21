@@ -95,7 +95,14 @@ export default class Map extends Component {
 
   render() {
     if (this.state.all.length === 0) {
-      return null
+      return (
+        <div style={{
+          textAlign: 'center',
+          padding: '15px'
+        }}>
+          <img src='/app/themes/fuse/assets/img/ajax-loader.gif' />
+        </div>
+      )
     }
 
     return (

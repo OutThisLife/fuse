@@ -2323,7 +2323,14 @@ var Map = function (_Component) {
     key: 'render',
     value: function render() {
       if (this.state.all.length === 0) {
-        return null;
+        return _react2.default.createElement(
+          'div',
+          { style: {
+              textAlign: 'center',
+              padding: '15px'
+            } },
+          _react2.default.createElement('img', { src: '/app/themes/fuse/assets/img/ajax-loader.gif' })
+        );
       }
 
       return _react2.default.createElement(
