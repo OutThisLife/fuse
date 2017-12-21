@@ -7,9 +7,7 @@ global $post;
 $src = FrontEnd::getSrc(CFS()->get('school_image'), 'school_thumb');
 ?>
 
-<figure class="school" style="background: url(<?=$src?>) center / cover no-repeat">
-    <img src="<?=$src?>" />
-
+<figure class="school" style="background-image: url(<?=$src?>)">
     <a class="cover" href="<?=the_permalink()?>" data-id="<?=$post->post_name?>"></a>
 
     <figcaption>

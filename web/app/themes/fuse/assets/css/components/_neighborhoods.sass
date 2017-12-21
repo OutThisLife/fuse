@@ -17,26 +17,22 @@
 
         figure
             position: relative
+            height: 337px
             margin: 7.5px 0
             overflow: hidden
-            background: #CCC
+            transition: .7s ease-in-out
+            background: center no-repeat
+            background-size: 100% 337px
+
+            &:hover
+                background-size: 105% 360px !important
 
             > img
-                opacity: 1
-                width: 100%
-                height: 100%
-                vertical-align: middle
-                transform: scale(1)
-                transition: transform 2s $easing
-
-            &:not(:hover) > img
-                opacity: 0
-                transition-property: transform, opacity
-
-            &:hover > img
-                transform: scale(1.1)
+                display: none
 
         .cover
+            bottom: auto
+            height: 100%
             background: linear-gradient(to top, rgba(#000, .35), transparent)
 
         figcaption
