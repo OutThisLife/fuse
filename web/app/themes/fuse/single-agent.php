@@ -109,7 +109,7 @@ $getSocial = function () {
         <h3><?=CFS()->get('first_name')?>'s Listings</h3>
     </div>
 
-    <div id="search-map" data-agentId="<?=$agentid?>"></div>
+    <div id="featured-listings" data-agentId='<?=$agentid?>'></div>
 </div>
 <?php endif ?>
 </section>

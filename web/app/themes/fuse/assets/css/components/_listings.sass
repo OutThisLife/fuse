@@ -2,7 +2,13 @@
     border-bottom: 7px solid $light
     padding: 36px 0
 
-    .slick-track
+    .listing
+        display: block
+        width: 33.33%
+        height: 100%
+        margin: auto
+
+    [class$="track"]
         display: flex
         align-items: stretch
 
@@ -12,10 +18,8 @@
             align-items: inherit
             height: initial
 
-        .listing
-            display: block
-            width: calc(100% - 20px)
-            height: 100%
+    .slick-track .listing
+        width: calc(100% - 20px)
 
     h3
         text-align: center

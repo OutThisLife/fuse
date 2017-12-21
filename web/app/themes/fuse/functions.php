@@ -152,7 +152,13 @@ add_filter('upload_mimes', function($mimes) {
 add_filter('wp_get_attachment_url', function($url) {
 	$url = str_replace('localhost:8000', 'fuse.thegkwco.com', $url);
 	return $url;
-}, 99);
+}, 10, 1);
+
+add_filter('max_srcset_image_width', function() {
+	return false;
+});
+
+add_filter( 'wp_calculate_image_srcset_meta', '__return_empty_array');
 
 function displet($endpoint = '') {
 	Header('Content-Type: application/json');

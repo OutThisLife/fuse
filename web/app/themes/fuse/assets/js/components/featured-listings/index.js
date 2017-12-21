@@ -47,9 +47,21 @@ export default class FeaturedListings extends Component {
   }
 
   render() {
+    const Dummy = ({ children }) => {
+      if (this.state.listings.length >= 4) {
+        return (
+          <Slider {...this.settings}>
+            {children}
+          </Slider>
+        )
+      }
+
+      return <div className='static-track'>{children}</div>
+    }
+
     return (
       <div className="row featured-listings">
-        <Slider {...this.settings}>
+        <Dummy>
         {(this.state.listings || []).map(listing =>
           <div key={listing.id}>
             <Listing
@@ -67,7 +79,7 @@ export default class FeaturedListings extends Component {
             />
           </div>
         )}
-        </Slider>
+        </Dummy>
       </div>
     )
   }
@@ -75,4 +87,6 @@ export default class FeaturedListings extends Component {
 
 let $featuredListings
 if ($featuredListings = document.getElementById('featured-listings'))
-  render(<FeaturedListings agentId={$featuredListings.dataset.agentid} />, $featuredListings)
+  render(<FeaturedListings
+    agentId={$featuredListings.dataset.agentid}
+  />, $featuredListings)

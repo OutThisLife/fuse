@@ -1202,12 +1202,32 @@ var FeaturedListings = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var Dummy = function Dummy(_ref2) {
+        var children = _ref2.children;
+
+        if (_this2.state.listings.length >= 4) {
+          return _react2.default.createElement(
+            _reactSlick2.default,
+            _this2.settings,
+            children
+          );
+        }
+
+        return _react2.default.createElement(
+          'div',
+          { className: 'static-track' },
+          children
+        );
+      };
+
       return _react2.default.createElement(
         'div',
         { className: 'row featured-listings' },
         _react2.default.createElement(
-          _reactSlick2.default,
-          this.settings,
+          Dummy,
+          null,
           (this.state.listings || []).map(function (listing) {
             return _react2.default.createElement(
               'div',
@@ -1238,7 +1258,9 @@ exports.default = FeaturedListings;
 
 
 var $featuredListings = void 0;
-if ($featuredListings = document.getElementById('featured-listings')) (0, _reactDom.render)(_react2.default.createElement(FeaturedListings, { agentId: $featuredListings.dataset.agentid }), $featuredListings);
+if ($featuredListings = document.getElementById('featured-listings')) (0, _reactDom.render)(_react2.default.createElement(FeaturedListings, {
+  agentId: $featuredListings.dataset.agentid
+}), $featuredListings);
 
 },{"../listings/listing":11,"../map/init":18,"babel-runtime/core-js/object/get-prototype-of":34,"babel-runtime/helpers/classCallCheck":41,"babel-runtime/helpers/createClass":42,"babel-runtime/helpers/inherits":45,"babel-runtime/helpers/possibleConstructorReturn":47,"react":669,"react-dom":484,"react-slick":636}],10:[function(require,module,exports){
 'use strict';
