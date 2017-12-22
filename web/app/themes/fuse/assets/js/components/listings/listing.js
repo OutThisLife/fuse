@@ -24,7 +24,7 @@ export default props => (
 
       <ListingDetail>
           <div className="price-location">
-            <span className="price">${(props.price).toLocaleString()}</span>
+            <span className="price">${props.price.toLocaleString()}</span>
             <div className="address">
                 <span className="street">{props.address}</span> |&nbsp;
                 <span className="city-zip">{props.city} {props.zip}</span>
