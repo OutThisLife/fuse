@@ -235,10 +235,20 @@ function getPropertiesByAgentId() {
 	wp_die();
 }
 
+function setUserFavourites() {
+	if (is_user_logged_in()):
+		$listings = json_decode($_POST['listings']);
+		update_user_meta(get_current_user_id(), 'saved_listings', $listings);
+	endif;
+
+	wp_die();
+}
+
 foreach ([
 	'getProperties', 'getPropertiesByCustomQuery',
 	'getPropertiesByCustomQuery', 'getPropertiesByZip',
-	'getPropertiesByKeyword', 'getPropertiesByAgentId'
+	'getPropertiesByKeyword', 'getPropertiesByAgentId',
+	'setUserFavourites'
 ] AS $fn):
 	add_action('wp_ajax_' . $fn, $fn);
 	add_action('wp_ajax_nopriv_' . $fn, $fn);
