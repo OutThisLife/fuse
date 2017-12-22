@@ -1396,7 +1396,7 @@ exports.default = function (props) {
         _react2.default.createElement(
           'div',
           { className: 'meta-columns' },
-          props.bedrooms && _react2.default.createElement(
+          props.bedrooms > 0 && _react2.default.createElement(
             'div',
             { className: 'bed' },
             _react2.default.createElement(
@@ -1410,7 +1410,7 @@ exports.default = function (props) {
               'BR'
             )
           ),
-          props.full_baths && _react2.default.createElement(
+          props.full_baths > 0 && _react2.default.createElement(
             'div',
             { className: 'bath' },
             _react2.default.createElement(
@@ -1424,7 +1424,7 @@ exports.default = function (props) {
               'BA'
             )
           ),
-          props.square_feet && _react2.default.createElement(
+          props.square_feet > 0 && _react2.default.createElement(
             'div',
             { className: 'square-foot' },
             _react2.default.createElement(

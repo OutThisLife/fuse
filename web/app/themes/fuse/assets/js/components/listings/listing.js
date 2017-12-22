@@ -32,21 +32,21 @@ export default props => (
           </div>
 
         <div className="meta-columns">
-          {props.bedrooms && (
+          {props.bedrooms > 0 && (
             <div className="bed">
               <strong>{props.bedrooms}</strong>
               <small>BR</small>
             </div>
           )}
 
-          {props.full_baths && (
+          {props.full_baths > 0 && (
             <div className="bath">
               <strong>{props.full_baths}</strong>
               <small>BA</small>
             </div>
           )}
 
-          {props.square_feet && (
+          {props.square_feet > 0 && (
             <div className="square-foot">
               <strong>{props.square_feet.toLocaleString()}</strong>
               <small>SQ/FT</small>
