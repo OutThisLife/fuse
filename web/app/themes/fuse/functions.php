@@ -163,7 +163,7 @@ add_filter( 'wp_calculate_image_srcset_meta', '__return_empty_array');
 function displet($endpoint = '') {
 	Header('Content-Type: application/json');
 
-	$endpoint = 'search?' .$endpoint;
+	$endpoint = 'search?' . $endpoint;
 	$key = 'displet_' . $endpoint;
 
 	// delete_transient($key);
@@ -172,7 +172,9 @@ function displet($endpoint = '') {
 		$referer = 'fuse.austinkpickett.com';
 		$api_token = '74839b9f5b00b76de6b586cf36856db2a0a9a5ea';
 
-		$url = 'https://api.displet.com/residentials/' . $endpoint . '&authentication_token=' . $api_token;
+		$url = 'https://api.displet.com/residentials/' . $endpoint;
+		$url .= '&authentication_token=' . $api_token;
+
 		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER,  array('referer: ' . $referer));
@@ -193,6 +195,12 @@ function displet($endpoint = '') {
 	endif;
 
 	$result = json_decode($result);
+	$range = range(73301, 88589);
+
+	foreach ($result->results AS $key => $item)
+		if (!in_array($item->zip, $range))
+			array_splice($result->results, $key);
+
 	$result->results = array_unique($result->results, SORT_REGULAR);
 
 	return json_encode($result);

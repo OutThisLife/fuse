@@ -1290,6 +1290,7 @@ var Listings = function Listings(_ref) {
     (0, _lodash.orderBy)(listings || [], [order.key], [order.dir]).map(function (listing) {
       return _react2.default.createElement(_listing2.default, {
         key: listing.id,
+        listing_id: listing.id,
         image: listing.image_urls.primary_big,
         status: listing.status,
         price: listing.list_price,
@@ -2400,9 +2401,11 @@ exports.default = function (keyword) {
 
   var agentId = this.props.agentId;
 
-  console.log(agentId);
+
   var endpoint = agentId ? 'getPropertiesByAgentId' : 'getPropertiesByCustomQuery';
-  var params = agentId ? { agentId: agentId } : { query: 'keyword=' + (keyword || '') };
+  var params = agentId ? { agentId: agentId } : {
+    query: 'keyword=' + (keyword || '') + '&state=TX&with_image=1'
+  };
 
   (0, _wpfetch2.default)(endpoint, params, function (_ref) {
     var results = _ref.results,

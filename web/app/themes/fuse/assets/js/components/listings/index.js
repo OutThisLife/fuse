@@ -7,6 +7,7 @@ const Listings = ({ listings, order }) => (
     {orderBy(listings || [], [order.key], [order.dir]).map(listing =>
       <Listing
         key={listing.id}
+        listing_id={listing.id}
         image={listing.image_urls.primary_big}
         status={listing.status}
         price={listing.list_price}
