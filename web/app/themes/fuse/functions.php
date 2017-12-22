@@ -197,9 +197,12 @@ function displet($endpoint = '') {
 	$result = json_decode($result);
 	$range = range(73301, 88589);
 
-	foreach ($result->results AS $key => $item)
-		if (!in_array($item->zip, $range))
-			array_splice($result->results, $key);
+	$cache = $result->results;
+	$result->results = [];
+
+	foreach ($cache AS $key => $item)
+		if (in_array($item->zip, $range))
+			$result->results[] = $item;
 
 	$result->results = array_unique($result->results, SORT_REGULAR);
 

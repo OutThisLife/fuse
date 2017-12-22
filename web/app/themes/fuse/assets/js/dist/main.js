@@ -2404,7 +2404,7 @@ exports.default = function (keyword) {
 
   var endpoint = agentId ? 'getPropertiesByAgentId' : 'getPropertiesByCustomQuery';
   var params = agentId ? { agentId: agentId } : {
-    query: 'keyword=' + (keyword || '') + '&state=TX&with_image=1'
+    query: 'keyword=' + (keyword || '') + '&state=TX'
   };
 
   (0, _wpfetch2.default)(endpoint, params, function (_ref) {
