@@ -158,7 +158,7 @@ export default class Map extends PureComponent {
             >
               <div>
                 <Label>
-                  ${kformat(Math.floor(listing.list_price))}
+                  {kformat(Math.floor(listing.list_price))}
                 </Label>
                 <DownArrow />
               </div>

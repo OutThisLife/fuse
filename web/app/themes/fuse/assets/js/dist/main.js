@@ -2694,7 +2694,6 @@ var Map = function (_PureComponent) {
                 _react2.default.createElement(
                   Label,
                   null,
-                  '$',
                   (0, _kformat2.default)(Math.floor(listing.list_price))
                 ),
                 _react2.default.createElement(DownArrow, null)
@@ -2856,19 +2855,21 @@ exports.default = Tabs;
 });
 
 },{"babel-runtime/core-js/array/from":25,"babel-runtime/helpers/classCallCheck":41,"babel-runtime/helpers/createClass":42,"babel-runtime/helpers/toConsumableArray":50}],22:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 exports.default = function (num) {
+  num = parseFloat(num.toString().replace(/\$/g, ''));
+
   if (num > 999999) {
-    return "$" + (num / 1000000).toFixed(1) + "M";
+    return '$' + (num / 1000000).toFixed(1) + 'M';
   } else if (num > 999) {
-    return "$" + (num / 1000).toFixed(1) + "k";
+    return '$' + (num / 1000).toFixed(1) + 'k';
   } else {
-    return "$" + num;
+    return '$' + num;
   }
 };
 
