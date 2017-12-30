@@ -18,6 +18,7 @@ const Listings = ({ listings, order }) => (
         full_baths={listing.full_baths}
         half_baths={listing.half_baths}
         square_feet={listing.square_feet}
+        on_wishlist={listing.on_wishlist}
       />
     )}
   </div>

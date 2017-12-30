@@ -6,6 +6,7 @@
  "scripts": {
   "dev": "parallelshell \"php -S localhost:8000 -t web\"",
   "watch": "cd web/app/themes/fuse && yarn dev",
+  "livereload": "cd web/app/themes/fuse && yarn livereload",
   "deploy": "sh deploy.sh staging",
   "deploy-prod": "sh deploy.sh production",
   "wkill": "taskkill /f /im node.exe"

@@ -19,7 +19,7 @@ export default props => (
       }}>
         <img src={props.image} style={{ visibility: 'hidden' }} />
         <span className="tag"><strong>{props.status}</strong></span>
-        <WishList />
+        <WishList {...props} />
       </figure>
 
       <ListingDetail>

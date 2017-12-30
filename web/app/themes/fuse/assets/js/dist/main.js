@@ -1178,8 +1178,8 @@ var FeaturedListings = function (_Component) {
       infinite: false,
       speed: 500,
       initialSlide: 0,
-      slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToShow: _this.props.perpage || 3,
+      slidesToScroll: _this.props.perpage || 3,
       arrows: true,
       nextArrow: _react2.default.createElement(Arrow, null),
       prevArrow: _react2.default.createElement(Arrow, null),
@@ -1243,7 +1243,8 @@ var FeaturedListings = function (_Component) {
                 bedrooms: listing.num_bedrooms,
                 full_baths: listing.full_baths,
                 half_baths: listing.half_baths,
-                square_feet: listing.square_feet
+                square_feet: listing.square_feet,
+                on_wishlist: listing.on_wishlist
               })
             );
           })
@@ -1258,9 +1259,7 @@ exports.default = FeaturedListings;
 
 
 var $featuredListings = void 0;
-if ($featuredListings = document.getElementById('featured-listings')) (0, _reactDom.render)(_react2.default.createElement(FeaturedListings, {
-  agentId: $featuredListings.dataset.agentid
-}), $featuredListings);
+if ($featuredListings = document.getElementById('featured-listings')) (0, _reactDom.render)(_react2.default.createElement(FeaturedListings, $featuredListings.dataset), $featuredListings);
 
 },{"../listings/listing":11,"../map/init":18,"babel-runtime/core-js/object/get-prototype-of":34,"babel-runtime/helpers/classCallCheck":41,"babel-runtime/helpers/createClass":42,"babel-runtime/helpers/inherits":45,"babel-runtime/helpers/possibleConstructorReturn":47,"react":669,"react-dom":484,"react-slick":636}],10:[function(require,module,exports){
 'use strict';
@@ -1300,7 +1299,8 @@ var Listings = function Listings(_ref) {
         bedrooms: listing.num_bedrooms,
         full_baths: listing.full_baths,
         half_baths: listing.half_baths,
-        square_feet: listing.square_feet
+        square_feet: listing.square_feet,
+        on_wishlist: listing.on_wishlist
       });
     })
   );
@@ -1361,7 +1361,7 @@ exports.default = function (props) {
             props.status
           )
         ),
-        _react2.default.createElement(_wishlist2.default, null)
+        _react2.default.createElement(_wishlist2.default, props)
       ),
       _react2.default.createElement(
         ListingDetail,
@@ -1476,30 +1476,61 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
+var _wpfetch = require('../../../helpers/wpfetch');
+
+var _wpfetch2 = _interopRequireDefault(_wpfetch);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var WishList = function (_Component) {
-  (0, _inherits3.default)(WishList, _Component);
+var WishList = function (_PureComponent) {
+  (0, _inherits3.default)(WishList, _PureComponent);
 
-  function WishList(props) {
+  function WishList() {
     (0, _classCallCheck3.default)(this, WishList);
-    return (0, _possibleConstructorReturn3.default)(this, (WishList.__proto__ || (0, _getPrototypeOf2.default)(WishList)).call(this, props));
+    return (0, _possibleConstructorReturn3.default)(this, (WishList.__proto__ || (0, _getPrototypeOf2.default)(WishList)).apply(this, arguments));
   }
 
   (0, _createClass3.default)(WishList, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      var _this2 = this;
+
+      var action = this.el.classList.contains('active') ? 'removeFromWishlist' : 'addToWishlist';
+      var listing_id = this.props.listing_id.toString();
+
+      (0, _wpfetch2.default)(action, { listing_id: listing_id }, function (_ref) {
+        var ids = _ref.ids;
+
+        if (~ids.indexOf(listing_id)) {
+          _this2.el.classList.add('active');
+        } else {
+          _this2.el.classList.remove('active');
+        }
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('span', { className: 'wishlist' });
+      var _this3 = this;
+
+      if (this.props.listing_id === 16584273) {
+        console.log(this.props);
+      }
+      return _react2.default.createElement('span', {
+        ref: function ref(c) {
+          return _this3.el = c;
+        },
+        className: (this.props.on_wishlist ? 'active' : '') + ' wishlist',
+        onClick: this.handleClick.bind(this)
+      });
     }
   }]);
   return WishList;
-}(_react.Component);
+}(_react.PureComponent);
 
 exports.default = WishList;
 
-},{"babel-runtime/core-js/object/get-prototype-of":34,"babel-runtime/helpers/classCallCheck":41,"babel-runtime/helpers/createClass":42,"babel-runtime/helpers/inherits":45,"babel-runtime/helpers/possibleConstructorReturn":47,"react":669,"react-dom":484}],13:[function(require,module,exports){
+},{"../../../helpers/wpfetch":23,"babel-runtime/core-js/object/get-prototype-of":34,"babel-runtime/helpers/classCallCheck":41,"babel-runtime/helpers/createClass":42,"babel-runtime/helpers/inherits":45,"babel-runtime/helpers/possibleConstructorReturn":47,"react":669}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2399,13 +2430,22 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (keyword) {
   var _this = this;
 
-  var agentId = this.props.agentId;
+  var _props = this.props,
+      agentid = _props.agentid,
+      listingids = _props.listingids;
 
-
-  var endpoint = agentId ? 'getPropertiesByAgentId' : 'getPropertiesByCustomQuery';
-  var params = agentId ? { agentId: agentId } : {
+  var endpoint = 'getPropertiesByCustomQuery';
+  var params = {
     query: 'keyword=' + (keyword || '') + '&state=TX'
   };
+
+  if (agentid) {
+    params = { agentid: agentid };
+    endpoint = 'getPropertiesByAgentId';
+  } else if (listingids) {
+    params = { listingids: listingids };
+    endpoint = 'getPropertiesByIds';
+  }
 
   (0, _wpfetch2.default)(endpoint, params, function (_ref) {
     var results = _ref.results,
@@ -2874,21 +2914,21 @@ exports.default = function (num) {
 };
 
 },{}],23:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = require("babel-runtime/regenerator");
+var _regenerator = require('babel-runtime/regenerator');
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _stringify = require("babel-runtime/core-js/json/stringify");
+var _stringify = require('babel-runtime/core-js/json/stringify');
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
-var _asyncToGenerator2 = require("babel-runtime/helpers/asyncToGenerator");
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -2903,10 +2943,12 @@ exports.default = function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            url = ajaxurl + "?action=" + action + "&data=" + (0, _stringify2.default)(data);
+            url = ajaxurl + '?action=' + action + '&data=' + (0, _stringify2.default)(data);
             _context.t0 = cb;
             _context.next = 4;
-            return fetch(url);
+            return fetch(url, {
+              cache: 'no-store'
+            });
 
           case 4:
             _context.next = 6;
@@ -2914,10 +2956,10 @@ exports.default = function () {
 
           case 6:
             _context.t1 = _context.sent;
-            return _context.abrupt("return", (0, _context.t0)(_context.t1));
+            return _context.abrupt('return', (0, _context.t0)(_context.t1));
 
           case 8:
-          case "end":
+          case 'end':
             return _context.stop();
         }
       }

@@ -25,8 +25,8 @@ export default class FeaturedListings extends Component {
       infinite: false,
       speed: 500,
       initialSlide: 0,
-      slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToShow: this.props.perpage || 3,
+      slidesToScroll: this.props.perpage || 3,
       arrows: true,
       nextArrow: <Arrow />,
       prevArrow: <Arrow />,
@@ -76,6 +76,7 @@ export default class FeaturedListings extends Component {
               full_baths={listing.full_baths}
               half_baths={listing.half_baths}
               square_feet={listing.square_feet}
+              on_wishlist={listing.on_wishlist}
             />
           </div>
         )}
@@ -87,6 +88,4 @@ export default class FeaturedListings extends Component {
 
 let $featuredListings
 if ($featuredListings = document.getElementById('featured-listings'))
-  render(<FeaturedListings
-    agentId={$featuredListings.dataset.agentid}
-  />, $featuredListings)
+  render(<FeaturedListings {...$featuredListings.dataset} />, $featuredListings)

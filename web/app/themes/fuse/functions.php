@@ -200,9 +200,12 @@ function displet($endpoint = '') {
 	$cache = $result->results;
 	$result->results = [];
 
-	foreach ($cache AS $key => $item)
-		if (in_array($item->zip, $range))
+	foreach ($cache AS $key => &$item):
+		if (in_array($item->zip, $range)):
+			$item->on_wishlist = in_array($item->id, getWishlist(true));
 			$result->results[] = $item;
+		endif;
+	endforeach;
 
 	$result->results = array_unique($result->results, SORT_REGULAR);
 
@@ -233,25 +236,57 @@ function getPropertiesByKeyword() {
 	wp_die();
 }
 
+function getPropertiesByIds() {
+	echo displet('id=' . parseQuery('listingids'));
+	wp_die();
+}
+
 function getPropertiesByAgentId() {
 	echo displet('listing_agent_id=' . parseQuery('agentId'));
 	wp_die();
 }
 
-function setUserFavourites() {
-	if (is_user_logged_in()):
-		$listings = json_decode($_POST['listings']);
-		update_user_meta(get_current_user_id(), 'saved_listings', $listings);
-	endif;
+function getWishlist($toArray = false) {
+	$wishlist = get_user_meta(get_current_user_id(), 'saved_listings', true);
+
+	if ($toArray) {
+		$arr = explode(',', $wishlist);
+
+		if ($arr[0] === '') {
+			return [];
+		}
+
+		return $arr;
+	}
+
+	return $wishlist;
+}
+
+function toggleWishList ($add = true) {
+	$id = parseQuery('listing_id');
+	$wishlist = getWishlist(true);
+	$contains = in_array($id, $wishlist);
+
+	if ($add && !$contains) {
+		array_push($wishlist, $id);
+	} else if ($add && $contains) {
+		unset($wishlist[$id]);
+	}
+
+	echo json_encode(['ids' => $wishlist]);
+	update_user_meta(get_current_user_id(), 'saved_listings', implode(',', $wishlist));
 
 	wp_die();
 }
+
+function addToWishlist() { return toggleWishList(true); }
+function removeFromWishlist() { return toggleWishList(false); }
 
 foreach ([
 	'getProperties', 'getPropertiesByCustomQuery',
 	'getPropertiesByCustomQuery', 'getPropertiesByZip',
 	'getPropertiesByKeyword', 'getPropertiesByAgentId',
-	'setUserFavourites'
+	'getPropertiesByIds', 'addToWishlist', 'removeFromWishlist'
 ] AS $fn):
 	add_action('wp_ajax_' . $fn, $fn);
 	add_action('wp_ajax_nopriv_' . $fn, $fn);
