@@ -1839,6 +1839,145 @@ var Location = function (_Component) {
               _react2.default.createElement(Stat, { i: 'heating', title: 'Heating', copy: heat }),
               _react2.default.createElement(Stat, { i: 'cooling', title: 'Cooling', copy: ac }),
               _react2.default.createElement(Stat, { i: 'parking', title: 'Parking', copy: parking_spaces })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'interior-info' },
+              _react2.default.createElement(
+                'h3',
+                null,
+                'Interior'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'flex' },
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Bedrooms'
+                  ),
+                  'Beds (Main Level): ',
+                  main_level_beds || 0,
+                  _react2.default.createElement('br', null),
+                  'Beds (Off Main Level): ',
+                  other_level_beds || 0,
+                  _react2.default.createElement('br', null),
+                  master_on_main === 'Y' && 'Has Master on Main Level',
+                  _react2.default.createElement('br', null),
+                  master_description
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Cooling & Heating'
+                  ),
+                  'Air Conditioning: ',
+                  ac
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Bathrooms'
+                  ),
+                  'Baths (Full): ',
+                  full_baths,
+                  _react2.default.createElement('br', null),
+                  'Baths (Half): ',
+                  half_baths
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Floors'
+                  ),
+                  'Floors: ',
+                  floor
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Rooms'
+                  ),
+                  'Dining Rooms: ',
+                  dining,
+                  _react2.default.createElement('br', null),
+                  'Living Rooms: ',
+                  living,
+                  _react2.default.createElement('br', null),
+                  'Other rooms: ',
+                  rooms
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Fireplace'
+                  ),
+                  'Fireplaces: ',
+                  fireplace,
+                  _react2.default.createElement('br', null),
+                  'Fireplace Features: ',
+                  fireplace_description
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Other Interior Features'
+                  ),
+                  interior_features
+                )
+              ),
+              _react2.default.createElement('hr', null),
+              _react2.default.createElement(
+                'h3',
+                null,
+                'Interior'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'flex' },
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Type and Style'
+                  ),
+                  property_type
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Materials'
+                  ),
+                  'Roof type: ',
+                  roof
+                )
+              )
             )
           )
         )

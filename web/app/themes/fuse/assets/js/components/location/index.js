@@ -168,6 +168,70 @@ export default class Location extends Component {
               <Stat i='cooling' title='Cooling' copy={ac} />
               <Stat i='parking' title='Parking' copy={parking_spaces} />
             </div>
+
+            <div className='interior-info'>
+              <h3>Interior</h3>
+
+              <div className="flex">
+                <div>
+                  <h5>Bedrooms</h5>
+                  Beds (Main Level): {main_level_beds || 0}<br />
+                  Beds (Off Main Level): {other_level_beds || 0}<br />
+                  {master_on_main === 'Y' && 'Has Master on Main Level'}<br />
+                  {master_description}
+                </div>
+
+                <div>
+                  <h5>Cooling &amp; Heating</h5>
+                  Air Conditioning: {ac}
+                </div>
+
+                <div>
+                  <h5>Bathrooms</h5>
+                  Baths (Full): {full_baths}<br />
+                  Baths (Half): {half_baths}
+                </div>
+
+                <div>
+                  <h5>Floors</h5>
+                  Floors: {floor}
+                </div>
+
+                <div>
+                  <h5>Rooms</h5>
+                  Dining Rooms: {dining}<br />
+                  Living Rooms: {living}<br />
+                  Other rooms: {rooms}
+                </div>
+
+                <div>
+                  <h5>Fireplace</h5>
+                  Fireplaces: {fireplace}<br />
+                  Fireplace Features: {fireplace_description}
+                </div>
+
+                <div>
+                  <h5>Other Interior Features</h5>
+                  {interior_features}
+                </div>
+              </div>
+
+              <hr />
+
+              <h3>Interior</h3>
+
+              <div className='flex'>
+                <div>
+                  <h5>Type and Style</h5>
+                  {property_type}
+                </div>
+
+                <div>
+                  <h5>Materials</h5>
+                  Roof type: {roof}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </span>
