@@ -1349,7 +1349,9 @@ var ListingDetail = _styledComponents2.default.div(_templateObject);
 exports.default = function (props) {
   return _react2.default.createElement(
     'div',
-    { className: 'listing', rel: props.listing_id },
+    { className: 'listing', rel: props.listing_id, onClick: function onClick() {
+        window.location.href = '/location/' + props.listing_id;
+      } },
     _react2.default.createElement(
       'div',
       { className: 'listing-details' },

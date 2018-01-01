@@ -12,7 +12,9 @@ padding: 16px 22px;
 `
 
 export default props => (
-  <div className="listing" rel={props.listing_id}>
+  <div className="listing" rel={props.listing_id} onClick={() => {
+    window.location.href = `/location/${props.listing_id}`
+  }}>
     <div className="listing-details">
       <figure style={{
         background: `url(${props.image}) center / cover no-repeat`
