@@ -4,7 +4,8 @@
  "description": "Run WP locally with remote .env vars",
  "main": "index.js",
  "scripts": {
-  "dev": "parallelshell \"php -S localhost:8000 -t web\"",
+  "dev": "parallelshell \"yarn start\" \"yarn watch\" \"yarn livereload\"",
+  "start": "php -S localhost:8000 -t web",
   "watch": "cd web/app/themes/fuse && yarn dev",
   "livereload": "cd web/app/themes/fuse && yarn livereload",
   "deploy": "sh deploy.sh staging",

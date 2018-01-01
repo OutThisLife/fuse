@@ -158,7 +158,24 @@ add_filter('max_srcset_image_width', function() {
 	return false;
 });
 
-add_filter( 'wp_calculate_image_srcset_meta', '__return_empty_array');
+add_filter('wp_calculate_image_srcset_meta', '__return_empty_array');
+
+add_action('init', function() {
+	add_rewrite_rule('location/([0-9]+)', 'index.php?location=$matches[1]', 'top');
+});
+
+add_filter('query_vars', function($vars) {
+	$vars[] = 'location';
+	return $vars;
+});
+
+add_action('template_redirect', function() {
+	if (get_query_var('location')) {
+		add_filter('template_include', function() {
+			return get_template_directory() . '/single-location.php';
+		});
+	}
+});
 
 function displet($endpoint = '') {
 	Header('Content-Type: application/json');

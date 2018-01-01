@@ -1,0 +1,52 @@
+#single-location .location-info
+  flex-wrap: wrap
+  align-items: flex-start
+
+  > div, > aside
+    @media (min-width: $small)
+      width: 50%
+
+  aside
+    padding-left: $pad
+
+  strong
+    color: $orange
+    font: 700 32px/1 $font
+
+  address
+    font-style: normal
+    font-size: 18px
+
+  .meta-columns
+      padding: 25px 0 0
+      margin-top: 25px
+
+#single-location .location-stats
+  flex-wrap: wrap
+  margin: 45px auto 20px
+  padding: 45px 0
+  border: solid $light
+  border-width: 3px 0
+
+  figure
+    display: flex
+    width: 25%
+    align-items: flex-start
+    margin-bottom: 25px
+
+    div
+      width: 55px
+      margin-right: auto
+      text-align: center
+
+      i
+        background-size: 100% auto
+        background-position: center
+
+    figcaption
+      width: 100%
+      padding-left: 10px
+      margin-left: auto
+
+      h5, p
+        margin: 0

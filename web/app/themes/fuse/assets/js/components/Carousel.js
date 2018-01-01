@@ -3,22 +3,27 @@ export default class Carousel {
     this.$carousel = $carousel
     this.$slides = $carousel.querySelectorAll('figure')
     this.$nav = $carousel.querySelector('nav')
-    this.$navButtons = this.$nav.querySelectorAll('a')
+
+    if (this.$nav) {
+      this.$navButtons = this.$nav.querySelectorAll('a')
+    }
 
     this.index = 0
     this.timeout = 6000
 
     window.requestAnimationFrame(() => this.update().play())
-    Array.from(this.$navButtons).forEach((el) => el.addEventListener('click', (e) => {
-      this.stop().goToSlide([...el.parentElement.children].indexOf(el)).play()
-    }))
+
+    if (this.$navButtons) {
+      Array.from(this.$navButtons).forEach((el) => el.addEventListener('click', (e) => {
+        this.stop().goToSlide([...el.parentElement.children].indexOf(el)).play()
+      }))
+    }
 
     $carousel.addEventListener('mouseenter', this.stop.bind(this))
     $carousel.addEventListener('mouseleave', this.play.bind(this))
   }
 
   play () {
-    console.info('starting slideshow')
     window.requestAnimationFrame(() => {
       this.animateSlides = setInterval(() => {
         this.index += 1
@@ -35,7 +40,6 @@ export default class Carousel {
   }
 
   stop () {
-    console.info('stopping slideshow')
     clearInterval(this.animateSlides)
     return this
   }
@@ -57,7 +61,10 @@ export default class Carousel {
     }
 
     set(this.$carousel, this.$slides)
-    set(this.$nav, this.$navButtons)
+
+    if (this.$nav) {
+      set(this.$nav, this.$navButtons)
+    }
 
     return this
   }
