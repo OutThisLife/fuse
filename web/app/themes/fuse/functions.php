@@ -183,7 +183,7 @@ function displet($endpoint = '') {
 	$endpoint = 'search?' . $endpoint;
 	$key = 'displet_' . $endpoint;
 
-	// delete_transient($key);
+	delete_transient($key);
 
 	if (!($result = get_transient($key))):
 		$referer = 'fuse.austinkpickett.com';
@@ -259,7 +259,7 @@ function getPropertiesByIds() {
 }
 
 function getPropertiesByAgentId() {
-	echo displet('listing_agent_id=' . parseQuery('agentId'));
+	echo displet('listing_agent_id=' . parseQuery('agentid'));
 	wp_die();
 }
 
@@ -311,13 +311,14 @@ endforeach;
 
 function getSchools($key, $parent) {
 	$schools = [];
+	$order = ['Elementary School', 'Middle School', 'High School'];
 
 	Template::loop(function() use (&$schools) {
-		$type = end(CFS()->get('school_type'));
-		$schools[$type][] = array_merge(CFS()->get(), [
+		array_push($schools, array_merge(CFS()->get(), [
 			'id' => get_the_ID(),
 			'title' => get_the_title(),
-		]);
+			'type' => end(CFS()->get('school_type')),
+		]));
 	}, [
 		'post_type' => 'school_meta',
 		'meta_query' => [[
@@ -327,5 +328,12 @@ function getSchools($key, $parent) {
 		]]
 	]);
 
-	return $schools;
+	usort($schools, function($a, $b) use ($order) {
+		$p1 = array_search($a['type'], $order);
+		$p2 = array_search($b['type'], $order);
+
+		return $p1 - $p2;
+	});
+
+	return array_group_by($schools, 'type');
 }

@@ -33,7 +33,7 @@ $img = has_post_thumbnail() ? get_the_post_thumbnail_url() : assetDir . '/img/ca
 	<?php endforeach; ?>
 
 	<div class="company-info">
-		<img src="<?=assetDir?>/img/emblem-small.png" /> <span>304th Avenue | Austin 78757</span>
+		<img src="<?=assetDir?>/img/emblem-small.png" />
 	</div>
 
 	<nav>

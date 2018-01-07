@@ -1207,9 +1207,19 @@ var FeaturedListings = function (_Component) {
       _init2.default.call(this);
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (this.state.listings.length === 0) {}
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
+
+      if (this.state.listings.length === 0) {
+        $featuredListings.parentNode.remove();
+        return null;
+      }
 
       var Dummy = function Dummy(_ref2) {
         var children = _ref2.children;

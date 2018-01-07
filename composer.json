@@ -50,7 +50,8 @@
     "wpackagist-plugin/sitemap": "*",
     "wpackagist-plugin/theme-my-login": "*",
     "wpackagist-plugin/ajax-thumbnail-rebuild": "*",
-    "wpackagist-plugin/wordpress-seo": "*"
+    "wpackagist-plugin/wordpress-seo": "*",
+    "mcaskill/php-array-group-by": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.5.1"

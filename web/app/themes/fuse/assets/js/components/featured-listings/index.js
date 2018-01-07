@@ -46,7 +46,18 @@ export default class FeaturedListings extends Component {
     init.call(this)
   }
 
+  componentDidUpdate () {
+    if (this.state.listings.length === 0) {
+
+    }
+  }
+
   render() {
+    if (this.state.listings.length === 0) {
+      $featuredListings.parentNode.remove()
+      return null
+    }
+
     const Dummy = ({ children }) => {
       if (this.state.listings.length >= 4) {
         return (

@@ -18,9 +18,11 @@
             <?=the_content()?>
         </h3>
 
+        <?php if ($cite = CFS()->get('citation')): ?>
         <strong class="author">
-            - Maurice McMasterson -
+            - <?=$cite?> -
         </strong>
+        <?php endif ?>
     </div>
 </div>
 </article>
