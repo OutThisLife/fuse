@@ -48,18 +48,14 @@ export default class FeaturedListings extends Component {
 
   componentDidUpdate () {
     if (this.state.listings.length === 0) {
-
+      $featuredListings.parentNode.remove()
+      return null
     }
   }
 
   render() {
-    if (this.state.listings.length === 0) {
-      $featuredListings.parentNode.remove()
-      return null
-    }
-
     const Dummy = ({ children }) => {
-      if (this.state.listings.length >= 4) {
+      if (this.state.listings.length >= 3) {
         return (
           <Slider {...this.settings}>
             {children}

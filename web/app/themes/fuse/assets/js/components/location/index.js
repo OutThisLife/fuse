@@ -104,6 +104,10 @@ export default class Location extends Component {
                   backgroundAttachment: 'initial'
                 }} />
               ))}
+
+              <nav>
+                {all_big.map(() => <a key={Math.random()} href='javascript:;' />)}
+              </nav>
             </div>
           </div>
         )}

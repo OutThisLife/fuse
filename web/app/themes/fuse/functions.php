@@ -183,7 +183,7 @@ function displet($endpoint = '') {
 	$endpoint = 'search?' . $endpoint;
 	$key = 'displet_' . $endpoint;
 
-	delete_transient($key);
+	// delete_transient($key);
 
 	if (!($result = get_transient($key))):
 		$referer = 'fuse.austinkpickett.com';

@@ -1209,22 +1209,20 @@ var FeaturedListings = function (_Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      if (this.state.listings.length === 0) {}
+      if (this.state.listings.length === 0) {
+        $featuredListings.parentNode.remove();
+        return null;
+      }
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      if (this.state.listings.length === 0) {
-        $featuredListings.parentNode.remove();
-        return null;
-      }
-
       var Dummy = function Dummy(_ref2) {
         var children = _ref2.children;
 
-        if (_this2.state.listings.length >= 4) {
+        if (_this2.state.listings.length >= 3) {
           return _react2.default.createElement(
             _reactSlick2.default,
             _this2.settings,
@@ -1739,7 +1737,14 @@ var Location = function (_Component) {
                   backgroundImage: 'url(' + src + ')',
                   backgroundAttachment: 'initial'
                 } });
-            })
+            }),
+            _react2.default.createElement(
+              'nav',
+              null,
+              all_big.map(function () {
+                return _react2.default.createElement('a', { key: Math.random(), href: 'javascript:;' });
+              })
+            )
           )
         ),
         _react2.default.createElement(
