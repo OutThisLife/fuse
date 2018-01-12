@@ -5,11 +5,17 @@
  * Master Header / Page Header
  */
 
-$img = has_post_thumbnail() ? get_the_post_thumbnail_url() : assetDir . '/img/carousel-1.jpg';
+$id = get_the_ID();
+
+if (is_archive('testimonial')) {
+	$id = TESTIMONIALS;
+}
+
+$img = has_post_thumbnail($id) ? get_the_post_thumbnail_url() : assetDir . '/img/carousel-1.jpg';
 ?>
 
 <div id="masthead" role="banner">
-<?php if ($slides = CFS()->get('slides')): ?>
+<?php if ($slides = CFS()->get('slides', $id)): ?>
 <div class="hero carousel">
 	<?php foreach($slides AS $slide): ?>
 	<figure class="item" style="
