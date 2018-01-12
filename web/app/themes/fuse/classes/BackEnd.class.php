@@ -68,7 +68,7 @@ class BackEnd extends BaseTheme {
 		return $categories;
 	}
 
-	public static function getTerms($tax) {
+	public static function getTerms($tax, callable $cb) {
 		$categories = null;
 
 		$curTerm = is_tax() ? get_queried_object()->term_id : 0;
@@ -81,13 +81,12 @@ class BackEnd extends BaseTheme {
 
 		foreach ($terms AS &$t):
 			$class = $curTerm === $t->term_id ? 'current-cat' : '';
-
-			$categories .= '
-			<li class="'. $class .'">
-				<a href="'. get_term_link($t) .'">'
-					. $t->name .
-				'</a>
-			</li>
+			$categories .= is_callable($cb) ? $cb($t) : '
+				<li class="'. $class .'">
+					<a href="'. get_term_link($t) .'">'
+						. $t->name .
+					'</a>
+				</li>
 			';
 		endforeach;
 

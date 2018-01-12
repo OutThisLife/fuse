@@ -7,11 +7,20 @@
 ?>
 
 <article <?php post_class() ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-<div class="row testimonial blog-block center-align wrapper">
+<div
+    class="row testimonial filter-item blog-block center-align wrapper"
+    <?php
+    array_map(function($t) {
+        echo 'data-'. $t->taxonomy .'="'. $t->slug .'" ';
+    }, wp_get_object_terms(get_the_ID(), [
+        'review_source',
+        'testimonial_type',
+    ]));
+    ?>
+>
     <div class="post-meta">
         <strong class="cat-date">
             <?=get_the_date()?>
-            <span class="separator"> | </span>
         </strong>
 
         <h3>
