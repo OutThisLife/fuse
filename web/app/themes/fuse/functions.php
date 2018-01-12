@@ -182,7 +182,6 @@ function displet($endpoint = '') {
 
 	$endpoint = 'search?' . $endpoint;
 	$key = 'displet_' . $endpoint;
-
 	// delete_transient($key);
 
 	if (!($result = get_transient($key))):
@@ -193,21 +192,17 @@ function displet($endpoint = '') {
 		$url .= '&authentication_token=' . $api_token;
 
 		$ch = curl_init();
-
 		curl_setopt($ch, CURLOPT_HTTPHEADER,  array('referer: ' . $referer));
-		curl_setopt($ch, CURLOPT_POST, false);
-		curl_setopt($ch, CURLOPT_GET, true);
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-		if (curl_exec($ch) === false) {
-			echo 'Curl error: ' . curl_error($ch);
-			curl_close($ch);
-		} else {
-			$result = curl_exec($ch);
-			curl_close($ch);
+		$result = curl_exec($ch);
+
+		if (!$result) {
+			die('Curl error: ' . curl_error($ch));
 		}
 
+		curl_close($ch);
 		set_transient($key, $result, 60 * 60 * 24);
 	endif;
 
@@ -318,6 +313,7 @@ function getSchools($key, $parent) {
 			'id' => get_the_ID(),
 			'title' => get_the_title(),
 			'type' => end(CFS()->get('school_type')),
+			'rating' => getSchoolRating(CFS()->get('gsid')) ?: false,
 		]));
 	}, [
 		'post_type' => 'school_meta',
@@ -336,4 +332,35 @@ function getSchools($key, $parent) {
 	});
 
 	return array_group_by($schools, 'type');
+}
+
+function getSchoolRating($gsid) {
+	if (!$gsid) {
+		return false;
+	}
+
+	$key = 'rating_for_' . $gsid;
+	delete_transient($key);
+
+	if (!($result = get_transient($key))):
+		$url = 'https://api.greatschools.org/schools/TX/' . $gsid;
+		$url .= '?key=5fa6c3b2cb4697e31acbb9646f7a413f';
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		$result = curl_exec($ch);
+
+		if (!$result) {
+			die('Curl error: ' . curl_error($ch));
+		} else {
+			$result = json_encode(simplexml_load_string($result));
+		}
+
+		curl_close($ch);
+		set_transient($key, $result, 60 * 60 * 24);
+	endif;
+
+	return json_decode($result)->gsRating;
 }
