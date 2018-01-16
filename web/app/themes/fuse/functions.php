@@ -362,7 +362,42 @@ function getSchoolRating($gsid) {
 	return json_decode($result)->gsRating;
 }
 
-add_action('init', function($id) {
-	$pipedrive = new PipedriveAPI(getenv('PIPEDRIVE_TOKEN'));
-	die(print_r($pipedrive->persons->getPersons()));
+function pipedrive($endpoint, $data, $cb) {
+	$url = 'https://api.pipedrive.com/v1/'. $endpoint;
+	$url .= '?api_token=' . getenv('PIPEDRIVE_TOKEN');
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+	$result = curl_exec($ch);
+
+	if (!$result) {
+		die('Curl error: ' . curl_error($ch));
+	}
+
+	curl_close($ch);
+
+	if (is_callable($cb)) {
+		return $cb($result);
+	}
+}
+
+add_action('user_register', function($id) {
+	$name = get_user_meta($userId, 'display_name', true);
+	$phone = get_user_meta($userId, 'phone', true);
+	$email = get_user_meta($userId, 'email', true);
+
+	try {
+		pipedrive('persons', [
+			'org_id' => 1,
+			'name' => $name,
+			'phone' => $phone,
+			'email' => $email,
+		]);
+	} catch (Exception $e) {
+		//
+	}
 });
