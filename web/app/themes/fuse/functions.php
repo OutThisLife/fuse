@@ -185,14 +185,11 @@ function displet($endpoint = '') {
 	// delete_transient($key);
 
 	if (!($result = get_transient($key))):
-		$referer = 'fuse.austinkpickett.com';
-		$api_token = '74839b9f5b00b76de6b586cf36856db2a0a9a5ea';
-
 		$url = 'https://api.displet.com/residentials/' . $endpoint;
-		$url .= '&authentication_token=' . $api_token;
+		$url .= '&authentication_token=' . getenv('DISPLET_TOKEN');
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_HTTPHEADER,  array('referer: ' . $referer));
+		curl_setopt($ch, CURLOPT_HTTPHEADER,  array('referer: ' . getenv('DISPLET_REFERRER')));
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
@@ -344,7 +341,7 @@ function getSchoolRating($gsid) {
 
 	if (!($result = get_transient($key))):
 		$url = 'https://api.greatschools.org/schools/TX/' . $gsid;
-		$url .= '?key=5fa6c3b2cb4697e31acbb9646f7a413f';
+		$url .= '?key=' . getenv('GREATSCHOOLS_TOKEN');
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -364,3 +361,8 @@ function getSchoolRating($gsid) {
 
 	return json_decode($result)->gsRating;
 }
+
+add_action('init', function($id) {
+	$pipedrive = new PipedriveAPI(getenv('PIPEDRIVE_TOKEN'));
+	die(print_r($pipedrive->persons->getPersons()));
+});

@@ -39,6 +39,7 @@
     "johnpbloch/wordpress": "4.9.1",
     "oscarotero/env": "^1.0",
     "roots/wp-password-bcrypt": "1.0.0",
+    "pinvoice/pipedrive-php-api": "dev-master",
     "wpackagist-plugin/admin-menu-editor": "*",
     "wpackagist-plugin/advanced-cron-manager": "*",
     "wpackagist-plugin/codepress-admin-columns": "*",
