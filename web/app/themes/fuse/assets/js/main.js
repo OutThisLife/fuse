@@ -1,3 +1,4 @@
+import './components/Lightbox'
 import './components/Header'
 import './components/Carousel'
 import './components/DoughnutChart'
