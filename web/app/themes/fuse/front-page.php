@@ -64,6 +64,7 @@ get_header();
 
 			<div class="copy">
 				<?=CFS()->get('first_copy')?>
+				<a href="javascript:;" class="modal-link btn">Find Out</a>
 			</div>
 		</div>
 
