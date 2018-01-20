@@ -4,8 +4,6 @@ export class Lightbox {
 		this.$lightbox.querySelector('.close').addEventListener('click', this.close.bind(this))
 		this.open()
 
-    console.log('init')
-
     window.onkeydown = function(evt) {
 			evt = evt || window.event
 			if (evt.keyCode == 27) lightbox.classList.remove('open')
@@ -24,7 +22,6 @@ export class Lightbox {
 let $howMuchLink
 if ($howMuchLink = document.querySelector('.modal-link')) {
   $howMuchLink.addEventListener('click', (e) => {
-    console.log('...')
     e.preventDefault()
 
     let $lightbox
@@ -36,7 +33,6 @@ if ($howMuchLink = document.querySelector('.modal-link')) {
 let $joinUs
 if ($joinUs = document.querySelector('.join-us-modal-link a')) {
   $joinUs.addEventListener('click', (e) => {
-    console.log('...')
     e.preventDefault()
 
     let $lightbox
