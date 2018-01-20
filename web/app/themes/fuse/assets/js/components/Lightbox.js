@@ -21,24 +21,26 @@ export class Lightbox {
 	}
 }
 
-let $howMuchLink = document.querySelector('.modal-link')
+let $howMuchLink
+if ($howMuchLink = document.querySelector('.modal-link')) {
+  $howMuchLink.addEventListener('click', (e) => {
+    console.log('...')
+    e.preventDefault()
 
-$howMuchLink.addEventListener('click', (e) => {
-  console.log('...')
-  e.preventDefault()
+    let $lightbox
+    if ($lightbox = document.getElementById('how-much-lightbox'))
+      new Lightbox($lightbox)
+  })
+}
 
-  let $lightbox
-  if ($lightbox = document.getElementById('how-much-lightbox'))
-    new Lightbox($lightbox)
-})
+let $joinUs
+if ($joinUs = document.querySelector('.join-us-modal-link a')) {
+  $joinUs.addEventListener('click', (e) => {
+    console.log('...')
+    e.preventDefault()
 
-let $joinUs = document.querySelector('.join-us-modal-link a')
-
-$joinUs.addEventListener('click', (e) => {
-  console.log('...')
-  e.preventDefault()
-
-  let $lightbox
-  if ($lightbox = document.getElementById('join-us-lightbox'))
-    new Lightbox($lightbox)
-})
+    let $lightbox
+    if ($lightbox = document.getElementById('join-us-lightbox'))
+      new Lightbox($lightbox)
+  })
+}
