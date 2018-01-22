@@ -23,7 +23,6 @@ let $howMuchLink
 if ($howMuchLink = document.querySelector('.modal-link')) {
   $howMuchLink.addEventListener('click', (e) => {
     e.preventDefault()
-
     let $lightbox
     if ($lightbox = document.getElementById('how-much-lightbox'))
       new Lightbox($lightbox)
@@ -34,7 +33,6 @@ let $joinUs
 if ($joinUs = document.querySelector('.join-us-modal-link a')) {
   $joinUs.addEventListener('click', (e) => {
     e.preventDefault()
-
     let $lightbox
     if ($lightbox = document.getElementById('join-us-lightbox'))
       new Lightbox($lightbox)

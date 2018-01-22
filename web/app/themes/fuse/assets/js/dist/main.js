@@ -495,7 +495,6 @@ var $howMuchLink = void 0;
 if ($howMuchLink = document.querySelector('.modal-link')) {
 	$howMuchLink.addEventListener('click', function (e) {
 		e.preventDefault();
-
 		var $lightbox = void 0;
 		if ($lightbox = document.getElementById('how-much-lightbox')) new Lightbox($lightbox);
 	});
@@ -505,7 +504,6 @@ var $joinUs = void 0;
 if ($joinUs = document.querySelector('.join-us-modal-link a')) {
 	$joinUs.addEventListener('click', function (e) {
 		e.preventDefault();
-
 		var $lightbox = void 0;
 		if ($lightbox = document.getElementById('join-us-lightbox')) new Lightbox($lightbox);
 	});
@@ -1672,9 +1670,6 @@ var WishList = function (_PureComponent) {
     value: function render() {
       var _this3 = this;
 
-      if (this.props.listing_id === 16584273) {
-        console.log(this.props);
-      }
       return _react2.default.createElement('span', {
         ref: function ref(c) {
           return _this3.el = c;
@@ -2534,6 +2529,8 @@ var Filters = function (_Component) {
       });
 
       var query = _queryString2.default.stringify(formData);
+      localStorage.setItem("FormData", query);
+      localStorage.setItem("timestamp", Date.now());
 
       (0, _wpfetch2.default)('getPropertiesByCustomQuery', { query: query }, function (_ref) {
         var results = _ref.results,
@@ -3060,10 +3057,18 @@ exports.default = function (keyword) {
   var params = {
     query: 'keyword=' + (keyword || '') + '&state=TX'
   };
+  var formData = localStorage.getItem('FormData');
+  var timestamp = localStorage.getItem('timestamp');
+  var ONE_HOUR = 60 * 60 * 1000;
 
   if (agentid) {
     params = { agentid: agentid };
     endpoint = 'getPropertiesByAgentId';
+  } else if (timestamp < Date.now() + ONE_HOUR) {
+    params = {
+      query: 'keyword=' + (keyword || '') + '&' + formData
+    };
+    endpoint = 'getPropertiesByCustomQuery';
   } else if (listingids) {
     params = { listingids: listingids };
     endpoint = 'getPropertiesByIds';
@@ -3566,21 +3571,23 @@ exports.default = function () {
         switch (_context.prev = _context.next) {
           case 0:
             url = ajaxurl + '?action=' + action + '&data=' + (0, _stringify2.default)(data);
+
+            console.log(url);
             _context.t0 = cb;
-            _context.next = 4;
+            _context.next = 5;
             return fetch(url, {
               cache: 'no-store'
             });
 
-          case 4:
-            _context.next = 6;
+          case 5:
+            _context.next = 7;
             return _context.sent.json();
 
-          case 6:
+          case 7:
             _context.t1 = _context.sent;
             return _context.abrupt('return', (0, _context.t0)(_context.t1));
 
-          case 8:
+          case 9:
           case 'end':
             return _context.stop();
         }

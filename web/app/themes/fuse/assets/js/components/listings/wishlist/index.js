@@ -16,9 +16,6 @@ export default class WishList extends PureComponent {
   }
 
   render() {
-    if (this.props.listing_id === 16584273) {
-      console.log(this.props)
-    }
     return (
       <span
         ref={c => (this.el = c)}
