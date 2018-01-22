@@ -386,9 +386,10 @@ function pipedrive($endpoint, $data, $cb) {
 }
 
 add_action('user_register', function($id) {
-	$name = get_user_meta($userId, 'display_name', true);
-	$phone = get_user_meta($userId, 'phone', true);
-	$email = get_user_meta($userId, 'email', true);
+	$user = get_userdata($id);
+	$name = $user->display_name;
+	$email = $user->user_email;
+	$phone = $user->user_phone ?: '000-000-0000';
 
 	try {
 		pipedrive('persons', [
@@ -396,7 +397,13 @@ add_action('user_register', function($id) {
 			'name' => $name,
 			'phone' => $phone,
 			'email' => $email,
-		]);
+		], function($person) {
+			pipedrive('deals', [
+				'org_id' => 1,
+				'user_id' => 1,
+				'person_id' => $person->data->ID,
+			]);
+		});
 	} catch (Exception $e) {
 		//
 	}

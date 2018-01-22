@@ -3571,23 +3571,21 @@ exports.default = function () {
         switch (_context.prev = _context.next) {
           case 0:
             url = ajaxurl + '?action=' + action + '&data=' + (0, _stringify2.default)(data);
-
-            console.log(url);
             _context.t0 = cb;
-            _context.next = 5;
+            _context.next = 4;
             return fetch(url, {
               cache: 'no-store'
             });
 
-          case 5:
-            _context.next = 7;
+          case 4:
+            _context.next = 6;
             return _context.sent.json();
 
-          case 7:
+          case 6:
             _context.t1 = _context.sent;
             return _context.abrupt('return', (0, _context.t0)(_context.t1));
 
-          case 9:
+          case 8:
           case 'end':
             return _context.stop();
         }
