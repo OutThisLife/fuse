@@ -625,255 +625,218 @@ var _reactDom = require('react-dom');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ClosingCalculator = function (_Component) {
-    (0, _inherits3.default)(ClosingCalculator, _Component);
+  (0, _inherits3.default)(ClosingCalculator, _Component);
 
-    function ClosingCalculator() {
-        (0, _classCallCheck3.default)(this, ClosingCalculator);
-        return (0, _possibleConstructorReturn3.default)(this, (ClosingCalculator.__proto__ || (0, _getPrototypeOf2.default)(ClosingCalculator)).apply(this, arguments));
+  function ClosingCalculator(props) {
+    (0, _classCallCheck3.default)(this, ClosingCalculator);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (ClosingCalculator.__proto__ || (0, _getPrototypeOf2.default)(ClosingCalculator)).call(this, props));
+
+    _this.state = {
+      purchase_price: 250000,
+      down_payment: .05,
+      loan_term: 30
+    };
+
+    _this.percentage = {
+      loan_origination_fee: 0.01,
+      homeowners_insurance: 0.005,
+      property_tax: 0.011
+    };
+
+    _this.fixed = {
+      appraisal: 350,
+      inspection: 400,
+      application: 300,
+      attorney: 1000,
+      prepaid_interest: 300,
+      title_insurance: 1000,
+      title_search: 500
+    };
+
+    _this.calculateClosing = _this.calculateClosing.bind(_this);
+    return _this;
+  }
+
+  (0, _createClass3.default)(ClosingCalculator, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      new _tabs2.default(this.$tabs);
     }
+  }, {
+    key: 'calculateClosing',
+    value: function calculateClosing() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    (0, _createClass3.default)(ClosingCalculator, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            new _tabs2.default(this.$tabs);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                'div',
-                null,
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'row wrapper' },
+          _react2.default.createElement(
+            'ul',
+            { className: 'tabs', ref: function ref(c) {
+                return _this2.$tabs = c;
+              } },
+            _react2.default.createElement(
+              'li',
+              { className: 'active' },
+              'Buyer'
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              'Seller'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'contents' },
+            _react2.default.createElement(
+              'div',
+              { className: 'tab-content' },
+              _react2.default.createElement(
+                'form',
+                { className: 'calculator-form' },
                 _react2.default.createElement(
+                  'div',
+                  { className: 'row form-row' },
+                  _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'col m6 s12' },
                     _react2.default.createElement(
-                        'ul',
-                        { className: 'tabs', ref: function ref(c) {
-                                return _this2.$tabs = c;
-                            } },
-                        _react2.default.createElement(
-                            'li',
-                            { className: 'active' },
-                            'Buyer'
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Seller'
-                        )
+                      'label',
+                      { htmlFor: 'purchase-price' },
+                      _react2.default.createElement(
+                        'span',
+                        null,
+                        'Purchase Price'
+                      ),
+                      _react2.default.createElement('input', { type: 'text', name: 'purchase-price', placeholder: '$250,000' })
                     ),
                     _react2.default.createElement(
-                        'div',
-                        { className: 'contents' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'tab-content' },
-                            _react2.default.createElement(
-                                'form',
-                                { className: 'calculator-form' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'row form-row' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'col m6 s12' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            { htmlFor: 'purchase-price' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                null,
-                                                'Purchase Price'
-                                            ),
-                                            _react2.default.createElement('input', { type: 'text', name: 'purchase-price', placeholder: '$250,000' })
-                                        ),
-                                        _react2.default.createElement(
-                                            'label',
-                                            { htmlFor: 'down-payment' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                null,
-                                                'Down Payment ',
-                                                _react2.default.createElement(
-                                                    'a',
-                                                    { href: 'javascript:;' },
-                                                    '?'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'select',
-                                                { name: 'down-payment' },
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    '5%'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    '10%'
-                                                )
-                                            )
-                                        ),
-                                        _react2.default.createElement(
-                                            'label',
-                                            { htmlFor: 'down-payment-amount' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                null,
-                                                'Down Payment Amount'
-                                            ),
-                                            _react2.default.createElement(
-                                                'p',
-                                                null,
-                                                '$12,500'
-                                            )
-                                        ),
-                                        _react2.default.createElement(
-                                            'label',
-                                            { htmlFor: 'total-loan-amount' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                null,
-                                                'Down Payment Amount'
-                                            ),
-                                            _react2.default.createElement(
-                                                'p',
-                                                null,
-                                                '237,500%'
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'col m6 s12' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            { htmlFor: 'loan-term' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                null,
-                                                'Loan Term ',
-                                                _react2.default.createElement(
-                                                    'a',
-                                                    { href: 'javascript:;' },
-                                                    '?'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'select',
-                                                { name: 'loan-type' },
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    '30 Years'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    'No Loan'
-                                                )
-                                            )
-                                        ),
-                                        _react2.default.createElement(
-                                            'label',
-                                            { htmlFor: 'loan-type' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                null,
-                                                'Loan Type ',
-                                                _react2.default.createElement(
-                                                    'a',
-                                                    { href: 'javascript:;' },
-                                                    '?'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'select',
-                                                { name: 'loan-type' },
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    'Fixed Rate'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    'No Loan'
-                                                )
-                                            )
-                                        ),
-                                        _react2.default.createElement(
-                                            'label',
-                                            { htmlFor: 'zipcode' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                null,
-                                                'Zipcode'
-                                            ),
-                                            _react2.default.createElement('input', { type: 'text', name: 'zipcode', placeholder: 'Property Zipcode' })
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'tab-content' },
-                            _react2.default.createElement(
-                                'p',
-                                null,
-                                'This is the seller form Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum nihil tenetur qui? Sequi, modi reiciendis ut dolor quibusdam totam labore id consectetur'
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'grey-banner center-align' },
-                    _react2.default.createElement(
-                        'strong',
+                      'label',
+                      { htmlFor: 'down-payment' },
+                      _react2.default.createElement(
+                        'span',
                         null,
-                        '$',
+                        'Down Payment ',
                         _react2.default.createElement(
-                            'span',
-                            { className: 'price' },
-                            '917'
+                          'a',
+                          { href: 'javascript:;' },
+                          '?'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'select',
+                        { name: 'down-payment' },
+                        _react2.default.createElement(
+                          'option',
+                          null,
+                          '5%'
                         ),
-                        ' /mo'
+                        _react2.default.createElement(
+                          'option',
+                          null,
+                          '10%'
+                        )
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col m6 s12' },
+                    _react2.default.createElement(
+                      'label',
+                      { htmlFor: 'down-payment-amount' },
+                      _react2.default.createElement(
+                        'span',
+                        null,
+                        'Down Payment Amount'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        '$12,500'
+                      )
                     ),
-                    _react2.default.createElement('br', null),
                     _react2.default.createElement(
-                        'small',
+                      'label',
+                      { htmlFor: 'total-loan-amount' },
+                      _react2.default.createElement(
+                        'span',
                         null,
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'loan-type' },
-                            '30 - Year Fixed'
-                        ),
-                        ' |',
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'interest-rate' },
-                            '3.43% Interest'
-                        )
+                        'Total Loan Amount'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        '237,500%'
+                      )
                     )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'center-align' },
-                    _react2.default.createElement(
-                        'a',
-                        { href: 'javascript:;', className: 'btn calculate' },
-                        'Calculate'
-                    )
+                  )
                 )
-            );
-        }
-    }]);
-    return ClosingCalculator;
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'tab-content' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'This is the seller form Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum nihil tenetur qui? Sequi, modi reiciendis ut dolor quibusdam totam labore id consectetur'
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'grey-banner center-align' },
+          _react2.default.createElement(
+            'strong',
+            null,
+            '$',
+            _react2.default.createElement(
+              'span',
+              { className: 'price' },
+              '917'
+            ),
+            ' /mo'
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'small',
+            null,
+            _react2.default.createElement(
+              'span',
+              { className: 'loan-type' },
+              '30 - Year Fixed'
+            ),
+            ' |',
+            _react2.default.createElement(
+              'span',
+              { className: 'interest-rate' },
+              '3.43% Interest'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'center-align' },
+          _react2.default.createElement(
+            'a',
+            { href: 'javascript:;', className: 'btn calculate', onClick: this.calculateClosing },
+            'Calculate'
+          )
+        )
+      );
+    }
+  }]);
+  return ClosingCalculator;
 }(_react.Component);
 
 var $calculator = document.getElementById('closing-calculator');
