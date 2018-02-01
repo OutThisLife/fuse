@@ -255,7 +255,7 @@ var ExpandList = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.onResize = this.handleResize.bind(this);
-      this.$el = document.querySelector(this.props.el);
+      this.$el = this.el.parentNode.parentNode.querySelector(this.props.selector);
 
       window.requestAnimationFrame(this.onResize);
       window.addEventListener('resize', this.onResize);
@@ -277,7 +277,9 @@ var ExpandList = function (_Component) {
 
       return _react2.default.createElement(
         'a',
-        { href: 'javascript:;', onClick: function onClick() {
+        { href: 'javascript:;', ref: function ref(c) {
+            return _this2.el = c;
+          }, onClick: function onClick() {
             _this2.setState({ open: !_this2.state.open });
           } },
         _react2.default.createElement('i', { className: 'icon-' + (this.state.open ? 'up' : 'down') + '-arrow' }),

@@ -9,7 +9,7 @@ export default class ExpandList extends Component {
 
   componentDidMount () {
     this.onResize = this.handleResize.bind(this)
-    this.$el = document.querySelector(this.props.el)
+    this.$el = this.el.parentNode.parentNode.querySelector(this.props.selector)
 
     window.requestAnimationFrame(this.onResize)
     window.addEventListener('resize', this.onResize)
@@ -25,7 +25,7 @@ export default class ExpandList extends Component {
 
   render () {
     return (
-      <a href="javascript:;" onClick={() => {
+      <a href="javascript:;" ref={c => (this.el = c)} onClick={() => {
         this.setState({ open: !this.state.open })
       }}>
           <i className={`icon-${this.state.open ? 'up' : 'down'}-arrow`}></i>
