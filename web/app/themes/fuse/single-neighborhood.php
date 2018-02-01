@@ -67,14 +67,19 @@ the_post();
 
         <?php Template::partial('schools.php') ?>
 
-        <?php if ($neighborhoods = CFS()->get('neighborhoods')): ?>
+        <?php
+        if ($neighborhoods = CFS()->get('neighborhoods')):
+            usort($neighborhoods, function($a, $b) {
+                return strcmp($a['neighborhood_title'], $b['neighborhood_title']);
+            });
+        ?>
         <div class="row neighborhoods-row">
             <h2>Neighborhoods</h2>
 
             <br /><br />
 
             <ul>
-                <?php foreach($neighborhoods AS $neighborhood): ?>
+                <?php foreach ($neighborhoods AS $neighborhood): ?>
                 <li><?=$neighborhood['neighborhood_title']?></li>
                 <?php endforeach ?>
             </ul>
