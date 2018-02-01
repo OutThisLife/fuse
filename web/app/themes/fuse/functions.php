@@ -221,37 +221,8 @@ function displet($endpoint = '') {
 	return json_encode($result);
 }
 
-function parseQuery($tag = 'query') {
-	return substr(explode(''. $tag .'":', urldecode($_SERVER['QUERY_STRING']))[1], 1, -2);
-}
-
 function getProperties() {
-	echo displet();
-	wp_die();
-}
-
-function getPropertiesByCustomQuery() {
-	echo displet(parseQuery());
-	wp_die();
-}
-
-function getPropertiesByZip() {
-	echo displet('zip=' . parseQuery('zip'));
-	wp_die();
-}
-
-function getPropertiesByKeyword() {
-	echo displet('keyword=' . parseQuery('keyword'));
-	wp_die();
-}
-
-function getPropertiesByIds() {
-	echo displet('id=' . parseQuery('listingids'));
-	wp_die();
-}
-
-function getPropertiesByAgentId() {
-	echo displet('listing_agent_id=' . parseQuery('agentid'));
+	echo displet(http_build_query(json_decode(stripslashes($_GET['data']), true)));
 	wp_die();
 }
 
@@ -292,10 +263,8 @@ function addToWishlist() { return toggleWishList(true); }
 function removeFromWishlist() { return toggleWishList(false); }
 
 foreach ([
-	'getProperties', 'getPropertiesByCustomQuery',
-	'getPropertiesByCustomQuery', 'getPropertiesByZip',
-	'getPropertiesByKeyword', 'getPropertiesByAgentId',
-	'getPropertiesByIds', 'addToWishlist', 'removeFromWishlist'
+	'getProperties',
+	'addToWishlist', 'removeFromWishlist'
 ] AS $fn):
 	add_action('wp_ajax_' . $fn, $fn);
 	add_action('wp_ajax_nopriv_' . $fn, $fn);
@@ -337,7 +306,7 @@ function getSchoolRating($gsid) {
 	}
 
 	$key = 'rating_for_' . $gsid;
-	delete_transient($key);
+	// delete_transient($key);
 
 	if (!($result = get_transient($key))):
 		$url = 'https://api.greatschools.org/schools/TX/' . $gsid;

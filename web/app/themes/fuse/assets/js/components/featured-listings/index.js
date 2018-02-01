@@ -95,4 +95,4 @@ export default class FeaturedListings extends Component {
 
 let $featuredListings
 if ($featuredListings = document.getElementById('featured-listings'))
-  render(<FeaturedListings {...$featuredListings.dataset} />, $featuredListings)
+  render(<FeaturedListings params={$featuredListings.dataset} />, $featuredListings)

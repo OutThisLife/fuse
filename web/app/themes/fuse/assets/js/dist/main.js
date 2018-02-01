@@ -1379,7 +1379,7 @@ exports.default = FeaturedListings;
 
 
 var $featuredListings = void 0;
-if ($featuredListings = document.getElementById('featured-listings')) (0, _reactDom.render)(_react2.default.createElement(FeaturedListings, $featuredListings.dataset), $featuredListings);
+if ($featuredListings = document.getElementById('featured-listings')) (0, _reactDom.render)(_react2.default.createElement(FeaturedListings, { params: $featuredListings.dataset }), $featuredListings);
 
 },{"../listings/listing":13,"../map/init":21,"babel-runtime/core-js/object/get-prototype-of":37,"babel-runtime/helpers/classCallCheck":45,"babel-runtime/helpers/createClass":46,"babel-runtime/helpers/inherits":49,"babel-runtime/helpers/possibleConstructorReturn":51,"react":675,"react-dom":490,"react-slick":642}],12:[function(require,module,exports){
 'use strict';
@@ -1747,8 +1747,8 @@ var Location = function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      (0, _wpfetch2.default)('getPropertiesByIds', {
-        listingids: location.pathname.split('/')[2]
+      (0, _wpfetch2.default)('getProperties', {
+        id: location.pathname.split('/')[2]
       }, function (_ref2) {
         var _ref2$results = (0, _slicedToArray3.default)(_ref2.results, 1),
             result = _ref2$results[0];
@@ -2356,6 +2356,10 @@ var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -2493,11 +2497,10 @@ var Filters = function (_Component) {
         }
       });
 
-      var query = _queryString2.default.stringify(formData);
-      localStorage.setItem("FormData", query);
+      localStorage.setItem("FormData", (0, _stringify2.default)(formData));
       localStorage.setItem("timestamp", Date.now());
 
-      (0, _wpfetch2.default)('getPropertiesByCustomQuery', { query: query }, function (_ref) {
+      (0, _wpfetch2.default)('getProperties', formData, function (_ref) {
         var results = _ref.results,
             meta = _ref.meta;
 
@@ -2798,7 +2801,7 @@ var Filters = function (_Component) {
 
 exports.default = Filters;
 
-},{"../../../helpers/wpfetch":26,"./RangeDropdown":16,"./RangeSlider":17,"./ToggleSwitch":18,"babel-runtime/core-js/object/get-prototype-of":37,"babel-runtime/core-js/set":41,"babel-runtime/helpers/classCallCheck":45,"babel-runtime/helpers/createClass":46,"babel-runtime/helpers/inherits":49,"babel-runtime/helpers/possibleConstructorReturn":51,"babel-runtime/helpers/taggedTemplateLiteral":53,"babel-runtime/helpers/toConsumableArray":54,"form-serialize":264,"inputmask":274,"query-string":488,"react":675,"react-dom":490,"styled-components":692}],20:[function(require,module,exports){
+},{"../../../helpers/wpfetch":26,"./RangeDropdown":16,"./RangeSlider":17,"./ToggleSwitch":18,"babel-runtime/core-js/json/stringify":31,"babel-runtime/core-js/object/get-prototype-of":37,"babel-runtime/core-js/set":41,"babel-runtime/helpers/classCallCheck":45,"babel-runtime/helpers/createClass":46,"babel-runtime/helpers/inherits":49,"babel-runtime/helpers/possibleConstructorReturn":51,"babel-runtime/helpers/taggedTemplateLiteral":53,"babel-runtime/helpers/toConsumableArray":54,"form-serialize":264,"inputmask":274,"query-string":488,"react":675,"react-dom":490,"styled-components":692}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3011,35 +3014,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (keyword) {
+exports.default = function () {
   var _this = this;
 
-  var _props = this.props,
-      agentid = _props.agentid,
-      listingids = _props.listingids;
-
-  var endpoint = 'getPropertiesByCustomQuery';
-  var params = {
-    query: 'keyword=' + (keyword || '') + '&state=TX'
-  };
-  var formData = localStorage.getItem('FormData');
-  var timestamp = localStorage.getItem('timestamp');
-  var ONE_HOUR = 60 * 60 * 1000;
-
-  if (agentid) {
-    params = { agentid: agentid };
-    endpoint = 'getPropertiesByAgentId';
-  } else if (timestamp < Date.now() + ONE_HOUR) {
-    params = {
-      query: 'keyword=' + (keyword || '') + '&' + formData
-    };
-    endpoint = 'getPropertiesByCustomQuery';
-  } else if (listingids) {
-    params = { listingids: listingids };
-    endpoint = 'getPropertiesByIds';
-  }
-
-  (0, _wpfetch2.default)(endpoint, params, function (_ref) {
+  (0, _wpfetch2.default)('getProperties', this.props.params || { state: 'TX' }, function (_ref) {
     var results = _ref.results,
         meta = _ref.meta;
 

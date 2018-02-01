@@ -61,6 +61,17 @@ the_post();
         <?php endif ?>
 	</div>
 </div>
+
+<div class="single-listings">
+    <div class="center-align">
+        <img src="<?=assetDir?>/img/emblem.png" />
+        <h3><?php the_title() ?>'s Listings</h3>
+    </div>
+
+    <div id="featured-listings" data-school_district='<?=get_the_title()?>'></div>
+</div>
+</section>
+
 </section>
 
 <?php get_footer() ?>

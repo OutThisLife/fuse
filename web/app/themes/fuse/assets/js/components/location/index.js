@@ -24,8 +24,8 @@ export default class Location extends Component {
   }
 
   componentWillMount () {
-    wpfetch('getPropertiesByIds', {
-      listingids: location.pathname.split('/')[2]
+    wpfetch('getProperties', {
+      id: location.pathname.split('/')[2]
     }, ({ results: [result] }) => this.setState({ result }))
   }
 

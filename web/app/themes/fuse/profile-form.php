@@ -40,7 +40,7 @@ $userId = get_current_user_id();
   <div
     id="featured-listings"
     data-perPage="2"
-    data-listingIds="<?=$saved?>"
+    data-id="<?=$saved?>"
   ></div>
 
   <?php else: ?>

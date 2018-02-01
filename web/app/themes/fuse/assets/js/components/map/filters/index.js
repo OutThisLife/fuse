@@ -221,11 +221,10 @@ export default class Filters extends Component {
         }
       })
 
-      const query = queryString.stringify(formData)
-      localStorage.setItem("FormData", query)
+      localStorage.setItem("FormData", JSON.stringify(formData))
       localStorage.setItem("timestamp", Date.now())
 
-      wpfetch('getPropertiesByCustomQuery', { query }, ({ results, meta }) => {
+      wpfetch('getProperties', formData, ({ results, meta }) => {
         this.el.classList.remove('loading')
         this.props.updateProperties({
           listings: results,
