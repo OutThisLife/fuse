@@ -12,9 +12,7 @@ $img = has_post_thumbnail() ? get_the_post_thumbnail_url() : assetDir . '/img/ca
 <?php if ($slides = CFS()->get('slides')): ?>
 <div class="hero carousel">
 	<?php foreach($slides AS $slide): ?>
-	<figure class="item" style="
-		background-image: url(<?=FrontEnd::getSrc($slide['background_image'], 'masthead')?>)
-	">
+	<figure class="item" style="background-image: url(<?=$img?>)">
 		<div class="cover"></div>
 		<figcaption class="hero-text center">
 			<h1>News + Events</h1>
