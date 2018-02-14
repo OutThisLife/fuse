@@ -57,7 +57,7 @@ $getSocial = function () {
             <?php if ($phone = CFS()->get('phone_number')): ?>
             <div class="phone">
                 <img src="<?=assetDir?>/img/phone-small.png" />
-                <strong><?=$phone?></strong>
+                <strong><a href='tel:<?=$phone?>'><?=$phone?></a></strong>
             </div>
             <?php endif ?>
 
