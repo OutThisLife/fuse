@@ -371,6 +371,7 @@ add_action('user_register', function($id) {
 				'org_id' => 1,
 				'user_id' => 1,
 				'person_id' => $person->data->ID,
+				'value' => 50000
 			]);
 		});
 	} catch (Exception $e) {
