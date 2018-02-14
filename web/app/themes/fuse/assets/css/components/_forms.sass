@@ -6,9 +6,12 @@ form#search
 		flex-wrap: wrap
 		width: 100%
 
-		input, button
+		> div, input, button
 			display: block
 			width: 100%
+
+	> div
+		width: 100%
 
 	.search:not([readonly])
 		color: $grey
@@ -17,12 +20,12 @@ form#search
 		padding-right: 50px
 		border-radius: 5px
 
-		+ button
-			margin-left: 16px
+	button
+		margin-left: 16px
 
-			@media (max-width: $small)
-				width: 100%
-				margin: 10px 0
+		@media (max-width: $small)
+			width: 100%
+			margin: 10px 0
 
 form
 	margin: 50px auto
@@ -90,9 +93,6 @@ form
 		+inputs
 			border-bottom-color: red
 
-	.search:not([readonly])
-		background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAWlBMVEX////yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/yix/IzHx9AAAAHXRSTlMAAQQGDhQqLFhlfIGQl6OrvL7Bw9fY7u/w8fL3++cpGMwAAACRSURBVHgBdZBbjoQgEAAZYUZxVfABi4+6/zWXBF2TjlNflQppaFSmsj4Sva3UzSdQCJ+7rZBc5xKsV60C9CaL6SGcE2xuqpCrLeZJ5owm4YtFnLpwxCLQ/ccOnk5uTzPHb7fLdy5abPQL+FruzuLZm9LOX9pGq+sd2pcSNMCgZW2B+S3iawAmJdAzHEryno6fP8U4DXMF2v3kAAAAAElFTkSuQmCC) 95% center no-repeat !important
-
 	select:not([readonly])
 		cursor: pointer
 		appearance: none
@@ -123,6 +123,22 @@ form
 
 	p
 		text-align: inherit
+
+	.with-icon
+		position: relative
+
+		.btn-icon
+			z-index: 2
+			position: absolute
+			top: 0
+			right: 0
+			bottom: 5px
+			border: 0
+			padding: 0 20px
+			background: none
+
+			img
+				vertical-align: middle
 
 .gform_wrapper
 	+clearfix
