@@ -2582,7 +2582,7 @@ var Filters = function (_Component) {
               type: 'search',
               id: 'search',
               className: 'search',
-              defaultValue: location.search.split('search=')[1],
+              defaultValue: location.search.split('q=')[1],
               placeholder: 'Search by city, zipcode, address, or MLS#',
               style: { border: '0px', height: '100%' }
             }),
@@ -2949,7 +2949,10 @@ var Map = function (_Component) {
       var keyword = location.search.split('q=')[1];
 
       if (keyword) {
-        _init2.default.call(this, { keyword: keyword });
+        _init2.default.call(this, {
+          keyword: keyword,
+          property_type: "House"
+        });
       } else {
         _init2.default.call(this);
       }

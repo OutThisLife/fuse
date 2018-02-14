@@ -259,7 +259,7 @@ export default class Filters extends Component {
                 type="search"
                 id="search"
                 className="search"
-                defaultValue={location.search.split('search=')[1]}
+                defaultValue={location.search.split('q=')[1]}
                 placeholder="Search by city, zipcode, address, or MLS#"
                 style={{ border: `0px`, height: '100%' }}
               />

@@ -29,6 +29,7 @@ require_once 'classes/sys/autoloader.php';
 ->addImageSizes([[
 	'masthead' => [1920],
 	'school_thumb' => [500 * 2, 337 * 2],
+	'agent_thumb' => [360, 240],
 ]])
 
 // -----------------------------------------------

@@ -79,7 +79,10 @@ export default class Map extends Component {
     const keyword = location.search.split('q=')[1]
 
     if (keyword) {
-      init.call(this, { keyword })
+      init.call(this, {
+        keyword,
+        property_type: "House"
+      })
     } else {
       init.call(this)
     }
