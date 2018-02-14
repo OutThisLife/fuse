@@ -7,7 +7,7 @@
 ?>
 
 <figure class="agent">
-    <div class='image' style='background-image: url(<?=get_the_post_thumbnail_url('agent_thumb')?>)'></div>
+    <div class='image' style='background-image: url(<?=FrontEnd::getSrc(get_post_thumbnail_id(), 'agent_thumb')?>)'></div>
 
     <figcaption>
         <h3>
