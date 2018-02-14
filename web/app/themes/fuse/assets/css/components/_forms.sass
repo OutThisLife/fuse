@@ -3,13 +3,19 @@ form#search
 	width: 100%
 
 	@media (max-width: $small)
+		flex-wrap: wrap
 		width: 100%
 
+		input, button
+			display: block
+			width: 100%
+
 	.search:not([readonly])
-		border-radius: 5px
-		padding: 16px
-		font-size: 14px
 		color: $grey
+		font-size: 14px
+		padding: 16px
+		padding-right: 50px
+		border-radius: 5px
 
 		+ button
 			margin-left: 16px
