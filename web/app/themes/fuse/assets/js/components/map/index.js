@@ -76,7 +76,13 @@ export default class Map extends Component {
   }
 
   componentWillMount() {
-    init.call(this, location.search.split('search=')[1])
+    const keyword = location.search.split('q=')[1]
+
+    if (keyword) {
+      init.call(this, { keyword })
+    } else {
+      init.call(this)
+    }
   }
 
   updateProperties(state) {

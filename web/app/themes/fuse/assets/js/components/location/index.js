@@ -99,7 +99,7 @@ export default class Location extends Component {
           <div id='masthead' role='banner'>
             <div
             className='breadcrumb'
-            onClick={() => (window.location = '/search')}
+            onClick={() => (window.location = `/search?q=${zip}`)}
             style={{ cursor: 'pointer' }}
           >
               <div className='wrapper'>

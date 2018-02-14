@@ -1834,7 +1834,7 @@ var Location = function (_Component) {
             {
               className: 'breadcrumb',
               onClick: function onClick() {
-                return window.location = '/search';
+                return window.location = '/search?q=' + zip;
               },
               style: { cursor: 'pointer' }
             },
@@ -2946,7 +2946,13 @@ var Map = function (_Component) {
   (0, _createClass3.default)(Map, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      _init2.default.call(this, location.search.split('search=')[1]);
+      var keyword = location.search.split('q=')[1];
+
+      if (keyword) {
+        _init2.default.call(this, { keyword: keyword });
+      } else {
+        _init2.default.call(this);
+      }
     }
   }, {
     key: 'updateProperties',
@@ -3042,10 +3048,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function () {
+exports.default = function (params) {
   var _this = this;
 
-  (0, _wpfetch2.default)('getProperties', this.props.params || { state: 'TX' }, function (_ref) {
+  (0, _wpfetch2.default)('getProperties', params || this.props.params || { state: 'TX' }, function (_ref) {
     var results = _ref.results,
         meta = _ref.meta;
 
