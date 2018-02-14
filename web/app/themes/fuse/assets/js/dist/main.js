@@ -1614,21 +1614,27 @@ var WishList = function (_PureComponent) {
 
   (0, _createClass3.default)(WishList, [{
     key: 'handleClick',
-    value: function handleClick() {
+    value: function handleClick(e) {
       var _this2 = this;
 
-      var action = this.el.classList.contains('active') ? 'removeFromWishlist' : 'addToWishlist';
-      var listing_id = this.props.listing_id.toString();
+      e.stopPropagation();
 
-      (0, _wpfetch2.default)(action, { listing_id: listing_id }, function (_ref) {
-        var ids = _ref.ids;
+      if (document.body.classList.contains('logged-in')) {
+        var action = this.el.classList.contains('active') ? 'removeFromWishlist' : 'addToWishlist';
+        var listing_id = this.props.listing_id.toString();
 
-        if (~ids.indexOf(listing_id)) {
-          _this2.el.classList.add('active');
-        } else {
-          _this2.el.classList.remove('active');
-        }
-      });
+        (0, _wpfetch2.default)(action, { listing_id: listing_id }, function (_ref) {
+          var ids = _ref.ids;
+
+          if (~ids.indexOf(listing_id)) {
+            _this2.el.classList.add('active');
+          } else {
+            _this2.el.classList.remove('active');
+          }
+        });
+      } else {
+        alert('You have to be registered to do that.');
+      }
     }
   }, {
     key: 'render',
