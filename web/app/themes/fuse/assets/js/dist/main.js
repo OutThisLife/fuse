@@ -943,7 +943,6 @@ var MortgageCalculator = function (_Component) {
       e.preventDefault();
 
       var formData = {
-        zipcode: this.$form.zipcode.value,
         purchasePrice: parseFloat(this.$form.purchasePrice.value || 250000),
         downPayment: parseFloat(this.$form.downPayment.value || 0.05),
         interestRate: parseFloat(this.$form.interestRate.value || 0.343),
@@ -1065,16 +1064,6 @@ var MortgageCalculator = function (_Component) {
             { className: 'col s12 m6 mortgage-form-wrapper' },
             _react2.default.createElement(
               'label',
-              { htmlFor: 'zipcode' },
-              _react2.default.createElement(
-                'span',
-                null,
-                'Zipcode'
-              ),
-              _react2.default.createElement('input', { type: 'text', name: 'zipcode', placeholder: 'Property Zipcode' })
-            ),
-            _react2.default.createElement(
-              'label',
               { htmlFor: 'purchase-price' },
               _react2.default.createElement(
                 'span',
@@ -1154,6 +1143,11 @@ var MortgageCalculator = function (_Component) {
                 ),
                 _react2.default.createElement(
                   'option',
+                  { value: '15' },
+                  '15 Year Fixed Rate'
+                ),
+                _react2.default.createElement(
+                  'option',
                   null,
                   'No Loan'
                 )
@@ -1175,22 +1169,7 @@ var MortgageCalculator = function (_Component) {
             ),
             ' /mo'
           ),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'small',
-            null,
-            _react2.default.createElement(
-              'span',
-              { className: 'loan-type' },
-              '30 - Year Fixed'
-            ),
-            ' |\xA0',
-            _react2.default.createElement(
-              'span',
-              { className: 'interest-rate' },
-              '3.43% Interest'
-            )
-          )
+          _react2.default.createElement('br', null)
         ),
         _react2.default.createElement(
           'div',

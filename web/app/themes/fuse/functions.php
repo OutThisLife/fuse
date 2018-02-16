@@ -256,8 +256,6 @@ function toggleWishList ($add = true) {
 
 	echo json_encode(['ids' => $wishlist]);
 	update_user_meta(get_current_user_id(), 'saved_listings', implode(',', $wishlist));
-
-	wp_die();
 }
 
 function addToWishlist() { return toggleWishList(true); }

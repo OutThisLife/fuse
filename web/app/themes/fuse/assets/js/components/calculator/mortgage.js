@@ -59,7 +59,6 @@ export default class MortgageCalculator extends Component {
     e.preventDefault()
 
     const formData = {
-      zipcode: this.$form.zipcode.value,
       purchasePrice: parseFloat(this.$form.purchasePrice.value || 250000),
       downPayment: parseFloat(this.$form.downPayment.value || 0.05),
       interestRate: parseFloat(this.$form.interestRate.value || 0.343),
@@ -124,11 +123,6 @@ export default class MortgageCalculator extends Component {
       </div>
 
       <div className="col s12 m6 mortgage-form-wrapper">
-        <label htmlFor="zipcode">
-          <span>Zipcode</span>
-          <input type="text" name="zipcode" placeholder="Property Zipcode" />
-        </label>
-
         <label htmlFor="purchase-price">
         <span>Purchase Price</span>
           <input type="text" name="purchasePrice" placeholder="$250,000" />
@@ -152,6 +146,7 @@ export default class MortgageCalculator extends Component {
           <span>Loan Type <a href="javascript:;">?</a></span>
           <select name="loanType" onChange={this.calculateMortgage.bind(this)}>
             <option value="30">30 Year Fixed Rate</option>
+            <option value="15">15 Year Fixed Rate</option>
             <option>No Loan</option>
           </select>
         </label>
@@ -160,11 +155,6 @@ export default class MortgageCalculator extends Component {
 
     <div className="grey-banner center-align">
       <strong>$<span className="price">{this.state.monthlyMortgage}</span> /mo</strong><br />
-
-      <small>
-        <span className="loan-type">30 - Year Fixed</span> |&nbsp;
-        <span className="interest-rate">3.43% Interest</span>
-      </small>
     </div>
 
     <div className="center-align">
