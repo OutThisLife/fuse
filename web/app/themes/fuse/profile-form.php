@@ -6,9 +6,10 @@
  */
 
 $userId = get_current_user_id();
+$info = get_userdata($userId);
 ?>
 
-<form method="post" action="javascript:;">
+<form name='profileForm' method="post" action="javascript:;">
 
 <div class="row page-intro">
 <div class="wrapper">
@@ -22,7 +23,7 @@ $userId = get_current_user_id();
       </li>
       <?php endif ?>
 
-      <?php if ($email = get_user_meta($userId, 'email', true)): ?>
+      <?php if ($email = $info->user_email): ?>
       <li>
         <i class="icon-email"></i>
         <?=$email?>
@@ -32,26 +33,25 @@ $userId = get_current_user_id();
 </div>
 </div>
 
+<?php if ($saved = get_user_meta($userId, 'saved_listings', true)): ?>
 <div class="row">
 <div class="wrapper skinny">
   <h4>Saved Homes</h4>
 
-  <?php if ($saved = get_user_meta($userId, 'saved_listings', true)): ?>
   <div
     id="featured-listings"
     data-perPage="2"
     data-id="<?=$saved?>"
   ></div>
-
-  <?php else: ?>
-  <p>No saved listings, yet.</p>
-
-  <?php endif ?>
-
 </div>
 </div>
+<?php endif ?>
 
-<div class="row subscriptions">
+<div
+  class="row subscriptions"
+  data-email='<?=@$email?>'
+  data-md5='<?=md5(@$email)?>'
+>
 <div class="wrapper skinny">
   <h4>Email Subscriptions</h4>
 
@@ -67,7 +67,7 @@ $userId = get_current_user_id();
         <td>Weekly Properties</td>
         <td>
           <div>
-            <input type="radio" name="weekly" value="1" id="weekly-1" checked />
+            <input type="radio" name="weekly" value="1" id="weekly-1" />
             <label for="weekly-1"></label>
           </div>
         </td>
@@ -85,7 +85,7 @@ $userId = get_current_user_id();
         <td>Fuse Newsletter</td>
         <td>
           <div>
-            <input type="radio" name="newsletter" value="1" id="newsletter-1" checked />
+            <input type="radio" name="newsletter" value="1" id="newsletter-1" />
             <label for="newsletter-1"></label>
           </div>
         </td>

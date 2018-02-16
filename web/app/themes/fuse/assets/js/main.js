@@ -11,5 +11,6 @@ import './components/featured-listings'
 import './components/map'
 import './components/neighborhoods'
 import './components/location'
+import './components/subscribe'
 
 window.onload = () => document.body.classList.add('loaded')

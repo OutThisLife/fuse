@@ -263,14 +263,6 @@ function toggleWishList ($add = true) {
 function addToWishlist() { return toggleWishList(true); }
 function removeFromWishlist() { return toggleWishList(false); }
 
-foreach ([
-	'getProperties',
-	'addToWishlist', 'removeFromWishlist'
-] AS $fn):
-	add_action('wp_ajax_' . $fn, $fn);
-	add_action('wp_ajax_nopriv_' . $fn, $fn);
-endforeach;
-
 function getSchools($key, $parent) {
 	$schools = [];
 	$order = ['Elementary School', 'Middle School', 'High School'];
@@ -379,3 +371,46 @@ add_action('user_register', function($id) {
 		//
 	}
 });
+
+function mailchimp() {
+	Header('Content-Type: application/json');
+
+	$request = json_decode(stripslashes($_GET['data']), true);
+	$post = $request['payload'];
+	$url = 'https://us15.api.mailchimp.com/3.0/'. $request['endpoint'];
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+	if (isset($post)) {
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
+	}
+
+	curl_setopt($ch, CURLOPT_HTTPHEADER, [
+		'Accept: application/json',
+		'Content-Type: application/json',
+		'Authorization: apikey 3a9c399db180d1c6ea54577da9d2f13d-us15'
+	]);
+
+	$result = curl_exec($ch);
+
+	if (!$result) {
+		die('Curl error: ' . curl_error($ch));
+	}
+
+	curl_close($ch);
+
+	echo $result;
+	wp_die();
+}
+
+foreach ([
+	'getProperties', 'addToWishlist',
+	'removeFromWishlist', 'mailchimp'
+] AS $fn):
+	add_action('wp_ajax_' . $fn, $fn);
+	add_action('wp_ajax_nopriv_' . $fn, $fn);
+endforeach;
