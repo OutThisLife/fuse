@@ -17,7 +17,7 @@ export default class WishList extends PureComponent {
         }
       })
     } else {
-      alert('You have to be registered to do that.')
+      window.location.href = '/my-fuse'
     }
   }
 

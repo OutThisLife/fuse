@@ -28,6 +28,10 @@ get_header();
 			<a href="javascript:;"></a>
 		<?php endforeach ?>
 		</nav>
+
+		<a class='scroll-down' href='javascript:;'>
+			<i class='icon-down-arrow'></i>
+		</a>
 	</div>
 	<?php endif ?>
 

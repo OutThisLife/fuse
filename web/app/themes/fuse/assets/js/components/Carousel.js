@@ -1,3 +1,5 @@
+import scrollTo from 'scroll-to'
+
 export default class Carousel {
   constructor ($carousel) {
     this.$carousel = $carousel
@@ -21,6 +23,13 @@ export default class Carousel {
 
     $carousel.addEventListener('mouseenter', this.stop.bind(this))
     $carousel.addEventListener('mouseleave', this.play.bind(this))
+
+    this.$scrollDown = $carousel.querySelector('.scroll-down')
+    if (this.$scrollDown) {
+      this.$scrollDown.addEventListener('click', () => {
+        scrollTo(0, window.innerHeight)
+      })
+    }
   }
 
   play () {

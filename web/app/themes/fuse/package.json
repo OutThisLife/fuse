@@ -52,6 +52,7 @@
     "recompose": "^0.26.0",
     "rheostat": "^2.1.1",
     "rx": "^4.1.0",
+    "scroll-to": "^0.0.2",
     "styled-components": "^2.2.3"
   },
   "devDependencies": {
