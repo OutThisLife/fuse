@@ -343,7 +343,7 @@ function pipedrive($endpoint, $data, $cb) {
 	curl_close($ch);
 
 	if (is_callable($cb)) {
-		return $cb($result);
+		return $cb(json_decode($result));
 	}
 }
 
@@ -355,20 +355,19 @@ add_action('user_register', function($id) {
 
 	try {
 		pipedrive('persons', [
-			'org_id' => 1,
+			'org_id' => '1',
 			'name' => $name,
 			'phone' => $phone,
 			'email' => $email,
 		], function($person) {
 			pipedrive('deals', [
+				'title' => 'User registration: ' . $name,
 				'org_id' => 1,
-				'user_id' => 1,
-				'person_id' => $person->data->ID,
-				'value' => 50000
+				'person_id' => $person->data->id,
 			]);
 		});
 	} catch (Exception $e) {
-		//
+		wp_die($e);
 	}
 });
 
