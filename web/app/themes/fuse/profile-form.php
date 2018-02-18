@@ -100,10 +100,6 @@ $info = get_userdata($userId);
       </tr>
     </tbody>
   </table>
-
-  <br />
-
-  <button type="submit" class="btn">Save Changes</button>
 </div>
 </div>
 
