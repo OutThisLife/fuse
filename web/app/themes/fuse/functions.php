@@ -181,6 +181,9 @@ add_action('template_redirect', function() {
 function displet($endpoint = '') {
 	Header('Content-Type: application/json');
 
+	preg_match('/\&userid\=([(0-9)+])$/', $endpoint, $matches);
+	$endpoint = str_replace($matches[0], '', $endpoint);
+
 	$endpoint = 'search?' . $endpoint;
 	$key = 'displet_' . $endpoint;
 	// delete_transient($key);
@@ -212,7 +215,7 @@ function displet($endpoint = '') {
 
 	foreach ($cache AS $key => &$item):
 		if (in_array($item->zip, $range)):
-			$item->on_wishlist = in_array($item->id, getWishlist(true));
+			$item->on_wishlist = $matches[1] ? in_array($item->id, getWishlist(true, $matches[1])) : false;
 			$result->results[] = $item;
 		endif;
 	endforeach;

@@ -3061,10 +3061,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 exports.default = function (params) {
   var _this = this;
 
-  (0, _wpfetch2.default)('getProperties', params || this.props.params || { state: 'TX' }, function (_ref) {
+  var obj = params || this.props.params || { state: 'TX' };
+  var userid = document.body.dataset.userid;
+
+
+  (0, _wpfetch2.default)('getProperties', (0, _extends3.default)({}, obj, { userid: userid }), function (_ref) {
     var results = _ref.results,
         meta = _ref.meta;
 
@@ -3082,7 +3090,7 @@ var _wpfetch2 = _interopRequireDefault(_wpfetch);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"../../helpers/wpfetch":27}],22:[function(require,module,exports){
+},{"../../helpers/wpfetch":27,"babel-runtime/helpers/extends":49}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
