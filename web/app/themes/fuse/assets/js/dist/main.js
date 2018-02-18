@@ -1626,23 +1626,14 @@ var WishList = function (_PureComponent) {
   (0, _createClass3.default)(WishList, [{
     key: 'handleClick',
     value: function handleClick(e) {
-      var _this2 = this;
-
       e.stopPropagation();
 
       if (document.body.classList.contains('logged-in')) {
         var action = this.el.classList.contains('active') ? 'removeFromWishlist' : 'addToWishlist';
         var listing_id = this.props.listing_id.toString();
 
-        (0, _wpfetch2.default)(action, { listing_id: listing_id }, function (_ref) {
-          var ids = _ref.ids;
-
-          if (~ids.indexOf(listing_id)) {
-            _this2.el.classList.add('active');
-          } else {
-            _this2.el.classList.remove('active');
-          }
-        });
+        this.el.classList.toggle('active');
+        (0, _wpfetch2.default)(action, { listing_id: listing_id }, function () {});
       } else {
         window.location.href = '/my-fuse';
       }
@@ -1650,11 +1641,11 @@ var WishList = function (_PureComponent) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _react2.default.createElement('span', {
         ref: function ref(c) {
-          return _this3.el = c;
+          return _this2.el = c;
         },
         className: (this.props.on_wishlist ? 'active' : '') + ' wishlist',
         onClick: this.handleClick.bind(this)

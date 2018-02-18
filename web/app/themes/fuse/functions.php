@@ -244,7 +244,8 @@ function getWishlist($toArray = false) {
 }
 
 function toggleWishList ($add = true) {
-	$id = parseQuery('listing_id');
+	$request = json_decode(stripslashes($_GET['data']), true);
+	$id = $request['listing_id'];
 	$wishlist = getWishlist(true);
 	$contains = in_array($id, $wishlist);
 
@@ -254,7 +255,11 @@ function toggleWishList ($add = true) {
 		unset($wishlist[$id]);
 	}
 
-	echo json_encode(['ids' => $wishlist]);
+	echo json_encode([
+		'user' => get_current_user_id(),
+		'ids' => $wishlist
+	]);
+
 	update_user_meta(get_current_user_id(), 'saved_listings', implode(',', $wishlist));
 
 	wp_die();

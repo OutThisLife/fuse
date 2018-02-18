@@ -9,13 +9,8 @@ export default class WishList extends PureComponent {
       const action = this.el.classList.contains('active') ? 'removeFromWishlist' : 'addToWishlist'
       const listing_id = this.props.listing_id.toString()
 
-      wpfetch(action, { listing_id }, ({ ids }) => {
-        if (~ids.indexOf(listing_id)) {
-          this.el.classList.add('active')
-        } else {
-          this.el.classList.remove('active')
-        }
-      })
+      this.el.classList.toggle('active')
+      wpfetch(action, { listing_id }, () => {})
     } else {
       window.location.href = '/my-fuse'
     }
