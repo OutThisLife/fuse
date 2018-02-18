@@ -38,7 +38,7 @@
 	wp_head();
 	?>
 </head>
-<body <?php body_class() ?>>
+<body <?php body_class() ?> data-userid="<?=get_current_user_id()?>">
 
 <!-- HEADER -->
 <header id="header" class="clearfix" role="banner" itemscope itemtype="http://schema.org/WPHeader">

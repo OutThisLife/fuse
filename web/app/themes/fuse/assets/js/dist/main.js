@@ -1630,10 +1630,12 @@ var WishList = function (_PureComponent) {
 
       if (document.body.classList.contains('logged-in')) {
         var action = this.el.classList.contains('active') ? 'removeFromWishlist' : 'addToWishlist';
+        var userid = document.body.dataset.userid;
+
         var listing_id = this.props.listing_id.toString();
 
         this.el.classList.toggle('active');
-        (0, _wpfetch2.default)(action, { listing_id: listing_id }, function () {});
+        (0, _wpfetch2.default)(action, { userid: userid, listing_id: listing_id }, function () {});
       } else {
         window.location.href = '/my-fuse';
       }

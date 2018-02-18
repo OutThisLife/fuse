@@ -227,8 +227,8 @@ function getProperties() {
 	wp_die();
 }
 
-function getWishlist($toArray = false) {
-	$wishlist = get_user_meta(get_current_user_id(), 'saved_listings', true);
+function getWishlist($toArray = false, $userId = false) {
+	$wishlist = get_user_meta($userId ?: get_current_user_id(), 'saved_listings', true);
 
 	if ($toArray) {
 		$arr = explode(',', $wishlist);
@@ -245,8 +245,9 @@ function getWishlist($toArray = false) {
 
 function toggleWishList ($add = true) {
 	$request = json_decode(stripslashes($_GET['data']), true);
+	$userId = $request['userid'];
 	$id = $request['listing_id'];
-	$wishlist = getWishlist(true);
+	$wishlist = getWishlist(true, $userId);
 	$contains = in_array($id, $wishlist);
 
 	if ($add && !$contains) {
@@ -256,11 +257,11 @@ function toggleWishList ($add = true) {
 	}
 
 	echo json_encode([
-		'user' => get_current_user_id(),
+		'user' => $userId,
 		'ids' => $wishlist
 	]);
 
-	update_user_meta(get_current_user_id(), 'saved_listings', implode(',', $wishlist));
+	update_user_meta($userId, 'saved_listings', implode(',', $wishlist));
 
 	wp_die();
 }
