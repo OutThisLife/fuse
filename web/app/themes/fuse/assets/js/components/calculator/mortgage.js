@@ -6,12 +6,11 @@ function getRandomInt (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const setChart = (propertyInterest, propertyTax, homeInsurance, other, monthlyMortgage) => ({
+const setChart = ({ propertyInterest, propertyTax, homeInsurance, total }) => ({
   propertyInterest,
   propertyTax,
   homeInsurance,
-  other,
-  monthlyMortgage,
+  total,
   chartData: {
     datasets: [{
       backgroundColor: [
@@ -24,15 +23,13 @@ const setChart = (propertyInterest, propertyTax, homeInsurance, other, monthlyMo
       data: [
         propertyInterest,
         propertyTax,
-        homeInsurance,
-        other
+        homeInsurance
       ],
     }],
     labels: [
       "Property & Interest",
       "Property Tax",
-      "Home Insurance",
-      "Other"
+      "Home Insurance"
     ]
   }
 })
@@ -53,30 +50,36 @@ export default class MortgageCalculator extends Component {
 
   componentDidMount() {
     this.$form = document.getElementById('mortgage-form')
+    this.calculateMortgage()
   }
 
   calculateMortgage(e) {
-    e.preventDefault()
+    if (e) {
+      e.preventDefault()
+    }
 
     const formData = {
-      zipcode: this.$form.zipcode.value,
-      purchasePrice: parseFloat(this.$form.purchasePrice.value || 250000),
-      downPayment: parseFloat(this.$form.downPayment.value || 0.05),
-      interestRate: parseFloat(this.$form.interestRate.value || 0.343),
+      purchasePrice: parseFloat(this.$form.purchasePrice.value || 300000),
+      loanAmount: parseFloat(this.$form.loanAmount.value || 250000),
+      interestRate: parseFloat(this.$form.interestRate.value || 3.92),
       loanType: parseFloat(this.$form.loanType.value || 30)
     }
-    const principal = formData.purchasePrice - (formData.purchasePrice * formData.downPayment)
-    const monthlyInterestRate = (formData.interestRate / 12) / 100
-    const numberOfMonthlyPayments = formData.loanType * 12
-    const monthlyPayment = (monthlyInterestRate * principal * Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments)) / (Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments) - 1)
 
-    this.setState(setChart(
-      Math.floor(monthlyPayment),
-      getRandomInt(100, 200),
-      getRandomInt(100, 150),
-      getRandomInt(0, 100),
-      Math.floor(monthlyPayment)
-    ))
+    const principal = formData.loanAmount
+    const monthlyInterestRate = formData.interestRate / 12 / 100
+    const numberOfMonthlyPayments = formData.loanType * 12
+    const monthlyPayment = parseInt((monthlyInterestRate * principal * Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments)) / (Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments) - 1))
+
+    const propertyInterest = parseInt(monthlyPayment)
+    const propertyTax = parseInt((principal * 0.0207) / 12)
+    const homeInsurance = parseInt((formData.purchasePrice / 1000) * 0.350)
+
+    this.setState(setChart({
+      propertyInterest,
+      propertyTax,
+      homeInsurance,
+      total: propertyInterest + propertyTax + homeInsurance
+    }))
   }
 
   render() {
@@ -97,7 +100,7 @@ export default class MortgageCalculator extends Component {
             }}
           />
 
-          <strong className="center">$<span>{this.state.monthlyMortgage}</span> /mo</strong>
+          <strong className="center">$<span>{this.state.total}</span> /mo</strong>
         </figure>
 
         <ul className="breakdown">
@@ -115,43 +118,30 @@ export default class MortgageCalculator extends Component {
            <span className="label">Home Insurance</span>
            <span className="price">${this.state.homeInsurance}</span>
           </li>
-
-          <li className="other">
-           <span className="label">Other</span>
-            <span className="price">${this.state.other}</span>
-          </li>
         </ul>
       </div>
 
       <div className="col s12 m6 mortgage-form-wrapper">
-        <label htmlFor="zipcode">
-          <span>Zipcode</span>
-          <input type="text" name="zipcode" placeholder="Property Zipcode" />
-        </label>
-
         <label htmlFor="purchase-price">
         <span>Purchase Price</span>
-          <input type="text" name="purchasePrice" placeholder="$250,000" />
+          <input type="text" name="purchasePrice" placeholder="$300,000" />
         </label>
 
-        <label htmlFor="down-payment">
-          <span>Down Payment <a href="javascript:;">?</a></span>
-          <select name="downPayment" onChange={this.calculateMortgage.bind(this)}>
-            <option value="0.05">5%</option>
-            <option value="0.1">10%</option>
-            <option value="0.2">20%</option>
-          </select>
+        <label htmlFor="loan-amount">
+          <span>Loan Amount <a href="javascript:;">?</a></span>
+          <input type="text" name="loanAmount" placeholder="$250,000" />
         </label>
 
         <label htmlFor="interest-rate">
           <span>Interest Rate <a href="javascript:;">?</a></span>
-          <input type="text" name="interestRate" placeholder="3.43%" />
+          <input type="text" name="interestRate" placeholder="3.92%" />
         </label>
 
         <label htmlFor="loan-type">
           <span>Loan Type <a href="javascript:;">?</a></span>
           <select name="loanType" onChange={this.calculateMortgage.bind(this)}>
             <option value="30">30 Year Fixed Rate</option>
+            <option value="15">15 Year Fixed Rate</option>
             <option>No Loan</option>
           </select>
         </label>
@@ -159,12 +149,7 @@ export default class MortgageCalculator extends Component {
     </div>
 
     <div className="grey-banner center-align">
-      <strong>$<span className="price">{this.state.monthlyMortgage}</span> /mo</strong><br />
-
-      <small>
-        <span className="loan-type">30 - Year Fixed</span> |&nbsp;
-        <span className="interest-rate">3.43% Interest</span>
-      </small>
+      <strong>$<span className="price">{this.state.total}</span> /mo</strong><br />
     </div>
 
     <div className="center-align">

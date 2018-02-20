@@ -908,20 +908,23 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-var setChart = function setChart(propertyInterest, propertyTax, homeInsurance, other, monthlyMortgage) {
+var setChart = function setChart(_ref) {
+  var propertyInterest = _ref.propertyInterest,
+      propertyTax = _ref.propertyTax,
+      homeInsurance = _ref.homeInsurance,
+      total = _ref.total;
   return {
     propertyInterest: propertyInterest,
     propertyTax: propertyTax,
     homeInsurance: homeInsurance,
-    other: other,
-    monthlyMortgage: monthlyMortgage,
+    total: total,
     chartData: {
       datasets: [{
         backgroundColor: ['rgb(241, 137, 3)', 'rgb(254, 197, 47)', 'rgb(86, 88, 90)', 'rgb(237, 237, 237)'],
         borderWidth: 0,
-        data: [propertyInterest, propertyTax, homeInsurance, other]
+        data: [propertyInterest, propertyTax, homeInsurance]
       }],
-      labels: ["Property & Interest", "Property Tax", "Home Insurance", "Other"]
+      labels: ["Property & Interest", "Property Tax", "Home Insurance"]
     }
   };
 };
@@ -947,25 +950,37 @@ var MortgageCalculator = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.$form = document.getElementById('mortgage-form');
+      this.calculateMortgage();
     }
   }, {
     key: 'calculateMortgage',
     value: function calculateMortgage(e) {
-      e.preventDefault();
+      if (e) {
+        e.preventDefault();
+      }
 
       var formData = {
-        zipcode: this.$form.zipcode.value,
-        purchasePrice: parseFloat(this.$form.purchasePrice.value || 250000),
-        downPayment: parseFloat(this.$form.downPayment.value || 0.05),
-        interestRate: parseFloat(this.$form.interestRate.value || 0.343),
+        purchasePrice: parseFloat(this.$form.purchasePrice.value || 300000),
+        loanAmount: parseFloat(this.$form.loanAmount.value || 250000),
+        interestRate: parseFloat(this.$form.interestRate.value || 3.92),
         loanType: parseFloat(this.$form.loanType.value || 30)
       };
-      var principal = formData.purchasePrice - formData.purchasePrice * formData.downPayment;
+
+      var principal = formData.loanAmount;
       var monthlyInterestRate = formData.interestRate / 12 / 100;
       var numberOfMonthlyPayments = formData.loanType * 12;
-      var monthlyPayment = monthlyInterestRate * principal * Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) - 1);
+      var monthlyPayment = parseInt(monthlyInterestRate * principal * Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) - 1));
 
-      this.setState(setChart(Math.floor(monthlyPayment), getRandomInt(100, 200), getRandomInt(100, 150), getRandomInt(0, 100), Math.floor(monthlyPayment)));
+      var propertyInterest = parseInt(monthlyPayment);
+      var propertyTax = parseInt(principal * 0.0207 / 12);
+      var homeInsurance = parseInt(formData.purchasePrice / 1000 * 0.350);
+
+      this.setState(setChart({
+        propertyInterest: propertyInterest,
+        propertyTax: propertyTax,
+        homeInsurance: homeInsurance,
+        total: propertyInterest + propertyTax + homeInsurance
+      }));
     }
   }, {
     key: 'render',
@@ -1001,7 +1016,7 @@ var MortgageCalculator = function (_Component) {
                 _react2.default.createElement(
                   'span',
                   null,
-                  this.state.monthlyMortgage
+                  this.state.total
                 ),
                 ' /mo'
               )
@@ -1053,21 +1068,6 @@ var MortgageCalculator = function (_Component) {
                   '$',
                   this.state.homeInsurance
                 )
-              ),
-              _react2.default.createElement(
-                'li',
-                { className: 'other' },
-                _react2.default.createElement(
-                  'span',
-                  { className: 'label' },
-                  'Other'
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'price' },
-                  '$',
-                  this.state.other
-                )
               )
             )
           ),
@@ -1076,56 +1076,28 @@ var MortgageCalculator = function (_Component) {
             { className: 'col s12 m6 mortgage-form-wrapper' },
             _react2.default.createElement(
               'label',
-              { htmlFor: 'zipcode' },
-              _react2.default.createElement(
-                'span',
-                null,
-                'Zipcode'
-              ),
-              _react2.default.createElement('input', { type: 'text', name: 'zipcode', placeholder: 'Property Zipcode' })
-            ),
-            _react2.default.createElement(
-              'label',
               { htmlFor: 'purchase-price' },
               _react2.default.createElement(
                 'span',
                 null,
                 'Purchase Price'
               ),
-              _react2.default.createElement('input', { type: 'text', name: 'purchasePrice', placeholder: '$250,000' })
+              _react2.default.createElement('input', { type: 'text', name: 'purchasePrice', placeholder: '$300,000' })
             ),
             _react2.default.createElement(
               'label',
-              { htmlFor: 'down-payment' },
+              { htmlFor: 'loan-amount' },
               _react2.default.createElement(
                 'span',
                 null,
-                'Down Payment ',
+                'Loan Amount ',
                 _react2.default.createElement(
                   'a',
                   { href: 'javascript:;' },
                   '?'
                 )
               ),
-              _react2.default.createElement(
-                'select',
-                { name: 'downPayment', onChange: this.calculateMortgage.bind(this) },
-                _react2.default.createElement(
-                  'option',
-                  { value: '0.05' },
-                  '5%'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: '0.1' },
-                  '10%'
-                ),
-                _react2.default.createElement(
-                  'option',
-                  { value: '0.2' },
-                  '20%'
-                )
-              )
+              _react2.default.createElement('input', { type: 'text', name: 'loanAmount', placeholder: '$250,000' })
             ),
             _react2.default.createElement(
               'label',
@@ -1140,7 +1112,7 @@ var MortgageCalculator = function (_Component) {
                   '?'
                 )
               ),
-              _react2.default.createElement('input', { type: 'text', name: 'interestRate', placeholder: '3.43%' })
+              _react2.default.createElement('input', { type: 'text', name: 'interestRate', placeholder: '3.92%' })
             ),
             _react2.default.createElement(
               'label',
@@ -1165,6 +1137,11 @@ var MortgageCalculator = function (_Component) {
                 ),
                 _react2.default.createElement(
                   'option',
+                  { value: '15' },
+                  '15 Year Fixed Rate'
+                ),
+                _react2.default.createElement(
+                  'option',
                   null,
                   'No Loan'
                 )
@@ -1182,26 +1159,11 @@ var MortgageCalculator = function (_Component) {
             _react2.default.createElement(
               'span',
               { className: 'price' },
-              this.state.monthlyMortgage
+              this.state.total
             ),
             ' /mo'
           ),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'small',
-            null,
-            _react2.default.createElement(
-              'span',
-              { className: 'loan-type' },
-              '30 - Year Fixed'
-            ),
-            ' |\xA0',
-            _react2.default.createElement(
-              'span',
-              { className: 'interest-rate' },
-              '3.43% Interest'
-            )
-          )
+          _react2.default.createElement('br', null)
         ),
         _react2.default.createElement(
           'div',
