@@ -1,15 +1,18 @@
-.call-out-blocks 
+.call-out-blocks
     border-bottom: 7px solid $light
-    
+
     .wrapper
-        display: flex
+        display: grid
+        grid-template-columns: repeat(var(--cols, 3), 1fr)
+        align-items: center
         justify-content: center
         padding: 35px 0
-        flex-wrap: wrap
+
+        @media (max-width: $small)
+            --cols: 1
 
     .block
         text-align: center
-        width: 33%
         padding: 0 25px
 
         p
