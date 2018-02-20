@@ -72,21 +72,11 @@ get_header();
 			</div>
 		</div>
 
-		<div class="tool quarter">
+		<div class="tool half">
 			<?=Frontend::svg('mortgage-calculator')?>
 
 			<div class="copy">
-				<h4>Mortgage Calculator</h4>
-				<a href="<?=get_permalink(352)?>" class="btn">Go</a>
-			</div>
-		</div>
-
-		<div class="tool quarter">
-			<?=Frontend::svg('closing-calculator')?>
-
-			<div class="copy">
-				<h4>Closing Cost Calculator</h4>
-				<a href="<?=get_permalink(355)?>" class="btn">Go</a>
+				<?=CFS()->get('second_copy')?>
 			</div>
 		</div>
 
@@ -94,7 +84,7 @@ get_header();
 			<?=Frontend::svg('properties')?>
 
 			<div class="copy">
-				<?=CFS()->get('second_copy')?>
+				<?=CFS()->get('third_copy')?>
 			</div>
 		</div>
 
@@ -102,7 +92,7 @@ get_header();
 			<?=Frontend::svg('sign-up')?>
 
 			<div class="copy">
-				<?=CFS()->get('third_copy')?>
+				<?=CFS()->get('fourth_copy')?>
 			</div>
 		</div>
 	</div>

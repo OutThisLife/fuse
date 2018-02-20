@@ -115,3 +115,28 @@
 
 			&:after
 				content: none
+
+#header .phone
+		z-index: -1
+		position: relative
+		transition: transform .3s ease-in-out
+		background: $orange
+
+		.wrapper
+			text-align: center
+			padding-top: $pad / 4
+			padding-bottom: $pad / 4
+
+		p
+			display: block
+			color: #FFF
+			font-weight: 700
+			font-size: 14px
+			letter-spacing: 0.033em
+			margin: auto
+
+			a
+				color: inherit
+
+#header.min .phone
+		transform: translate(0, -100%)

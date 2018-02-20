@@ -69,20 +69,11 @@ the_post();
 				</div>
 			</div>
 
-			<div class="tool quarter">
+			<div class="tool half">
 				<?=Frontend::svg('mortgage-calculator')?>
 
 				<div class="copy">
 					<h4>Mortgage Calculator</h4>
-					<a href="javascript:;" class="btn">Go</a>
-				</div>
-			</div>
-
-			<div class="tool quarter">
-				<?=Frontend::svg('closing-calculator')?>
-
-				<div class="copy">
-					<h4>Closing Cost Calculator</h4>
 					<a href="javascript:;" class="btn">Go</a>
 				</div>
 			</div>

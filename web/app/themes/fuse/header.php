@@ -42,41 +42,49 @@
 
 <!-- HEADER -->
 <header id="header" class="clearfix" role="banner" itemscope itemtype="http://schema.org/WPHeader">
-<div class="row">
-<div class="wrapper">
-	<a href="<?=home_url()?>" class="logo">
-		<img src="<?=assetDir?>/img/logo.png" alt="<?php bloginfo('name') ?>" />
-	</a>
+	<div class="row">
+	<div class="wrapper">
+		<a href="<?=home_url()?>" class="logo">
+			<img src="<?=assetDir?>/img/logo.png" alt="<?php bloginfo('name') ?>" />
+		</a>
 
-	<div class="nav main-nav hide-for-small">
-		<ul>
-			<?=BackEnd::getMenu('header')?>
-		</ul>
-	</div>
+		<div class="nav main-nav hide-for-small">
+			<ul>
+				<?=BackEnd::getMenu('header')?>
+			</ul>
+		</div>
 
-	<div class="nav social-nav hide-for-small">
-		<ul class="social">
-			<?=Backend::getMenu('social')?>
-		</ul>
-	</div>
+		<div class="nav social-nav hide-for-small">
+			<ul class="social">
+				<?=Backend::getMenu('social')?>
+			</ul>
+		</div>
 
-	<div class="nav hide-for-small">
-		<?php
-		$id = is_user_logged_in() ? 365 : 249;
-		echo '<a href="', get_permalink($id), '" class="btn">', get_the_title($id), '</a>';
-		?>
-	</div>
+		<div class="nav hide-for-small">
+			<?php
+			$id = is_user_logged_in() ? 365 : 249;
+			echo '<a href="', get_permalink($id), '" class="btn">', get_the_title($id), '</a>';
+			?>
+		</div>
 
-	<!-- Mobile nav -->
-	<div class="hide-on-med-and-up mobile-link">
-		<a href="javascript:;"><span></span></a>
+		<!-- Mobile nav -->
+		<div class="hide-on-med-and-up mobile-link">
+			<a href="javascript:;"><span></span></a>
 
-		<div id="mobile-menu">
-		<ul class="main-mobile-nav">
-			<?=BackEnd::getMenu('header')?>
-		</ul>
+			<div id="mobile-menu">
+			<ul class="main-mobile-nav">
+				<?=BackEnd::getMenu('header')?>
+			</ul>
+			</div>
 		</div>
 	</div>
-</div>
-</div>
+	</div>
+
+	<?php if ($phone = BackEnd::getOption('phone')): ?>
+	<div class='row phone'>
+	<div class='wrapper'>
+		<p>We're here when you are ready. <a href='tel:<?=$phone?>'><?=$phone?></a></p>
+	</div>
+	</div>
+	<?php endif ?>
 </header>
