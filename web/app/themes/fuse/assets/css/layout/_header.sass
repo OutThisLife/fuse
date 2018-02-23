@@ -117,7 +117,8 @@
 				content: none
 
 #header .phone
-		z-index: -1
+		pointer-events: none
+		z-index: -2
 		position: relative
 		transition: transform .3s ease-in-out
 		background: $orange
@@ -136,7 +137,11 @@
 			margin: auto
 
 			a
+				pointer-events: auto
 				color: inherit
+
+				&:hover
+						text-decoration: underline
 
 #header.min .phone
 		transform: translate(0, -100%)
