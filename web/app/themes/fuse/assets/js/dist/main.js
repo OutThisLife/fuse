@@ -968,7 +968,7 @@ var MortgageCalculator = function (_Component) {
 
       var principal = formData.loanAmount;
       var monthlyInterestRate = formData.interestRate / 12 / 100;
-      var numberOfMonthlyPayments = formData.loanType * 12;
+      var numberOfMonthlyPayments = Math.max(1, formData.loanType) * 12;
       var monthlyPayment = parseInt(monthlyInterestRate * principal * Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) - 1));
 
       var propertyInterest = parseInt(monthlyPayment);
@@ -976,7 +976,7 @@ var MortgageCalculator = function (_Component) {
       var homeInsurance = parseInt(formData.purchasePrice / 1000 * 0.350);
 
       this.setState(setChart({
-        propertyInterest: propertyInterest,
+        propertyInterest: formData.loanType === 0 ? 0 : propertyInterest,
         propertyTax: propertyTax,
         homeInsurance: homeInsurance,
         total: propertyInterest + propertyTax + homeInsurance
@@ -1142,7 +1142,7 @@ var MortgageCalculator = function (_Component) {
                 ),
                 _react2.default.createElement(
                   'option',
-                  null,
+                  { value: '0' },
                   'No Loan'
                 )
               )

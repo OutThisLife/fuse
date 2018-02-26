@@ -67,7 +67,7 @@ export default class MortgageCalculator extends Component {
 
     const principal = formData.loanAmount
     const monthlyInterestRate = formData.interestRate / 12 / 100
-    const numberOfMonthlyPayments = formData.loanType * 12
+    const numberOfMonthlyPayments = Math.max(1, formData.loanType) * 12
     const monthlyPayment = parseInt((monthlyInterestRate * principal * Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments)) / (Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments) - 1))
 
     const propertyInterest = parseInt(monthlyPayment)
@@ -75,7 +75,7 @@ export default class MortgageCalculator extends Component {
     const homeInsurance = parseInt((formData.purchasePrice / 1000) * 0.350)
 
     this.setState(setChart({
-      propertyInterest,
+      propertyInterest: formData.loanType === 0 ? 0 : propertyInterest,
       propertyTax,
       homeInsurance,
       total: propertyInterest + propertyTax + homeInsurance
@@ -142,7 +142,7 @@ export default class MortgageCalculator extends Component {
           <select name="loanType" onChange={this.calculateMortgage.bind(this)}>
             <option value="30">30 Year Fixed Rate</option>
             <option value="15">15 Year Fixed Rate</option>
-            <option>No Loan</option>
+            <option value="0">No Loan</option>
           </select>
         </label>
       </div>
