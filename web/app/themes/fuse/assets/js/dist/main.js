@@ -966,13 +966,13 @@ var MortgageCalculator = function (_Component) {
         loanType: parseFloat(this.$form.loanType.value || 30)
       };
 
-      var principal = formData.purchasePrice;
+      var principal = formData.loanAmount;
       var monthlyInterestRate = formData.interestRate / 12 / 100;
       var numberOfMonthlyPayments = Math.max(1, formData.loanType) * 12;
       var monthlyPayment = parseInt(monthlyInterestRate * principal * Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) - 1));
 
       var propertyInterest = parseInt(monthlyPayment);
-      var propertyTax = parseInt(principal * 0.0207 / 12);
+      var propertyTax = parseInt(formData.purchasePrice * 0.0207 / 12);
       var homeInsurance = parseInt(formData.purchasePrice / 1000 * 0.350);
 
       this.setState(setChart({

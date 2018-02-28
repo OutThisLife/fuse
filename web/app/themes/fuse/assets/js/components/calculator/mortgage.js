@@ -65,13 +65,13 @@ export default class MortgageCalculator extends Component {
       loanType: parseFloat(this.$form.loanType.value || 30)
     }
 
-    const principal = formData.purchasePrice
+    const principal = formData.loanAmount
     const monthlyInterestRate = formData.interestRate / 12 / 100
     const numberOfMonthlyPayments = Math.max(1, formData.loanType) * 12
     const monthlyPayment = parseInt((monthlyInterestRate * principal * Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments)) / (Math.pow((1 + monthlyInterestRate), numberOfMonthlyPayments) - 1))
 
     const propertyInterest = parseInt(monthlyPayment)
-    const propertyTax = parseInt((principal * 0.0207) / 12)
+    const propertyTax = parseInt((formData.purchasePrice * 0.0207) / 12)
     const homeInsurance = parseInt((formData.purchasePrice / 1000) * 0.350)
 
     this.setState(setChart({
