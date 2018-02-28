@@ -17,7 +17,7 @@
 	<link rel="profile" href="//gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url') ?>" />
 	<link rel="image_src" href="<?=assetDir?>/img/logo.png" />
-	<link rel="shortcut icon" href="<?=home_url()?>/favicon.ico" />
+	<link rel="shortcut icon" href="<?=assetDir?>/img/favicon.png" />
 
 	<link rel="stylesheet" href="<?=bowerDir?>/materialize/dist/css/materialize.min.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />

@@ -161,4 +161,4 @@ export default class MortgageCalculator extends Component {
 
 const $calculator = document.getElementById('mortgage-calculator')
 if ($calculator)
-render(<MortgageCalculator />, $calculator)
+  render(<MortgageCalculator />, $calculator)
