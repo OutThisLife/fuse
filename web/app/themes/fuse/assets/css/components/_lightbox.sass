@@ -1,4 +1,7 @@
 .lightbox
+	display: flex
+	align-items: center
+	justify-content: center
 	z-index: 1000
 	+cover(fixed)
 	+transition(opacity .3s ease-out)
@@ -9,7 +12,7 @@
 		+opacity(0)
 
 		.lightbox-content
-			+transform(translate(-50%, -250px))
+			+transform(translate(0, -250px))
 
 			@media (max-width: $small)
 				+transform(translateY(100%))
@@ -32,9 +35,15 @@
 			text-decoration: none
 
 	.lightbox-content
-		background: #FFF
+		position: relative
+		top: 0
+		left: 0
+		max-width: 70%
+		margin: auto
 		padding: 45px
 		+transition(transform .7s ease-out)
+		transform: none
+		background: #FFF
 
 		h2
 			color: $orange
@@ -63,16 +72,27 @@
 			grid-template-columns: repeat(2, 1fr)
 			grid-gap: 10px
 
+		.gform_title
+				text-align: left
+				margin-bottom: 15px
+
 .lightbox #gform_3 ul
 		display: grid
+		align-items: end
 		grid-template-columns: repeat(6, 1fr)
-		grid-gap: 10px
+		grid-gap: 20px 10px
 
 		.gfield
 			grid-column: span 2
 			width: 100%
 			padding: 0
 			text-align: left
+
+		.gfield_label
+				display: block
+
+				.gfield_required
+						color: red
 
 		.full-width
 			grid-column: span 6
@@ -81,6 +101,10 @@
 			+ .gfield,
 			+ .gfield + .gfield
 				grid-column: span 3
+
+		#field_3_14,
+		#field_3_15
+			grid-column: span 3
 
 		#field_3_7,
 		#field_3_21

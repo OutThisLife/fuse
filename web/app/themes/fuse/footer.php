@@ -38,13 +38,13 @@
 
 <div id="how-much-lightbox" class="lightbox">
 	<div class="lightbox-content center">
-        <?php gravity_form(3, false, false, false, null, true, 1, true); ?>
+        <?php gravity_form(3, 1, 0, 0, null, 1, 1, 1); ?>
 		<a href="javascript:;" class="close">x</a>
 	</div>
 </div>
 <div id="join-us-lightbox" class="lightbox">
 	<div class="lightbox-content center">
-        <?php gravity_form(4, false, false, false, null, true, 1, true); ?>
+        <?php gravity_form(4, 0, 0, 0, null, 1, 1, 1); ?>
 		<a href="javascript:;" class="close">x</a>
 	</div>
 </div>
