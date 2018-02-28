@@ -55,6 +55,9 @@
 			padding: 0
 			text-align: left
 
+		.instruction
+				display: none
+
 		.ginput_complex
 			display: grid
 			grid-template-columns: repeat(2, 1fr)
@@ -62,12 +65,57 @@
 
 .lightbox #gform_3 ul
 		display: grid
-		grid-template-columns: repeat(2, 1fr)
+		grid-template-columns: repeat(6, 1fr)
 		grid-gap: 10px
 
 		.gfield
+			grid-column: span 2
 			width: 100%
 			padding: 0
+			text-align: left
 
-		#field_3_7
-			grid-column: span 2
+		.full-width
+			grid-column: span 6
+
+		#field_3_23
+			+ .gfield,
+			+ .gfield + .gfield
+				grid-column: span 3
+
+		#field_3_7,
+		#field_3_21
+			grid-column: span 6
+
+		#field_3_13
+			grid-column: span 6
+
+			textarea
+				height: 55px
+
+		#field_3_18,
+		#field_3_19
+			.gfield_description
+					display: none
+
+		.ginput_container_fileupload
+			padding: 25px 25px 15px 25px
+			color: rgba(0,0,0,.5)
+			font-size: 13px
+			text-align: center
+			background: #dcdcdc
+
+			~ .gfield_description
+					display: none
+
+			[type=button]
+				font-size: 12px
+				padding: 7px 10px
+				margin: 0 0 0 5px
+
+		.ginput_preview
+			img
+				vertical-align: middle
+
+			strong
+				font-size: 13px
+				line-height: 1
