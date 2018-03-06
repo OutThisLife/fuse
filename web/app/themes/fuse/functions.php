@@ -425,3 +425,9 @@ foreach ([
 	add_action('wp_ajax_' . $fn, $fn);
 	add_action('wp_ajax_nopriv_' . $fn, $fn);
 endforeach;
+
+if (!function_exists('wp_new_user_notification')) {
+	function wp_new_user_notification($user_id, $deprecated = null, $notify = '') {
+		return;
+	}
+}
