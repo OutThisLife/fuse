@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Doughnut } from 'react-chartjs-2'
 
-function getRandomInt (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 const setChart = ({ propertyInterest, propertyTax, homeInsurance, total }) => ({
   propertyInterest,
   propertyTax,

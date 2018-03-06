@@ -904,10 +904,6 @@ var _reactChartjs = require('react-chartjs-2');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 var setChart = function setChart(_ref) {
   var propertyInterest = _ref.propertyInterest,
       propertyTax = _ref.propertyTax,
