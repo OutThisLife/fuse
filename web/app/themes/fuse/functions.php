@@ -1,8 +1,6 @@
 <?php
 /**
  * CRM
- *
- * Main Functions
  */
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS'):
