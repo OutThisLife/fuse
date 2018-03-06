@@ -2,7 +2,7 @@
 /**
  * fuse realty
  *
- * Testimonials
+ * Testimonials Archive
  */
 
 get_header();
