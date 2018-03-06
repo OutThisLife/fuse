@@ -972,7 +972,7 @@ var MortgageCalculator = function (_Component) {
       var monthlyPayment = parseInt(monthlyInterestRate * principal * Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, numberOfMonthlyPayments) - 1));
 
       var propertyInterest = parseInt(monthlyPayment);
-      var propertyTax = parseInt(formData.purchasePrice * 0.0207 / 12);
+      var propertyTax = parseInt(formData.purchasePrice * 0.027 / 12);
       var homeInsurance = parseInt(formData.purchasePrice / 1000 * 0.350);
 
       this.setState(setChart({
