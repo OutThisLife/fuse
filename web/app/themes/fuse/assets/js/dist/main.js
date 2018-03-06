@@ -2275,6 +2275,9 @@ var RangeSlider = function (_PureComponent) {
         RangeFilter,
         null,
         _react2.default.createElement(_rheostat2.default, (0, _extends3.default)({}, this.props, {
+          ref: function ref(c) {
+            return _this2.$slider = c;
+          },
           onValuesUpdated: function onValuesUpdated(e) {
             var $minInput = _this2.$slider.offsetParent.nextElementSibling;
             var $maxInput = $minInput.nextElementSibling;

@@ -62,6 +62,7 @@ export default class RangeSlider extends PureComponent {
       <RangeFilter>
         <Rheostat
           {...this.props}
+          ref={c => (this.$slider = c)}
           onValuesUpdated={e => {
             const $minInput = this.$slider.offsetParent.nextElementSibling
             const $maxInput = $minInput.nextElementSibling
