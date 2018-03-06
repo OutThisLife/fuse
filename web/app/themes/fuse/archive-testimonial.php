@@ -27,31 +27,7 @@ get_header();
 		</div>
 		<?php endif ?>
 
-		<div id='has-filters' class="row testimonials wrapper">
-
-		<form class="row wrapper dropdown-wrapper">
-			<div class="col s12 m6">
-				<label for="need-help">
-					<select name='review_source'>
-						<option value="all">All Review Sources</option>
-						<?=BackEnd::getTerms('review_source', function($t) {
-							return '<option value="'. $t->slug .'">'. $t->name .'</option>';
-						})?>
-					</select>
-				</label>
-			</div>
-
-			<div class="col s12 m6">
-				<label for="agent">
-					<select name="testimonial_type">
-						<option value="all">All Types</option>
-						<?=BackEnd::getTerms('testimonial_type', function($t) {
-							return '<option value="'. $t->slug .'">'. $t->name .'</option>';
-						})?>
-					</select>
-				</label>
-			</div>
-		</form>
+		<div class="row testimonials wrapper">
 
 		<?php
 		if (have_posts()):
