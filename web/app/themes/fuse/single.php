@@ -28,11 +28,7 @@ $map = CFS()->get('map');
 	    	<h1><?php the_title() ?></h1>
 
 	    	<div class="meta-columns">
-	          <div class="share">
-	              <div class="ss-share">
-	              	<small>SHARE</small>
-	              </div>
-	          </div>
+	          <?php Template::partial('share.php') ?>
 
 			  <?php if ($area = CFS()->get('area')): ?>
 	          <div class="bath">
