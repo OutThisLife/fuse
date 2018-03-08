@@ -31,6 +31,8 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
 	<![endif]-->
 
+	<script src="//s7.addthis.com/js/300/addthis_widget.js#" async></script>
+
 	<?php
 	if ($_SERVER['SERVER_NAME'] === 'localhost')
 		echo '<script src="//localhost:9091/livereload.js?snipver=1"></script>';
@@ -64,6 +66,9 @@
 			<?php
 			$id = is_user_logged_in() ? 365 : 249;
 			echo '<a href="', get_permalink($id), '" class="btn">', get_the_title($id), '</a>';
+
+			if (is_user_logged_in())
+				echo '<a class="logout" href="', wp_logout_url(), '">Logout</a>';
 			?>
 		</div>
 

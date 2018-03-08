@@ -256,8 +256,8 @@ function toggleWishList ($add = true) {
 
 	if ($add && !$contains) {
 		array_push($wishlist, $id);
-	} else if ($add && $contains) {
-		unset($wishlist[$id]);
+	} else if (!$add && $contains) {
+		unset($wishlist[array_search($id, array_keys($wishlist))]);
 	}
 
 	echo json_encode([

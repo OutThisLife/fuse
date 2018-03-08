@@ -2643,14 +2643,14 @@ var Filters = function (_Component) {
             ThirdColumn,
             null,
             _react2.default.createElement('input', {
-              name: 'street_name',
-              type: 'text',
-              placeholder: 'Street Name'
-            }),
-            _react2.default.createElement('input', {
               name: 'street_number',
               type: 'text',
               placeholder: 'Street Number'
+            }),
+            _react2.default.createElement('input', {
+              name: 'street_name',
+              type: 'text',
+              placeholder: 'Street Name'
             })
           ),
           _react2.default.createElement(
@@ -2681,9 +2681,9 @@ var Filters = function (_Component) {
               _react2.default.createElement(_RangeSlider2.default, {
                 className: 'square_feet_slider',
                 min: this.props.meta.square_feet_min,
-                max: 5000,
-                maxLabel: '5,000+',
-                values: [this.props.meta.square_feet_min, 5000],
+                max: 15000,
+                maxLabel: '15,000+',
+                values: [this.props.meta.square_feet_min, 15000],
                 onChange: this.handleSubmit
               }),
               _react2.default.createElement('input', { type: 'hidden', name: 'min_square_feet' }),
@@ -2718,8 +2718,8 @@ var Filters = function (_Component) {
               _react2.default.createElement(_RangeSlider2.default, {
                 className: 'lot-size',
                 min: .5,
-                max: 50,
-                values: [.5, 50],
+                max: 150,
+                values: [.5, 150],
                 onChange: this.handleSubmit
               }),
               _react2.default.createElement('input', { type: 'hidden', name: 'min_acres' }),

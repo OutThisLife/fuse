@@ -21,7 +21,7 @@ get_header();
 	<div class="copy">
 		<h4>Want to stay in the know?</h4>
 		<p>What’s in a name? In our case everything. When we work together, opportunities abound. When that bond</p>
-		<a href="javascript:;" class="btn">Sign Up</a>
+		<a href="<?=get_permalink(249)?>" class="btn">Sign Up</a>
 	</div>
 </div>
 </div>

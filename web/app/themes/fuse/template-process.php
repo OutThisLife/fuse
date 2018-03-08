@@ -60,12 +60,8 @@ the_post();
 				<?=Frontend::svg('money')?>
 
 				<div class="copy">
-					<h4>How much is it worth?</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio aut cupiditate enim numquam maxime sunt voluptatum</p>
-					<form>
-						<input type="email" class="email" placeholder="Email Address">
-						<button class="btn">Next</button>
-					</form>
+					<?=CFS()->get('first_copy', HOME)?>
+					<a href="javascript:;" class="modal-link btn">Find Out</a>
 				</div>
 			</div>
 
@@ -73,8 +69,7 @@ the_post();
 				<?=Frontend::svg('mortgage-calculator')?>
 
 				<div class="copy">
-					<h4>Mortgage Calculator</h4>
-					<a href="javascript:;" class="btn">Go</a>
+					<?=CFS()->get('second_copy', HOME)?>
 				</div>
 			</div>
 		</div>

@@ -354,15 +354,15 @@ export default class Filters extends Component {
 
             <ThirdColumn>
               <input
-                name='street_name'
-                type="text"
-                placeholder="Street Name"
-              />
-
-              <input
                 name='street_number'
                 type="text"
                 placeholder="Street Number"
+              />
+
+              <input
+                name='street_name'
+                type="text"
+                placeholder="Street Name"
               />
             </ThirdColumn>
 
@@ -386,9 +386,9 @@ export default class Filters extends Component {
                 <RangeSlider
                   className='square_feet_slider'
                   min={this.props.meta.square_feet_min}
-                  max={5000}
-                  maxLabel='5,000+'
-                  values={[this.props.meta.square_feet_min, 5000]}
+                  max={15000}
+                  maxLabel='15,000+'
+                  values={[this.props.meta.square_feet_min, 15000]}
                   onChange={this.handleSubmit}
                 />
 
@@ -416,8 +416,8 @@ export default class Filters extends Component {
                 <RangeSlider
                   className='lot-size'
                   min={.5}
-                  max={50}
-                  values={[.5, 50]}
+                  max={150}
+                  values={[.5, 150]}
                   onChange={this.handleSubmit}
                 />
 

@@ -86,7 +86,7 @@ $getSocial = function () {
     </div>
 
     <div class="col s12 m4 agent-sidebar">
-        <h4>Credentials</h4>
+        <h4>Designations</h4>
 
         <ul>
             <?php foreach (CFS()->get('credentials') AS $credential): ?>

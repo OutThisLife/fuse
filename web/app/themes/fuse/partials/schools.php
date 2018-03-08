@@ -50,3 +50,7 @@
     <?php endforeach ?>
 </div>
 <?php endif ?>
+
+<div class='disclaimer'>
+    <p>*School data provided by GreatSchools. Intended for reference only. GreatSchools Ratings compare a school’s test performance to statewide results. To verify enrollment eligibility, contact the school or district directly.</p>
+</div>

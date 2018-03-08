@@ -27,9 +27,7 @@ $img = has_post_thumbnail() ? get_the_post_thumbnail_url() : assetDir . '/img/ca
 	        		<?php the_title()?>
         		</h2>
 
-		        <div class="ss-share">
-		        	Share
-		        </div>
+						<?php Template::partial('share.php') ?>
 	    	</div>
 		</figcaption>
 	</figure>

@@ -27,9 +27,7 @@
             </a>
         </h3>
 
-        <strong class="share-post">
-            <i class="icon-share"></i> Share
-        </strong>
+       <?php Template::partial('share.php') ?>
     </div>
 </div>
 </article>

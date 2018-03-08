@@ -25,18 +25,16 @@
         <?php endif ?>
 
         <div class="contact-info">
-            <div class="property">
-                <img src="<?=assetDir?>/img/commercial-small.png" />
-            </div>
-
             <div class="email">
                 <a href="mailto:<?=CFS()->get('email_address')?>"><img src="<?=assetDir?>/img/email-small.png" /></a>
             </div>
 
+            <?php if ($phone = CFS()->get('phone_number')): ?>
             <div class="phone">
                 <img src="<?=assetDir?>/img/phone-small.png" />
-                <strong><?=CFS()->get('phone_number')?></strong>
+                <strong><a href="tel:<?=$phone?>"><?=$phone?></a></strong>
             </div>
+            <?php endif ?>
         </div>
     </figcaption>
 </figure>
