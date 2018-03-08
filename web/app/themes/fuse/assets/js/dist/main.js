@@ -462,7 +462,7 @@ new Header(document.getElementById('header'));
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.Lightbox = undefined;
 
@@ -477,49 +477,51 @@ var _createClass3 = _interopRequireDefault(_createClass2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Lightbox = exports.Lightbox = function () {
-	function Lightbox($lightbox) {
-		(0, _classCallCheck3.default)(this, Lightbox);
+  function Lightbox($lightbox) {
+    (0, _classCallCheck3.default)(this, Lightbox);
 
-		this.$lightbox = $lightbox;
-		this.$lightbox.querySelector('.close').addEventListener('click', this.close.bind(this));
-		this.open();
+    this.$lightbox = $lightbox;
+    this.$lightbox.querySelector('.close').addEventListener('click', this.close.bind(this));
+    this.open();
 
-		window.onkeydown = function (evt) {
-			evt = evt || window.event;
-			if (evt.keyCode == 27) lightbox.classList.remove('open');
-		};
-	}
+    window.onkeydown = function (evt) {
+      evt = evt || window.event;
+      if (evt.keyCode == 27) lightbox.classList.remove('open');
+    };
+  }
 
-	(0, _createClass3.default)(Lightbox, [{
-		key: 'open',
-		value: function open() {
-			this.$lightbox.classList.add('open');
-		}
-	}, {
-		key: 'close',
-		value: function close() {
-			this.$lightbox.classList.remove('open');
-		}
-	}]);
-	return Lightbox;
+  (0, _createClass3.default)(Lightbox, [{
+    key: 'open',
+    value: function open() {
+      document.body.style.overflow = 'hidden';
+      this.$lightbox.classList.add('open');
+    }
+  }, {
+    key: 'close',
+    value: function close() {
+      document.body.style.overflow = 'initial';
+      this.$lightbox.classList.remove('open');
+    }
+  }]);
+  return Lightbox;
 }();
 
 var $howMuchLink = void 0;
 if ($howMuchLink = document.querySelector('.modal-link')) {
-	$howMuchLink.addEventListener('click', function (e) {
-		e.preventDefault();
-		var $lightbox = void 0;
-		if ($lightbox = document.getElementById('how-much-lightbox')) new Lightbox($lightbox);
-	});
+  $howMuchLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    var $lightbox = void 0;
+    if ($lightbox = document.getElementById('how-much-lightbox')) new Lightbox($lightbox);
+  });
 }
 
 var $joinUs = void 0;
 if ($joinUs = document.querySelector('.join-us-modal-link a')) {
-	$joinUs.addEventListener('click', function (e) {
-		e.preventDefault();
-		var $lightbox = void 0;
-		if ($lightbox = document.getElementById('join-us-lightbox')) new Lightbox($lightbox);
-	});
+  $joinUs.addEventListener('click', function (e) {
+    e.preventDefault();
+    var $lightbox = void 0;
+    if ($lightbox = document.getElementById('join-us-lightbox')) new Lightbox($lightbox);
+  });
 }
 
 },{"babel-runtime/helpers/classCallCheck":46,"babel-runtime/helpers/createClass":47}],7:[function(require,module,exports){

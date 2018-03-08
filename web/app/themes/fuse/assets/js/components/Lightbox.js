@@ -11,10 +11,12 @@ export class Lightbox {
 	}
 
 	open() {
+    document.body.style.overflow = 'hidden'
 		this.$lightbox.classList.add('open')
 	}
 
 	close() {
+    document.body.style.overflow = 'initial'
 		this.$lightbox.classList.remove('open')
 	}
 }
