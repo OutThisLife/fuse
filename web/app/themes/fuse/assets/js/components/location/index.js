@@ -90,8 +90,12 @@ export default class Location extends Component {
 
       construction,
       roof,
-      exterior_features
+      exterior_features,
+
+      listing_office_name
     } = this.state.result
+
+    console.log(this.state.result)
 
     return (
       <span>
@@ -129,6 +133,12 @@ export default class Location extends Component {
         )}
 
         <div id='content'>
+          <aside id='contact-widget'>
+            <img src='/app/themes/fuse/assets/img/emblem.png' />
+            <p>Contact us for more information or to request a showing.</p>
+            <a href='javascript:;' className='btn'>Contact</a>
+          </aside>
+
           <div className='row skinny wrapper page-content'>
             <div className='location-info flex'>
               <div>
@@ -252,6 +262,12 @@ export default class Location extends Component {
                 </div>
               </div>
             </div>
+
+            <hr />
+
+            <footer className='location-info'>
+              <p>Presented by: {listing_office_name}&reg;</p>
+            </footer>
           </div>
         </div>
       </span>

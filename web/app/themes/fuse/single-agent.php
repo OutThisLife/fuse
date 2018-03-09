@@ -12,8 +12,8 @@ $getSocial = function () {
     $urls = [];
     $services = ['facebook', 'instagram', 'linkedin', 'youtube'];
 
-    foreach (['facebook', 'instagram', 'linkedin', 'youtube'] AS $social)
-        if ($url = CFS()->get($social))
+    foreach (['facebook', 'instagram', 'linkedin', 'youtube'] AS $service)
+        if ($url = CFS()->get($service))
             $urls[$service] = $url;
 
     return !empty($urls) ? $urls : false;
@@ -66,8 +66,8 @@ $getSocial = function () {
                 <ul class="social">
                 <?php
                 foreach ($socialLinks AS $service => $url)
-                    echo '<li class="ss-', $social, '">
-                        <a href="', $url, '" target="_blank">', $social, '</a>
+                    echo '<li class="ss-', $service, '">
+                        <a href="', $url, '" target="_blank">', $service, '</a>
                     </li>';
                 ?>
                 </ul>

@@ -1790,8 +1790,11 @@ var Location = function (_Component) {
           interior_features = _state$result.interior_features,
           construction = _state$result.construction,
           roof = _state$result.roof,
-          exterior_features = _state$result.exterior_features;
+          exterior_features = _state$result.exterior_features,
+          listing_office_name = _state$result.listing_office_name;
 
+
+      console.log(this.state.result);
 
       return _react2.default.createElement(
         'span',
@@ -1850,6 +1853,21 @@ var Location = function (_Component) {
         _react2.default.createElement(
           'div',
           { id: 'content' },
+          _react2.default.createElement(
+            'aside',
+            { id: 'contact-widget' },
+            _react2.default.createElement('img', { src: '/app/themes/fuse/assets/img/emblem.png' }),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Contact us for more information or to request a showing.'
+            ),
+            _react2.default.createElement(
+              'a',
+              { href: 'javascript:;', className: 'btn' },
+              'Contact'
+            )
+          ),
           _react2.default.createElement(
             'div',
             { className: 'row skinny wrapper page-content' },
@@ -2092,6 +2110,18 @@ var Location = function (_Component) {
                   'Roof type: ',
                   roof
                 )
+              )
+            ),
+            _react2.default.createElement('hr', null),
+            _react2.default.createElement(
+              'footer',
+              { className: 'location-info' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'Presented by: ',
+                listing_office_name,
+                '\xAE'
               )
             )
           )

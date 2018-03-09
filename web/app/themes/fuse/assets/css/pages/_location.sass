@@ -66,6 +66,16 @@
         width: 50%
         margin: 0 0 20px
 
+#single-location footer
+    display: block
+    text-align: center
+    padding: 20px 0 0
+
+    p
+      color: #B5B4B9
+      font-size: 15px
+      margin: 0
+
 #masthead .breadcrumb
   display: block
   color: #8F989F
@@ -76,3 +86,30 @@
 
   span
     font-weight: 400
+
+#contact-widget
+  float: right
+  display: inline-block
+  position: sticky
+  top: 100px
+  width: auto
+  text-align: center
+  padding: 20px
+  border-radius: .45em
+  box-shadow: 2px 2px 7px rgba(#000, .25)
+  margin: 50px
+  background: #FFF
+
+  @media (max-width: $small)
+    position: static
+
+  p
+    max-width: 125px
+    color: #707270
+    font-weight: 700
+    font-size: 13px
+    margin: 0 0 15px
+
+  .btn
+    font-size: 13px
+    padding: 7px 5px
