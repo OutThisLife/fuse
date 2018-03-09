@@ -53,6 +53,7 @@
     "wpackagist-plugin/ajax-thumbnail-rebuild": "*",
     "wpackagist-plugin/wordpress-seo": "*",
     "wpackagist-plugin/easy-wp-smtp": "*",
+    "wpackagist-plugin/wp-mail-smtp": "*",
     "mcaskill/php-array-group-by": "^1.0"
   },
   "require-dev": {
