@@ -4,8 +4,7 @@
     .agent
         width: 100%
         display: grid
-        grid-template-columns: 33vw 1fr
-        grid-template-rows: 25vh
+        grid-template-columns: auto 1fr
         align-items: center
         text-align: left
         grid-gap: 40px
@@ -28,18 +27,14 @@
             small
                 margin-left: 10px
 
-    .social-media
-        width: 60%
+    .social-media .social
+        padding: 0
 
-        .social
-            width: 100%
-            padding: 0
+        li
+            margin: 0
 
-            li
-                margin: 0
-
-                + li
-                    margin-left: 20px
+            + li
+                margin-left: 20px
 
     .contact-info
         display: flex
