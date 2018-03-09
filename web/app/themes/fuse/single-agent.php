@@ -26,7 +26,7 @@ $getSocial = function () {
 <div class="row agent-header">
 <div class="wrapper">
 <figure class="agent">
-    <?=FrontEnd::getImg(get_post_thumbnail_id(), 'full')?>
+    <?=FrontEnd::getImg(get_post_thumbnail_id(), 'agent_thumb')?>
 
     <figcaption>
         <h3><?php the_title(); ?></h3>

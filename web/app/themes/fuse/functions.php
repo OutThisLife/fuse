@@ -28,6 +28,7 @@ require_once 'classes/sys/autoloader.php';
 	'masthead' => [1920],
 	'school_thumb' => [500 * 2, 337 * 2],
 	'agent_thumb' => [360, 240],
+	'agent_headshot' => [576, 576, ['center', 'top']],
 ]])
 
 // -----------------------------------------------
