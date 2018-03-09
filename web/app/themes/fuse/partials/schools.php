@@ -40,12 +40,6 @@
             </a>
         </div>
         <?php endif ?>
-
-        <?php if ($school_copy = CFS()->get('schools_copy')): ?>
-        <div class="school-copy">
-            <?=$school_copy?>
-        </div>
-        <?php endif ?>
     </div>
     <?php endforeach ?>
 </div>
