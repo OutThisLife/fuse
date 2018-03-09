@@ -9,12 +9,17 @@
         border: 5px solid transparent
 
     .tool
-        background: $light
-        display: flex
+        display: grid
+        grid-template-columns: 100px 1fr
+        align-items: center
+        grid-gap: 40px
         border-radius: 5px
         padding: 20px
         margin: 10px
-        align-items: center
+        background: $light
+
+        @media (max-width: $small)
+            grid-template-columns: 1fr
 
         &.half
             width: calc(50% - 20px)
@@ -31,12 +36,13 @@
                 margin-top: auto
                 width: 100%
 
-        .copy
-            margin-left: 20px
-
         h4
             font-size: 21px
             line-height: 1
+
+        svg
+            display: block
+            margin: auto
 
         p
             font-size: 13px
@@ -65,16 +71,11 @@
         .btn
             margin-top: auto
 
-        &.property-tool:hover
-            .cls-6
-                @for $i from 1 through 5
-                    &:nth-of-type(#{$i})
-                        +animation(fadeIn .3s infinite .35s backwards)
-                        +animation(scrollFromLeft #{$i + 3}s linear 0s infinite backwards)
-        span.properties
-            display: block
-            width: 50%
-            overflow: hidden
+        &.property-tool:hover .cls-6
+            @for $i from 1 through 5
+                &:nth-of-type(#{$i})
+                    +animation(fadeIn .3s infinite .35s backwards)
+                    +animation(scrollFromLeft #{$i + 3}s linear 0s infinite backwards)
 
     @media (max-width: $small)
         .tool, .tool.half, .tool.quarter
