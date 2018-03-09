@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import wpfetch from '../../helpers/wpfetch'
 import kformat from '../../helpers/kformat'
+import Wishlist from '../listings/wishlist'
 import Carousel from '../Carousel'
 
 const Stat = ({ i, title, copy }) => copy ? (
@@ -95,8 +96,6 @@ export default class Location extends Component {
       listing_office_name
     } = this.state.result
 
-    console.log(this.state.result)
-
     return (
       <span>
         {all_big.length > 0 && (
@@ -107,13 +106,19 @@ export default class Location extends Component {
             style={{ cursor: 'pointer' }}
           >
               <div className='wrapper'>
-                &lt; Back to Search <span>(
-                  For Sale &gt;&nbsp;
-                  {state} &gt;&nbsp;
-                  {city} &gt;&nbsp;
-                  {zip} &gt;&nbsp;
-                  {street_address}
-                )</span>
+                <div>
+                  &lt; Back to Search <span>(
+                    For Sale &gt;&nbsp;
+                    {state} &gt;&nbsp;
+                    {city} &gt;&nbsp;
+                    {zip} &gt;&nbsp;
+                    {street_address}
+                  )</span>
+                </div>
+
+                <div>
+                  <Wishlist />
+                </div>
               </div>
             </div>
 
@@ -136,7 +141,7 @@ export default class Location extends Component {
           <aside id='contact-widget'>
             <img src='/app/themes/fuse/assets/img/emblem.png' />
             <p>Contact us for more information or to request a showing.</p>
-            <a href='javascript:;' className='btn'>Contact</a>
+            <a href={`/contact-us/?property_id=${mls_number}`} className='btn'>Contact</a>
           </aside>
 
           <div className='row skinny wrapper page-content'>

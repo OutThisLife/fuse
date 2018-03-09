@@ -415,9 +415,9 @@ export default class Filters extends Component {
                 <label>Lot Size (acre)</label>
                 <RangeSlider
                   className='lot-size'
-                  min={.5}
+                  min={0}
                   max={150}
-                  values={[.5, 150]}
+                  values={[0, 150]}
                   onChange={this.handleSubmit}
                 />
 

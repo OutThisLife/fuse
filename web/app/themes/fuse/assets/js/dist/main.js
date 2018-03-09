@@ -1665,6 +1665,10 @@ var _kformat = require('../../helpers/kformat');
 
 var _kformat2 = _interopRequireDefault(_kformat);
 
+var _wishlist = require('../listings/wishlist');
+
+var _wishlist2 = _interopRequireDefault(_wishlist);
+
 var _Carousel = require('../Carousel');
 
 var _Carousel2 = _interopRequireDefault(_Carousel);
@@ -1794,8 +1798,6 @@ var Location = function (_Component) {
           listing_office_name = _state$result.listing_office_name;
 
 
-      console.log(this.state.result);
-
       return _react2.default.createElement(
         'span',
         null,
@@ -1814,19 +1816,28 @@ var Location = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'wrapper' },
-              '< Back to Search ',
               _react2.default.createElement(
-                'span',
+                'div',
                 null,
-                '( For Sale >\xA0',
-                state,
-                ' >\xA0',
-                city,
-                ' >\xA0',
-                zip,
-                ' >\xA0',
-                street_address,
-                ')'
+                '< Back to Search ',
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  '( For Sale >\xA0',
+                  state,
+                  ' >\xA0',
+                  city,
+                  ' >\xA0',
+                  zip,
+                  ' >\xA0',
+                  street_address,
+                  ')'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_wishlist2.default, null)
               )
             )
           ),
@@ -1864,7 +1875,7 @@ var Location = function (_Component) {
             ),
             _react2.default.createElement(
               'a',
-              { href: 'javascript:;', className: 'btn' },
+              { href: '/contact-us/?property_id=' + mls_number, className: 'btn' },
               'Contact'
             )
           ),
@@ -2140,7 +2151,7 @@ if ($location = document.getElementById('single-location')) {
   (0, _reactDom.render)(_react2.default.createElement(Location, $location.dataset), $location);
 }
 
-},{"../../helpers/kformat":26,"../../helpers/wpfetch":27,"../Carousel":1,"babel-runtime/core-js/object/get-prototype-of":38,"babel-runtime/helpers/classCallCheck":46,"babel-runtime/helpers/createClass":47,"babel-runtime/helpers/inherits":50,"babel-runtime/helpers/possibleConstructorReturn":52,"babel-runtime/helpers/slicedToArray":53,"react":682,"react-dom":497}],16:[function(require,module,exports){
+},{"../../helpers/kformat":26,"../../helpers/wpfetch":27,"../Carousel":1,"../listings/wishlist":14,"babel-runtime/core-js/object/get-prototype-of":38,"babel-runtime/helpers/classCallCheck":46,"babel-runtime/helpers/createClass":47,"babel-runtime/helpers/inherits":50,"babel-runtime/helpers/possibleConstructorReturn":52,"babel-runtime/helpers/slicedToArray":53,"react":682,"react-dom":497}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2749,9 +2760,9 @@ var Filters = function (_Component) {
               ),
               _react2.default.createElement(_RangeSlider2.default, {
                 className: 'lot-size',
-                min: .5,
+                min: 0,
                 max: 150,
-                values: [.5, 150],
+                values: [0, 150],
                 onChange: this.handleSubmit
               }),
               _react2.default.createElement('input', { type: 'hidden', name: 'min_acres' }),
